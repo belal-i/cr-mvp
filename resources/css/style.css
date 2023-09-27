@@ -1,0 +1,72 @@
+.cr-bg-dark {
+    background: rgba(100, 100, 100, 0.75);
+}
+
+#logo-image {
+    max-width: 341px;
+}
+
+#homepage-cover-image {
+    background-image: url('/images/header-image.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 444px;
+    width: 1280px;
+    padding-top: 25%;
+}
+
+#l10n-flags {
+    float: right;
+    margin-top: 1.5em;
+}
+
+#l10n-flags a {
+    text-decoration: none;
+}
+
+/* Submit buttons that display a triangle.*/
+.triangle-submit {
+    background: rgba(0, 0, 0, 0) url('/images/pfeil_grau.png') no-repeat scroll center center;
+}
+
+#quicksearch form {
+    margin-top: 1em;
+    float: right;
+}
+
+#quickfilter-form {
+    height: 50px;
+}
+
+.quickfilter-form-elem {
+    background: #efefef;
+}
+
+.quickfilter-form-elem input,
+.quickfilter-form-elem select {
+    height: 100%;
+}
+
+/*
+ * TODO: Might not work on older browsers.
+ * */
+.quickfilter-form-label,
+#quickfilter-submit-button {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+#quickfilter-submit-button {
+    background: #cdcdcd;
+}
+
+#quickfilter-submit-button:hover {
+    cursor: pointer;
+}
+
+.no-radius {
+    border-radius: 0px;
+}
