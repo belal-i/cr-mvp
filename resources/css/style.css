@@ -1,0 +1,110 @@
+/* General site wide rules */
+/* ----------------------- */
+
+.cr-bg-dark {
+    background: rgba(100, 100, 100, 0.75);
+}
+
+.no-radius {
+    border-radius: 0px;
+}
+
+.homepage-content {
+    margin-top: 3em;
+    text-align: center;
+}
+
+.cr-txt-light,
+.cr-txt-light a,
+.cr-txt-light a:visited {
+    color: #ddd;
+}
+/* ----------------------- */
+
+/* Specific individual elements */
+/* ---------------------------- */
+
+#logo-image {
+    max-width: 341px;
+}
+
+#homepage-cover-image {
+    background-image: url('/images/header-image.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 444px;
+    width: 1280px;
+    padding-top: 25%;
+}
+
+#l10n-flags {
+    float: right;
+    margin-top: 1.5em;
+}
+
+#l10n-flags a {
+    text-decoration: none;
+}
+
+/* Submit buttons that display a triangle.*/
+.triangle-submit {
+    background: rgba(0, 0, 0, 0) url('/images/pfeil_grau.png') no-repeat scroll center center;
+}
+
+#quicksearch form {
+    margin-top: 1em;
+    float: right;
+}
+
+#quickfilter-form {
+    height: 50px;
+}
+
+.quickfilter-form-elem {
+    background: #efefef;
+}
+
+.quickfilter-form-elem input,
+.quickfilter-form-elem select {
+    height: 100%;
+}
+
+/*
+ * TODO: Might not work on older browsers.
+ * */
+.quickfilter-form-label,
+#quickfilter-submit-button {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+#quickfilter-submit-button {
+    background: #cdcdcd;
+}
+
+#quickfilter-submit-button:hover {
+    cursor: pointer;
+}
+
+#top-navbar-row,
+#site-header-row,
+#bottom-nav-row {
+    margin-top: 1em;
+}
+
+#bottom-nav-row {
+    padding: 1em 0 0 1em;
+
+    /*
+     * TODO: This is a temporary workaround to the fact that right now, in the
+     * early stages of development, the home page has very little content, so we
+     * need to extend the bottom navbar to the bottom of the viewport, without
+     * extending it too much...
+     * */
+    height: 100vh;
+    max-height: 250px;
+}
+/* ---------------------------- */
