@@ -4,11 +4,11 @@
     <div class="col" id="homepage-cover-image">
         <div id="quickfilter-container" class="container">
             <form class="row form-inline" id="quickfilter-form">
-                <div class="col"></div>
+                <div class="col-2"></div>
 
-                <div class="col quickfilter-form-elem quickfilter-form-label">Zimmer</div>
-                <div class="col quickfilter-form-elem">
-                    <select class="form-control no-radius" id="quickfilter-nr-rooms">
+                <div class="col-sm-auto quickfilter-form-elem quickfilter-form-label">Zimmer</div>
+                <div class="col-sm-auto quickfilter-form-elem quickfilter-elem-with-line">
+                    <select class="no-radius" id="quickfilter-nr-rooms">
                         <option>1</option>
                         <option>2</option>
                         <option>3</option>
@@ -17,14 +17,14 @@
                     </select>
                 </div>
 
-                <div class="col quickfilter-form-elem quickfilter-form-label">Miete (max.)</div>
-                <div class="col quickfilter-form-elem">
+                <div class="col-md-auto quickfilter-form-elem quickfilter-form-label">Miete (max.)</div>
+                <div class="col quickfilter-form-elem quickfilter-elem-with-line">
                     <input class="form-control no-radius" type="text" id="quickfilter-rent" placeholder="EUR">
                 </div>
 
-                <div class="col-1 quickfilter-form-elem quickfilter-form-label">ab</div>
+                <div class="col-sm-auto quickfilter-form-elem quickfilter-form-label">ab</div>
                 <div class="col quickfilter-form-elem">
-                    <select class="form-control no-radius" id="quickfilter-start-month">
+                    <select class="no-radius" id="quickfilter-start-month">
                         <option>sofort</option>
                         <option>Oktober</option>
                         <option>November</option>
@@ -34,10 +34,10 @@
                 </div>
 
                 <div id="quickfilter-submit-button" class="col-3 quickfilter-form-elem quickfilter-form-label" onclick="window.location.href = '/offers';">
-                    100 Ergebnisse anzeigen
+                    101 Angebote zeigen
                 </div>
 
-                <div class="col"></div>
+                <div class="col-2"></div>
             </form>
         </div><!-- .container -->
     </div><!-- .col -->

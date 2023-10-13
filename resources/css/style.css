@@ -1,5 +1,5 @@
 /* General site wide rules */
-/* ----------------------- */
+/* ======================= */
 
 .site-content {
     margin: 0 10% 0 10%;
@@ -25,10 +25,10 @@ select,
     color: #fff;
     background: #d81c32;
 }
-/* ----------------------- */
+/* ======================= */
 
 /* Specific individual elements */
-/* ---------------------------- */
+/* ============================ */
 
 .homepage-content {
     margin-top: 3em;
@@ -67,6 +67,9 @@ select,
     float: right;
 }
 
+/* The quickfilter */
+/* --------------- */
+
 #quickfilter-form {
     height: 50px;
 }
@@ -75,15 +78,15 @@ select,
     background: #efefef;
 }
 
-.quickfilter-form-elem input,
-.quickfilter-form-elem select {
-    height: 100%;
+.quickfilter-elem-with-line {
+    border-right: 6px rgb(213, 209, 193) solid;
 }
 
 /*
  * TODO: Might not work on older browsers.
  * */
 .quickfilter-form-label,
+.quickfilter-form-elem,
 #quickfilter-submit-button {
     display: flex;
     justify-content: center;
@@ -92,13 +95,20 @@ select,
     flex-direction: column;
 }
 
+#quickfilter-rent {
+    border: 3px rgb(213, 209, 193) solid;
+    text-align: center;
+    max-width: 100px;
+}
 #quickfilter-submit-button {
-    background: #cdcdcd;
+    background: rgb(213, 209, 193);
+    font-weight: 900;
 }
 
 #quickfilter-submit-button:hover {
     cursor: pointer;
 }
+/* --------------- */
 
 #top-navbar-row,
 #site-header-row,
@@ -118,9 +128,9 @@ select,
     height: 100vh;
     max-height: 250px;
 }
-/* ---------------------------- */
 
-/* The offer-filter-form*/
+/* The offer-filter-form */
+/* --------------------- */
 #offer-filter-form {
     background: #f8f8f0;
 }
@@ -145,7 +155,10 @@ select,
 .offer-filter-form-wide-elem-plus {
     width: 120px;
 }
+/* --------------------- */
 
+/* List view */
+/* --------- */
 .offer-list-view-entry {
     background: #F3F0DD;
     margin-top: 1%;
@@ -182,3 +195,5 @@ select,
     background: #d81c32;
     color: #fff;
 }
+/* --------- */
+/* ============================ */
