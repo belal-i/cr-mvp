@@ -1,5 +1,5 @@
 /* General site wide rules */
-/* ----------------------- */
+/* ======================= */
 
 .cr-bg-dark {
     background: rgba(100, 100, 100, 0.75);
@@ -19,10 +19,10 @@
 .cr-txt-light a:visited {
     color: #ddd;
 }
-/* ----------------------- */
+/* ======================= */
 
 /* Specific individual elements */
-/* ---------------------------- */
+/* ============================ */
 
 #logo-image {
     max-width: 341px;
@@ -56,6 +56,9 @@
     float: right;
 }
 
+/* The quickfilter */
+/* --------------- */
+
 #quickfilter-form {
     height: 50px;
 }
@@ -64,15 +67,15 @@
     background: #efefef;
 }
 
-.quickfilter-form-elem input,
-.quickfilter-form-elem select {
-    height: 100%;
+.quickfilter-elem-with-line {
+    border-right: 6px rgb(213, 209, 193) solid;
 }
 
 /*
  * TODO: Might not work on older browsers.
  * */
 .quickfilter-form-label,
+.quickfilter-form-elem,
 #quickfilter-submit-button {
     display: flex;
     justify-content: center;
@@ -81,13 +84,20 @@
     flex-direction: column;
 }
 
+#quickfilter-rent {
+    border: 3px rgb(213, 209, 193) solid;
+    text-align: center;
+    max-width: 100px;
+}
 #quickfilter-submit-button {
-    background: #cdcdcd;
+    background: rgb(213, 209, 193);
+    font-weight: 900;
 }
 
 #quickfilter-submit-button:hover {
     cursor: pointer;
 }
+/* --------------- */
 
 #top-navbar-row,
 #site-header-row,
@@ -107,4 +117,4 @@
     height: 100vh;
     max-height: 250px;
 }
-/* ---------------------------- */
+/* ============================ */
