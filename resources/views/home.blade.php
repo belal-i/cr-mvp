@@ -33,7 +33,7 @@
                     </select>
                 </div>
 
-                <div id="quickfilter-submit-button" class="col-2 quickfilter-form-elem quickfilter-form-label" onclick="alert('TODO: Implement REST endpoint in backend for the model Offer, so we can filter by the values in this form.');">
+                <div id="quickfilter-submit-button" class="col-3 quickfilter-form-elem quickfilter-form-label" onclick="window.location.href = '/offers';">
                     101 Angebote zeigen
                 </div>
 
@@ -43,7 +43,7 @@
     </div><!-- .col -->
 </div><!-- .row -->
 
-<div class="row">
+<div class="row site-content">
     <div class="col homepage-content">
         <h3>Wohnen auf Zeit - Möblierte Wohnungen in besten Lagen</h3>
         <br>
