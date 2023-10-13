@@ -56,7 +56,7 @@
                     <div class="container">
                         <div class="row navbar-nav mr-auto nav-fill w-100">
                             <div class="col">
-                                <a class="nav-link" href="/">Suchen</a>
+                                <a class="nav-link" href="/offers">Suchen</a>
                             </div>
                             <div class="col">
                                 <a class="nav-link" href="/">Mieter-Info</a>

@@ -1,17 +1,18 @@
 /* General site wide rules */
 /* ----------------------- */
 
+.site-content {
+    margin: 0 10% 0 10%;
+}
+
 .cr-bg-dark {
     background: rgba(100, 100, 100, 0.75);
 }
 
+input,
+select,
 .no-radius {
     border-radius: 0px;
-}
-
-.homepage-content {
-    margin-top: 3em;
-    text-align: center;
 }
 
 .cr-txt-light,
@@ -19,10 +20,20 @@
 .cr-txt-light a:visited {
     color: #ddd;
 }
+
+.cr-submit-button {
+    color: #fff;
+    background: #d81c32;
+}
 /* ----------------------- */
 
 /* Specific individual elements */
 /* ---------------------------- */
+
+.homepage-content {
+    margin-top: 3em;
+    text-align: center;
+}
 
 #logo-image {
     max-width: 341px;
@@ -108,3 +119,66 @@
     max-height: 250px;
 }
 /* ---------------------------- */
+
+/* The offer-filter-form*/
+#offer-filter-form {
+    background: #f8f8f0;
+}
+
+#offer-filter-form table {
+    width: 100%;
+    border-top: 1px solid #eae8d5;
+}
+
+#offer-filter-form .border-row {
+    border-top: 1px solid #eae8d5;
+}
+
+#offer-filter-form td {
+    padding: 1.5%;
+}
+
+.offer-filter-form-wide-elem {
+    width: 100px;
+}
+
+.offer-filter-form-wide-elem-plus {
+    width: 120px;
+}
+
+.offer-list-view-entry {
+    background: #F3F0DD;
+    margin-top: 1%;
+    margin-bottom: 1%;
+    text-decoration: none;
+    color: rgb(33, 37, 41);
+}
+
+.offer-list-view-entry:hover {
+    cursor: pointer;
+    background: #eae8d5;
+}
+
+.offer-list-view-entry-toggle-1 {
+    background: #F3F0DD;
+}
+
+.offer-list-view-entry-toggle--1 {
+    background: #F8F8F0;
+}
+
+.pagination > li > a,
+.pagination > li > span {
+    color: #d81c32;
+    background: #fff;
+}
+
+.pagination > .active > a,
+.pagination > .active > a:focus,
+.pagination > .active > a:hover,
+.pagination > .active > span,
+.pagination > .active > span:focus,
+.pagination > .active > span:hover {
+    background: #d81c32;
+    color: #fff;
+}
