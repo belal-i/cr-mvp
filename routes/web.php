@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Models\Offer;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,4 +16,11 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('home');
+});
+
+Route::get('/offers', function () {
+    $offers = Offer::where('status', '=', 'F')->paginate(25);
+    return view('offers', [
+        'offers' => $offers,
+    ]);
 });
