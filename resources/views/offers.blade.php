@@ -232,7 +232,7 @@ $css_toggle_suffix_int = 1;
             <img src="images/pexels-vecislavas-popa-1571463.jpg" width="300" height="200">
         </div>
         <div class="col-7">
-            <h4><strong>Schöne Überschrift kommt noch (Ticket #924)</strong></h4>
+            <h4><strong>{{ $offer->apartment->title }}</strong></h4>
             <?php
             // TODO: See Feature #961.
             if ($offer->apartment->apartment_type == 'Haus') {
@@ -255,10 +255,21 @@ $css_toggle_suffix_int = 1;
             }
 
             $rent_text = number_format((float)$offer->rent, 0, ',', '.') . ' EUR';
+
+            $subway_stations = json_decode($offer->apartment->nearby_public_transit, true);
+            $subway_stations = $subway_stations["subway"] ?? [];
+            $subway_stations = array_keys($subway_stations);
+
+            $neighborhood_text = !empty($offer->apartment->neighborhood)
+                ? ', ' . $offer->apartment->neighborhood
+                : '';
+
             ?>
 
-            <p>{{ $nr_of_rooms_text }}, {{ $offer->apartment->size_sq_m }}m<sup>2</sup>, TODO: Stadtteil, {{ $offer->apartment->street }}</p>
-            <p>TODO: Öffentliche Verkehrsmittel</p>
+            <p>{{ $nr_of_rooms_text }}, {{ $offer->apartment->size_sq_m }}m<sup>2</sup>{{ $neighborhood_text }}, {{ $offer->apartment->street }}</p>
+            @foreach ($subway_stations as $station)
+                <p>{{ $station }}</p>
+            @endforeach
             <div style="text-align:right; width:100%;">
             <span style="float:left;"><strong>frei ab {{ $start_date_text }}</strong>, {{ $max_months_text }}, Mindestmietzeit {{ $offer->min_months }} Monate</span>Miete pro Monat: <strong>{{ $rent_text }}</strong>
             </div>

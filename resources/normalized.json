@@ -65,17 +65,95 @@
             "city": "Test City",
             "contact_id": null,
             "date_created": "1994-01-25",
+            "energy_certificate_date": "2017-12-17",
+            "energy_consumption_contains_warm_water": true,
+            "energy_rating_type": "ENERGY_CONSUMPTION",
+            "energy_source": "GAS",
+            "energy_usage_value": 142.0,
+            "flooring": null,
+            "flooring_description": "edles",
+            "flooring_material": "Eiche",
+            "furnishing_description": [
+                "sch\u00f6ne",
+                "modernen Stil"
+            ],
+            "furnishing_style": null,
+            "house_character": "Nachkriegsbau",
+            "house_description": "Gepflegtes",
             "house_number": "1",
+            "house_type": "Mehrfamilienhaus",
             "is_furnished": true,
             "key_number": "",
+            "living_room_contents": [
+                "Sofa",
+                "Esstisch mit St\u00fchlen"
+            ],
+            "living_room_description": "H\u00fcbsches",
+            "living_room_type": "Wohn-Esszimmer",
+            "nearby_points_of_interest": [
+                {
+                    "type": "supermarkt",
+                    "sub": "Penny",
+                    "dist": "300m"
+                },
+                {
+                    "type": "supermarkt",
+                    "sub": "REWE",
+                    "dist": "500m"
+                },
+                {
+                    "type": "supermarkt",
+                    "sub": "Bio-Supermarkt",
+                    "dist": "250m"
+                },
+                {
+                    "type": "einkaufsmeile",
+                    "sub": "Berger Stra\u00dfe",
+                    "dist": "200m"
+                },
+                {
+                    "type": "park",
+                    "sub": "Bethmannpark/Chinesischer Garten",
+                    "dist": "300m"
+                },
+                {
+                    "type": "",
+                    "dist": "10m"
+                }
+            ],
+            "nearby_public_transit": {
+                "subway": {
+                    "Station 1": "500m",
+                    "Station 2": "450m"
+                },
+                "bus": {}
+            },
+            "neighborhood": "Some nice neighborhood",
             "notes": [
                 "Note 1",
                 "Note 2"
             ],
             "number_of_rooms": 2.0,
+            "number_of_stories": 3,
+            "parking_rating": 5.0,
+            "rating": 5.0,
             "size_sq_m": "33",
             "source_id": 29492,
+            "story": 4,
+            "specials": [
+                {
+                    "1": "Irgendwas auf deutsch",
+                    "2": "Something in English",
+                    "3": "Something in French",
+                    "4": "Something in Spanish",
+                    "5": "Something in Italian"
+                }
+            ],
             "street": "Test Street",
+            "title": "A very nice apartment",
+            "year_of_construction": 1955,
+            "year_of_last_renovation": 2000,
+            "view": "Beautiful view of the skyline",
             "zip_code": "12345"
         },
         "2": {
@@ -84,27 +162,116 @@
             "city": "Other Test City",
             "contact_id": 2,
             "date_created": "1994-01-25",
+            "energy_certificate_date": "2017-12-17",
+            "energy_consumption_contains_warm_water": true,
+            "energy_rating_type": "ENERGY_CONSUMPTION",
+            "energy_source": "GAS",
+            "energy_usage_value": 142.0,
+            "flooring": null,
+            "flooring_description": "edles",
+            "flooring_material": "Eiche",
+            "furnishing_description": [
+                "sch\u00f6ne",
+                "modernen Stil"
+            ],
+            "furnishing_style": null,
+            "house_character": "Nachkriegsbau",
+            "house_description": "Gepflegtes",
             "house_number": "1",
+            "house_type": "Mehrfamilienhaus",
             "is_furnished": true,
             "key_number": "",
+            "living_room_contents": [
+                "Sofa",
+                "Esstisch mit St\u00fchlen"
+            ],
+            "living_room_description": "H\u00fcbsches",
+            "living_room_type": "Wohn-Esszimmer",
+            "nearby_points_of_interest": [
+                {
+                    "type": "supermarkt",
+                    "sub": "Penny",
+                    "dist": "300m"
+                },
+                {
+                    "type": "supermarkt",
+                    "sub": "REWE",
+                    "dist": "500m"
+                },
+                {
+                    "type": "supermarkt",
+                    "sub": "Bio-Supermarkt",
+                    "dist": "250m"
+                },
+                {
+                    "type": "einkaufsmeile",
+                    "sub": "Berger Stra\u00dfe",
+                    "dist": "200m"
+                },
+                {
+                    "type": "park",
+                    "sub": "Bethmannpark/Chinesischer Garten",
+                    "dist": "300m"
+                },
+                {
+                    "type": "",
+                    "dist": "10m"
+                }
+            ],
+            "nearby_public_transit": {
+                "subway": {
+                    "Station 1": "500m",
+                    "Station 2": "450m"
+                },
+                "bus": {}
+            },
+            "neighborhood": "Some nice neighborhood",
             "notes": [
                 "Note 1",
                 "Note 2"
             ],
             "number_of_rooms": 4.0,
+            "number_of_stories": 4,
+            "parking_rating": 5.0,
+            "rating": 5.0,
             "size_sq_m": "70",
             "source_id": 29492,
+            "specials": [
+                {
+                    "1": "Irgendwas auf deutsch",
+                    "2": "Something in English",
+                    "3": "Something in French",
+                    "4": "Something in Spanish",
+                    "5": "Something in Italian"
+                }
+            ],
+            "story": -2,
             "street": "Test Street",
+            "title": "Another very nice apartment",
+            "year_of_construction": 1955,
+            "year_of_last_renovation": 2000,
+            "view": "Beautiful view of the skyline",
             "zip_code": "12345"
         }
     },
     "offers": {
         "1": {
             "apartment_id": 1,
+            "cleaning_cost_amount": 50,
+            "cleaning_cost_included": true,
             "contact_id": 1,
             "date_created": "2011-05-03",
             "date_last_changed": "2011-08-15",
+            "electricity_cost_amount": 50,
+            "electricity_cost_included": true,
+            "gas_cost_amount": 50,
+            "gas_cost_included": true,
             "end_date": null,
+            "heating_cost_amount": 50,
+            "heating_cost_included": true,
+            "internet_cost_amount": 50,
+            "internet_cost_included": true,
+            "is_premium": true,
             "last_changed_by": "Aa",
             "max_months": null,
             "min_months": 1,
@@ -121,16 +288,31 @@
             "smoking_ok": false,
             "source_id": "29492/36",
             "start_date": "2011-07-28",
-            "status": "R",
+            "status": "F",
             "time_last_changed": "12:41",
-            "va_was_sent": false
+            "utility_cost_amount": 50,
+            "utility_cost_included": true,
+            "va_was_sent": false,
+            "water_cost_amount": 50,
+            "water_cost_included": true
         },
         "2": {
             "apartment_id": 2,
+            "cleaning_cost_amount": 50,
+            "cleaning_cost_included": true,
             "contact_id": 3,
             "date_created": "2011-05-03",
             "date_last_changed": "2011-08-15",
+            "electricity_cost_amount": 50,
+            "electricity_cost_included": true,
             "end_date": null,
+            "gas_cost_amount": 50,
+            "gas_cost_included": true,
+            "heating_cost_amount": 50,
+            "heating_cost_included": true,
+            "internet_cost_amount": 50,
+            "internet_cost_included": true,
+            "is_premium": null,
             "last_changed_by": "Aa",
             "max_months": 3,
             "min_months": null,
@@ -149,7 +331,11 @@
             "start_date": "2011-07-28",
             "status": "F",
             "time_last_changed": "12:41",
-            "va_was_sent": false
+            "utility_cost_amount": 50,
+            "utility_cost_included": true,
+            "va_was_sent": false,
+            "water_cost_amount": 50,
+            "water_cost_included": true
         }
     }
 }
