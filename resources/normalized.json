@@ -1,32 +1,124 @@
 {
-    "contacts": {
+    "addresses": {
         "1": {
             "city": "Test City",
-            "email": [
-                "contact1@example.com",
-                "contact1@helloworld.com"
-            ],
-            "first_name": "John1",
             "house_number": "1",
-            "last_contact_date": "2015-07-01",
-            "last_contact_time": "15:56",
-            "last_name": "Doe",
-            "phone": [
-                "123-456789",
-                "987-654321"
+            "nearby_points_of_interest": [
+                {
+                    "type": "supermarkt",
+                    "sub": "Penny",
+                    "dist": "300m"
+                },
+                {
+                    "type": "supermarkt",
+                    "sub": "REWE",
+                    "dist": "500m"
+                },
+                {
+                    "type": "supermarkt",
+                    "sub": "Bio-Supermarkt",
+                    "dist": "250m"
+                },
+                {
+                    "type": "einkaufsmeile",
+                    "sub": "Berger Stra\u00dfe",
+                    "dist": "200m"
+                },
+                {
+                    "type": "park",
+                    "sub": "Bethmannpark/Chinesischer Garten",
+                    "dist": "300m"
+                },
+                {
+                    "type": "",
+                    "dist": "10m"
+                }
             ],
-            "salutation": "Mr.",
+            "nearby_public_transit": {
+                "subway": {
+                    "Station 1": "500m",
+                    "Station 2": "450m"
+                },
+                "bus": {}
+            },
+            "neighborhood": "Some nice neighborhood",
+            "parking_rating": 4.0,
+            "source_id": 29492,
             "street": "Test Street",
             "zip_code": "12345"
         },
         "2": {
             "city": "Other Test City",
+            "house_number": "2",
+            "nearby_points_of_interest": [
+                {
+                    "type": "supermarkt",
+                    "sub": "Penny",
+                    "dist": "300m"
+                },
+                {
+                    "type": "supermarkt",
+                    "sub": "REWE",
+                    "dist": "500m"
+                },
+                {
+                    "type": "supermarkt",
+                    "sub": "Bio-Supermarkt",
+                    "dist": "250m"
+                },
+                {
+                    "type": "einkaufsmeile",
+                    "sub": "Berger Stra\u00dfe",
+                    "dist": "200m"
+                },
+                {
+                    "type": "park",
+                    "sub": "Bethmannpark/Chinesischer Garten",
+                    "dist": "300m"
+                },
+                {
+                    "type": "",
+                    "dist": "10m"
+                }
+            ],
+            "nearby_public_transit": {
+                "subway": {
+                    "Station 1": "500m",
+                    "Station 2": "450m"
+                },
+                "bus": {}
+            },
+            "neighborhood": "Some nice neighborhood",
+            "parking_rating": 4.0,
+            "source_id": 29492,
+            "street": "Other Test Street",
+            "zip_code": "54321"
+        }
+    },
+    "contacts": {
+        "1": {
+            "address_id": 1,
+            "email": [
+                "contact1@example.com",
+                "contact1@helloworld.com"
+            ],
+            "first_name": "John1",
+            "last_contact_date": "2015-07-01",
+            "last_contact_time": "15:56",
+            "last_name": "Doe",
+            "phone": [
+                "123-456789",
+                "987-654321"
+            ],
+            "salutation": "Mr."
+        },
+        "2": {
+            "address_id": 2,
             "email": [
                 "contact2@example.com",
                 "contact2@helloworld.com"
             ],
             "first_name": "John2",
-            "house_number": "2",
             "last_contact_date": "2015-07-01",
             "last_contact_time": "15:56",
             "last_name": "Doe",
@@ -34,18 +126,15 @@
                 "123-456789",
                 "987-654321"
             ],
-            "salutation": "Mr.",
-            "street": "Other Test Street",
-            "zip_code": "54321"
+            "salutation": "Mr."
         },
         "3": {
-            "city": "Other Test City",
+            "address_id": 2,
             "email": [
                 "contact3@example.com",
                 "contact3@helloworld.com"
             ],
             "first_name": "John3",
-            "house_number": "2",
             "last_contact_date": "2015-07-01",
             "last_contact_time": "15:56",
             "last_name": "Doe",
@@ -53,16 +142,14 @@
                 "123-456789",
                 "987-654321"
             ],
-            "salutation": "Mr.",
-            "street": "Other Test Street",
-            "zip_code": "54321"
+            "salutation": "Mr."
         }
     },
     "apartments": {
         "1": {
             "account_manager": "Aa",
+            "address_id": 1,
             "apartment_type": "Wohnung",
-            "city": "Test City",
             "contact_id": null,
             "date_created": "1994-01-25",
             "energy_certificate_date": "2017-12-17",
@@ -80,7 +167,6 @@
             "furnishing_style": null,
             "house_character": "Nachkriegsbau",
             "house_description": "Gepflegtes",
-            "house_number": "1",
             "house_type": "Mehrfamilienhaus",
             "is_furnished": true,
             "key_number": "",
@@ -90,52 +176,12 @@
             ],
             "living_room_description": "H\u00fcbsches",
             "living_room_type": "Wohn-Esszimmer",
-            "nearby_points_of_interest": [
-                {
-                    "type": "supermarkt",
-                    "sub": "Penny",
-                    "dist": "300m"
-                },
-                {
-                    "type": "supermarkt",
-                    "sub": "REWE",
-                    "dist": "500m"
-                },
-                {
-                    "type": "supermarkt",
-                    "sub": "Bio-Supermarkt",
-                    "dist": "250m"
-                },
-                {
-                    "type": "einkaufsmeile",
-                    "sub": "Berger Stra\u00dfe",
-                    "dist": "200m"
-                },
-                {
-                    "type": "park",
-                    "sub": "Bethmannpark/Chinesischer Garten",
-                    "dist": "300m"
-                },
-                {
-                    "type": "",
-                    "dist": "10m"
-                }
-            ],
-            "nearby_public_transit": {
-                "subway": {
-                    "Station 1": "500m",
-                    "Station 2": "450m"
-                },
-                "bus": {}
-            },
-            "neighborhood": "Some nice neighborhood",
             "notes": [
                 "Note 1",
                 "Note 2"
             ],
             "number_of_rooms": 2.0,
             "number_of_stories": 3,
-            "parking_rating": 5.0,
             "rating": 5.0,
             "size_sq_m": "33",
             "source_id": 29492,
@@ -149,17 +195,15 @@
                     "5": "Something in Italian"
                 }
             ],
-            "street": "Test Street",
             "title": "A very nice apartment",
             "year_of_construction": 1955,
             "year_of_last_renovation": 2000,
-            "view": "Beautiful view of the skyline",
-            "zip_code": "12345"
+            "view": "Beautiful view of the skyline"
         },
         "2": {
             "account_manager": "Aa",
+            "address_id": 2,
             "apartment_type": "Wohnung",
-            "city": "Other Test City",
             "contact_id": 2,
             "date_created": "1994-01-25",
             "energy_certificate_date": "2017-12-17",
@@ -177,7 +221,6 @@
             "furnishing_style": null,
             "house_character": "Nachkriegsbau",
             "house_description": "Gepflegtes",
-            "house_number": "1",
             "house_type": "Mehrfamilienhaus",
             "is_furnished": true,
             "key_number": "",
@@ -187,52 +230,12 @@
             ],
             "living_room_description": "H\u00fcbsches",
             "living_room_type": "Wohn-Esszimmer",
-            "nearby_points_of_interest": [
-                {
-                    "type": "supermarkt",
-                    "sub": "Penny",
-                    "dist": "300m"
-                },
-                {
-                    "type": "supermarkt",
-                    "sub": "REWE",
-                    "dist": "500m"
-                },
-                {
-                    "type": "supermarkt",
-                    "sub": "Bio-Supermarkt",
-                    "dist": "250m"
-                },
-                {
-                    "type": "einkaufsmeile",
-                    "sub": "Berger Stra\u00dfe",
-                    "dist": "200m"
-                },
-                {
-                    "type": "park",
-                    "sub": "Bethmannpark/Chinesischer Garten",
-                    "dist": "300m"
-                },
-                {
-                    "type": "",
-                    "dist": "10m"
-                }
-            ],
-            "nearby_public_transit": {
-                "subway": {
-                    "Station 1": "500m",
-                    "Station 2": "450m"
-                },
-                "bus": {}
-            },
-            "neighborhood": "Some nice neighborhood",
             "notes": [
                 "Note 1",
                 "Note 2"
             ],
             "number_of_rooms": 4.0,
             "number_of_stories": 4,
-            "parking_rating": 5.0,
             "rating": 5.0,
             "size_sq_m": "70",
             "source_id": 29492,
@@ -246,12 +249,10 @@
                 }
             ],
             "story": -2,
-            "street": "Test Street",
             "title": "Another very nice apartment",
             "year_of_construction": 1955,
             "year_of_last_renovation": 2000,
-            "view": "Beautiful view of the skyline",
-            "zip_code": "12345"
+            "view": "Beautiful view of the skyline"
         }
     },
     "offers": {
@@ -282,7 +283,7 @@
             "number_of_persons": "3",
             "publish_on_immoscout": false,
             "reference": "Sonstiges",
-            "rent": "1000",
+            "rent": 1000.0,
             "security_deposit": 2,
             "security_deposit_type": "MONTHLY_RENTS",
             "smoking_ok": false,
@@ -323,7 +324,7 @@
             "number_of_persons": "3",
             "publish_on_immoscout": false,
             "reference": "Sonstiges",
-            "rent": "1000",
+            "rent": 1000.0,
             "security_deposit": 2000,
             "security_deposit_type": "EURO_AMOUNT",
             "smoking_ok": false,
