@@ -2,6 +2,7 @@
     "addresses": {
         "1": {
             "city": "Test City",
+            "house_id": 1,
             "house_number": "1",
             "nearby_points_of_interest": [
                 {
@@ -49,6 +50,7 @@
         },
         "2": {
             "city": "Other Test City",
+            "house_id": 2,
             "house_number": "2",
             "nearby_points_of_interest": [
                 {
@@ -145,18 +147,44 @@
             "salutation": "Mr."
         }
     },
-    "apartments": {
+    "houses": {
         "1": {
-            "account_manager": "Aa",
             "address_id": 1,
-            "apartment_type": "Wohnung",
-            "contact_id": null,
-            "date_created": "1994-01-25",
             "energy_certificate_date": "2017-12-17",
             "energy_consumption_contains_warm_water": true,
             "energy_rating_type": "ENERGY_CONSUMPTION",
             "energy_source": "GAS",
             "energy_usage_value": 142.0,
+            "house_character": "Nachkriegsbau",
+            "house_description": "Gepflegtes",
+            "house_type": "Mehrfamilienhaus",
+            "number_of_stories": 3,
+            "source_id": 29492,
+            "year_of_construction": 1955,
+            "year_of_last_renovation": 2000
+        },
+        "2": {
+            "address_id": 2,
+            "energy_certificate_date": "2017-12-17",
+            "energy_consumption_contains_warm_water": true,
+            "energy_rating_type": "ENERGY_CONSUMPTION",
+            "energy_source": "GAS",
+            "energy_usage_value": 142.0,
+            "house_character": "Nachkriegsbau",
+            "house_description": "Gepflegtes",
+            "house_type": "Mehrfamilienhaus",
+            "number_of_stories": 4,
+            "source_id": 29492,
+            "year_of_construction": 1955,
+            "year_of_last_renovation": 2000
+        }
+    },
+    "apartments": {
+        "1": {
+            "account_manager": "Aa",
+            "apartment_type": "Wohnung",
+            "contact_id": null,
+            "date_created": "1994-01-25",
             "flooring": null,
             "flooring_description": "edles",
             "flooring_material": "Eiche",
@@ -165,9 +193,7 @@
                 "modernen Stil"
             ],
             "furnishing_style": null,
-            "house_character": "Nachkriegsbau",
-            "house_description": "Gepflegtes",
-            "house_type": "Mehrfamilienhaus",
+            "house_id": 1,
             "is_furnished": true,
             "key_number": "",
             "living_room_contents": [
@@ -181,7 +207,6 @@
                 "Note 2"
             ],
             "number_of_rooms": 2.0,
-            "number_of_stories": 3,
             "rating": 5.0,
             "size_sq_m": "33",
             "source_id": 29492,
@@ -196,21 +221,13 @@
                 }
             ],
             "title": "A very nice apartment",
-            "year_of_construction": 1955,
-            "year_of_last_renovation": 2000,
             "view": "Beautiful view of the skyline"
         },
         "2": {
             "account_manager": "Aa",
-            "address_id": 2,
             "apartment_type": "Wohnung",
             "contact_id": 2,
             "date_created": "1994-01-25",
-            "energy_certificate_date": "2017-12-17",
-            "energy_consumption_contains_warm_water": true,
-            "energy_rating_type": "ENERGY_CONSUMPTION",
-            "energy_source": "GAS",
-            "energy_usage_value": 142.0,
             "flooring": null,
             "flooring_description": "edles",
             "flooring_material": "Eiche",
@@ -219,9 +236,7 @@
                 "modernen Stil"
             ],
             "furnishing_style": null,
-            "house_character": "Nachkriegsbau",
-            "house_description": "Gepflegtes",
-            "house_type": "Mehrfamilienhaus",
+            "house_id": 2,
             "is_furnished": true,
             "key_number": "",
             "living_room_contents": [
@@ -235,7 +250,6 @@
                 "Note 2"
             ],
             "number_of_rooms": 4.0,
-            "number_of_stories": 4,
             "rating": 5.0,
             "size_sq_m": "70",
             "source_id": 29492,
@@ -250,8 +264,6 @@
             ],
             "story": -2,
             "title": "Another very nice apartment",
-            "year_of_construction": 1955,
-            "year_of_last_renovation": 2000,
             "view": "Beautiful view of the skyline"
         }
     },

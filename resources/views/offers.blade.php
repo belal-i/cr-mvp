@@ -256,17 +256,24 @@ $css_toggle_suffix_int = 1;
 
             $rent_text = number_format((float)$offer->rent, 0, ',', '.') . ' EUR';
 
-            $subway_stations = json_decode($offer->apartment->address->nearby_public_transit, true);
+            $subway_stations = json_decode(
+                $offer->apartment
+                      ->house
+                      ->address
+                      ->nearby_public_transit,
+                  true
+            );
             $subway_stations = $subway_stations["subway"] ?? [];
             $subway_stations = array_keys($subway_stations);
 
-            $neighborhood_text = !empty($offer->apartment->address->neighborhood)
-                ? ', ' . $offer->apartment->address->neighborhood
+            $neighborhood = $offer->apartment->house->address->neighborhood;
+            $neighborhood_text = !empty($neighborhood)
+                ? ', ' . $neighborhood
                 : '';
 
             ?>
 
-            <p>{{ $nr_of_rooms_text }}, {{ $offer->apartment->size_sq_m }}m<sup>2</sup>{{ $neighborhood_text }}, {{ $offer->apartment->address->street }}</p>
+            <p>{{ $nr_of_rooms_text }}, {{ $offer->apartment->size_sq_m }}m<sup>2</sup>{{ $neighborhood_text }}, {{ $offer->apartment->house->address->street }}</p>
             @foreach ($subway_stations as $station)
                 <p>{{ $station }}</p>
             @endforeach
