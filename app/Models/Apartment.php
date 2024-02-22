@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use App\Models\Address;
+use App\Models\House;
 use App\Models\Offer;
 
 class Apartment extends Model
@@ -18,8 +18,8 @@ class Apartment extends Model
         return $this->hasMany(Offer::class);
     }
 
-    public function address(): BelongsTo
+    public function house(): BelongsTo
     {
-        return $this->belongsTo(Address::class);
+        return $this->belongsTo(House::class);
     }
 }
