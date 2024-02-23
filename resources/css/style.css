@@ -25,6 +25,29 @@ select,
     color: #fff;
     background: #d81c32;
 }
+
+/* TODO: These should change color when the user hovers over them.*/
+.cr-ui-tab-1 {
+    color: red;
+    background-color: rgb(187, 187, 187);
+}
+
+.cr-ui-tab-2 {
+    color: #eee;
+    background-color: rgba(100, 100, 100, 0.75);
+}
+
+.cr-ui-tab-3 {
+    color: #111;
+    background-color: #f3f0dd;
+}
+
+.cr-ui-tab-1 a,
+.cr-ui-tab-2 a,
+.cr-ui-tab-3 a {
+    text-decoration: none;
+    color: #111;
+}
 /* ======================= */
 
 /* Specific individual elements */
@@ -196,4 +219,28 @@ select,
     color: #fff;
 }
 /* --------- */
+
+/* Detail view */
+/* ----------- */
+.cr-detail-view-heading {
+    margin-top: 2em;
+    background-color: #f3f0dd;
+    font-size: large;
+}
+
+/* TODO: Maybe refactor this to make it site wide. */
+.cr-detail-view-content {
+    margin-top: 2em;
+}
+
+.room-pics-box {
+    border: 0.25px solid black;
+    padding: 0.5em;
+    margin: 0.25em;
+}
+
+.room-pics-box:hover {
+    cursor: pointer;
+}
+/* ----------- */
 /* ============================ */
