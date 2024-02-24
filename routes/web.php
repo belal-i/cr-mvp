@@ -24,3 +24,10 @@ Route::get('/offers', function () {
         'offers' => $offers,
     ]);
 });
+
+Route::get('/offer/{id}', function ($id) {
+    $offer = Offer::findOrFail($id);
+    return view('offer', [
+        'offer' => $offer,
+    ]);
+});
