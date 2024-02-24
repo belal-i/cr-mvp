@@ -203,8 +203,7 @@
 
 <br>
 <div class="row site-content" style="border-bottom: 1px solid black; padding-bottom: 3px;">
-    <div class="col-sm-auto" style="color: red; background-color: rgb(187, 187, 187);">Ergebnisliste
-    </div>
+    <div class="col-sm-auto cr-ui-tab-1">Ergebnisliste</div>
     <div class="col-7"></div>
     <div class="col-sm-auto">
         Sortierung: <select class="no-radius">
@@ -227,7 +226,7 @@ $css_toggle_suffix_int = 1;
     $css_toggle_suffix_int *= -1;
     $css_toggle_suffix = (string)$css_toggle_suffix_int;
     ?>
-    <a onclick="alert('Angebot {{ $offer->apartment->source_id }}\nTODO: Detailansicht: Ticket #941.');" class="row site-content offer-list-view-entry offer-list-view-entry-toggle-{{ $css_toggle_suffix }}">
+    <a href="/offer/{{ $offer->id }}" class="row site-content offer-list-view-entry offer-list-view-entry-toggle-{{ $css_toggle_suffix }}">
         <div class="col-4">
             <img src="images/pexels-vecislavas-popa-1571463.jpg" width="300" height="200">
         </div>
@@ -240,13 +239,8 @@ $css_toggle_suffix_int = 1;
             } else {
                 $nr_of_rooms_text = $offer->apartment->number_of_rooms . '-Zi. Wohnung';
             }
-            $today = date('Y-m-d');
-            if ($offer->start_date > $today) {
-                // TODO: Make this German.
-                $start_date_text = $offer->start_date;
-            } else {
-                $start_date_text = 'sofort';
-            }
+
+            $start_date_text = get_start_text_from_date($offer->start_date);
 
             if ($offer->max_months > 0) {
                 $max_months_text = 'höchstens ' . $offer->max_months . ' Monate';
@@ -254,19 +248,26 @@ $css_toggle_suffix_int = 1;
                 $max_months_text = 'für unbefristet';
             }
 
-            $rent_text = number_format((float)$offer->rent, 0, ',', '.') . ' EUR';
+            $rent_text = get_euro_text($offer->rent);
 
-            $subway_stations = json_decode($offer->apartment->address->nearby_public_transit, true);
+            $subway_stations = json_decode(
+                $offer->apartment
+                      ->house
+                      ->address
+                      ->nearby_public_transit,
+                  true
+            );
             $subway_stations = $subway_stations["subway"] ?? [];
             $subway_stations = array_keys($subway_stations);
 
-            $neighborhood_text = !empty($offer->apartment->address->neighborhood)
-                ? ', ' . $offer->apartment->address->neighborhood
+            $neighborhood = $offer->apartment->house->address->neighborhood;
+            $neighborhood_text = !empty($neighborhood)
+                ? ', ' . $neighborhood
                 : '';
 
             ?>
 
-            <p>{{ $nr_of_rooms_text }}, {{ $offer->apartment->size_sq_m }}m<sup>2</sup>{{ $neighborhood_text }}, {{ $offer->apartment->address->street }}</p>
+            <p>{{ $nr_of_rooms_text }}, {{ $offer->apartment->size_sq_m }}m<sup>2</sup>{{ $neighborhood_text }}, {{ $offer->apartment->house->address->street }}</p>
             @foreach ($subway_stations as $station)
                 <p>{{ $station }}</p>
             @endforeach

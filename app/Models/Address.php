@@ -5,8 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use App\Models\Contact;
-use App\Models\Apartment;
+use App\Models\House;
 
 class Address extends Model
 {
@@ -17,8 +18,8 @@ class Address extends Model
         return $this->hasMany(Contact::class);
     }
 
-    public function apartments(): HasMany
+    public function house(): HasOne
     {
-        return $this->hasMany(Apartment::class);
+        return $this->hasOne(House::class);
     }
 }
