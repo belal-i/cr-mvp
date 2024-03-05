@@ -12,7 +12,10 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('contacts', function (Blueprint $table) {
-            $table->foreignId('address_id');
+            $table->foreignId('address_id')
+                  ->constrained()
+                  ->onUpdate('cascade')
+                  ->onDelete('cascade');
             $table->dropColumn('street');
             $table->dropColumn('house_number');
             $table->dropColumn('zip_code');

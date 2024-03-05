@@ -13,7 +13,10 @@ return new class extends Migration
     {
         Schema::create('apartments', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('contact_id');
+            $table->foreignId('contact_id')
+                  ->constrained()
+                  ->onUpdate('cascade')
+                  ->onDelete('cascade');
             $table->string('source_id', 10);
             $table->string('street', 50);
             $table->string('house_number', 10);

@@ -13,8 +13,14 @@ return new class extends Migration
     {
         Schema::create('offers', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('contact_id');
-            $table->foreignId('apartment_id');
+            $table->foreignId('contact_id')
+                  ->constrained()
+                  ->onUpdate('cascade')
+                  ->onDelete('cascade');
+            $table->foreignId('apartment_id')
+                  ->constrained()
+                  ->onUpdate('cascade')
+                  ->onDelete('cascade');
             $table->string('source_id', 10);
             $table->date('start_date');
             $table->date('end_date');

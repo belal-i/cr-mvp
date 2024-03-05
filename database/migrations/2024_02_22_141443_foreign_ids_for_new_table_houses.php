@@ -12,13 +12,22 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('addresses', function(Blueprint $table) {
-            $table->foreignId('house_id')->nullable();
+            $table->foreignId('house_id')
+                  ->constrained()
+                  ->onUpdate('cascade')
+                  ->onDelete('cascade')->nullable();
         });
         Schema::table('houses', function(Blueprint $table) {
-            $table->foreignId('address_id');
+            $table->foreignId('address_id')
+                  ->constrained()
+                  ->onUpdate('cascade')
+                  ->onDelete('cascade');
         });
         Schema::table('apartments', function(Blueprint $table) {
-            $table->foreignId('house_id');
+            $table->foreignId('house_id')
+                  ->constrained()
+                  ->onUpdate('cascade')
+                  ->onDelete('cascade');
         });
     }
 
