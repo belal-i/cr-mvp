@@ -1,7 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Models\Offer;
+use Illuminate\Http\Request;
+use App\Http\Repositories\OfferRepository;
+use App\Http\Controllers\OfferController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,16 +20,11 @@ Route::get('/', function () {
     return view('home');
 });
 
-Route::get('/offers', function () {
-    $offers = Offer::where('status', '=', 'F')->paginate(25);
+Route::get('/offers', function (Request $request) {
+    $offers = OfferRepository::getFreeOffers()->paginate(25);
     return view('offers-list', [
         'offers' => $offers,
     ]);
 });
 
-Route::get('/offers/{id}', function ($id) {
-    $offer = Offer::findOrFail($id);
-    return view('offer-detail', [
-        'offer' => $offer,
-    ]);
-});
+Route::get('/offers/{offer}', [OfferController::class, 'show']);
