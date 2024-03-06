@@ -7,6 +7,7 @@
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
         <link href="{{ asset('css/style.css') }}" rel="stylesheet">
         <script src="{{ asset('js/app.js') }}"></script>
+        <script src="{{ asset('js/functions.js') }}"></script>
 
         <title>Wohnen auf Zeit Frankfurt: 60 Wohnungen und Apartments : Möblierte Wohnungen und Apartments</title>
         <link href="{{ asset('images/favicon.ico') }}" rel="shortcut icon">
