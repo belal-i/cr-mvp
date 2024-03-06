@@ -20,14 +20,14 @@ Route::get('/', function () {
 
 Route::get('/offers', function () {
     $offers = Offer::where('status', '=', 'F')->paginate(25);
-    return view('offers', [
+    return view('offers-list', [
         'offers' => $offers,
     ]);
 });
 
-Route::get('/offer/{id}', function ($id) {
+Route::get('/offers/{id}', function ($id) {
     $offer = Offer::findOrFail($id);
-    return view('offer', [
+    return view('offer-detail', [
         'offer' => $offer,
     ]);
 });
