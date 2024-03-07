@@ -17,13 +17,23 @@ use App\Http\Controllers\OfferController;
 */
 
 Route::get('/', function () {
-    return view('home');
+    $offerCount = OfferRepository::getFreeOffers()->count();
+    return view('home', ['offerCount' => $offerCount]);
 });
 
 Route::get('/offers', function (Request $request) {
-    $offers = OfferRepository::getFreeOffers()->paginate(25);
+    $filterParams = OfferController::makeValidatedFilterParams(
+        $request,
+        [['status', '=', 'F']]
+    );
+
+    $offers = OfferRepository::getFilteredOffers($filterParams);
+    $offerCount = $offers->count();
+    $offers = $offers->paginate(25);
+
     return view('offers-list', [
         'offers' => $offers,
+        'offerCount' => $offerCount,
     ]);
 });
 

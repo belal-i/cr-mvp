@@ -65,4 +65,60 @@ class OfferController extends Controller
     {
         //
     }
+
+    public static function makeValidatedFilterParams(
+        Request &$request, $predefinedParams = []): array
+    {
+        $filterParams = $predefinedParams;
+
+        $filterFields = [
+            'status',
+            'apartment_type',
+            'size_sq_m',
+            'number_of_rooms-min',
+            'number_of_rooms-max',
+            'rent-min',
+            'rent-max',
+            'number_of_persons',
+            // TODO: cr-legacy-to-json currently does not supply data for this field.
+            // 'number_of_bedrooms',
+            'start_date',
+            'min_months',
+            'neighborhood',
+            'rating',
+            // TODO: We'll likely ignore this field as well, until we complete
+            // Redmine #1147
+            // 'nearby_public_transit',
+        ];
+        foreach ($filterFields as $field) {
+            $value = $request->input($field);
+            if ($value === null)
+                continue;
+            switch ($field) {
+                case 'size_sq_m':
+                case 'number_of_rooms-min':
+                case 'rent-min':
+                case 'number_of_persons': // this goes here?
+                case 'number_of_rooms': // this goes here?
+                case 'start_date': // this goes here?
+                case 'min_months': // this goes here?
+                case 'rating':
+                    $fieldName = explode('-', $field)[0];
+                    $filterParams[] = [$fieldName, '>=', $value];
+                    break;
+                case 'number_of_rooms-max':
+                case 'rent-max':
+                    $fieldName = explode('-', $field)[0];
+                    $filterParams[] = [$fieldName, '<=', $value];
+                    break;
+                // TODO: Special cases which we must deal with later on.
+                case 'neighborhood':
+                    break;
+                default:
+                    $filterParams[] = [$field, '=', $value];
+                    break;
+            }
+        }
+        return $filterParams;
+    }
 }

@@ -34,7 +34,7 @@
                 </div>
 
                 <div id="quickfilter-submit-button" class="col-3 quickfilter-form-elem quickfilter-form-label" onclick="window.location.href = '/offers';">
-                    101 Angebote zeigen
+                    {{ $offerCount }} Angebote zeigen
                 </div>
 
                 <div class="col-2"></div>

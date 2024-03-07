@@ -12,25 +12,24 @@
             <tr class="border-row">
                 <td>Mietobjekt:</td>
                 <td colspan=2>
-                    <select id="offer-type" name="offer-type" class="offer-filter-form-wide-elem">
-                        <option>Wohnung</option>
-                        <option>Haus</option>
+                    <select name="apartment_type" class="offer-filter-form-wide-elem">
+                        <option value="APARTMENT">Wohnung</option>
+                        <option value="HOUSE">Haus</option>
                     </select>
                 </td>
                 <td>
-                    <select id="size-sq-m" name="size-sq-m" class="offer-filter-form-wide-elem-plus">
-                        <option>Größe(m<sup>2</sup>) mind.</option>
-                        <option>20m<sup>2</sup></option>
-                        <option>30m<sup>2</sup></option>
-                        <option>50m<sup>2</sup></option>
-                        <option>etc.</option>
+                    <select name="size_sq_m" class="offer-filter-form-wide-elem-plus">
+                        <option value="">Größe(m<sup>2</sup>) mind.</option>
+                        <option value="20">20m<sup>2</sup></option>
+                        <option value="30">30m<sup>2</sup></option>
+                        <option value="50">50m<sup>2</sup></option>
                     </select>
                 </td>
             </tr>
             <tr class="border-row">
                 <td>Zimmer:</td>
                 <td>
-                    <select id="number-of-rooms-min" name="number-of-rooms-min" class="offer-filter-form-wide-elem">
+                    <select name="number_of_rooms-min" class="offer-filter-form-wide-elem">
                         <option>1</option>
                         <option>2</option>
                         <option>3</option>
@@ -42,8 +41,8 @@
                 </td>
                 <td>bis</td>
                 <td>
-                    <select id="number-of-rooms-max" name="number-of-rooms-max" class="offer-filter-form-wide-elem-plus">
-                        <option>maximal</option>
+                    <select name="number_of_rooms-max" class="offer-filter-form-wide-elem-plus">
+                        <option value="">maximal</option>
                         <option>1</option>
                         <option>2</option>
                         <option>3</option>
@@ -58,17 +57,17 @@
             <tr class="border-row">
                 <td>Miete (Euro):</td>
                 <td>
-                    <input type="text" id="min-rent" name="min-rent" class="offer-filter-form-wide-elem">
+                    <input type="text" name="rent-min" class="offer-filter-form-wide-elem">
                 </td>
                 <td>bis</td>
                 <td>
-                    <input type="text" id="max-rent" name="max-rent" placeholder="max." class="offer-filter-form-wide-elem-plus">
+                    <input type="text" name="rent-max" placeholder="max." class="offer-filter-form-wide-elem-plus">
                 </td>
             </tr>
             <tr class="border-row">
                 <td>Personen:</td>
                 <td colspan=2>
-                    <select id="number-of-persons" name="number-of-persons" class="offer-filter-form-wide-elem">
+                    <select name="number_of_persons" class="offer-filter-form-wide-elem">
                         <option>1</option>
                         <option>2</option>
                         <option>3</option>
@@ -77,38 +76,41 @@
                     </select>
                 </td>
                 <td>
-                    <select id="number-of-rooms" name="number-of-rooms" class="offer-filter-form-wide-elem-plus">
-                        <option>1 Schlaufraum</option>
-                        <option>2 Schlaufräume</option>
-                        <option>3 Schlaufräume</option>
-                        <option>4 Schlaufräume</option>
-                        <option>5 Schlaufräume</option>
-                        <option>6 Schlaufräume</option>
-                        <option>7 Schlaufräume</option>
-                        <option>8 Schlaufräume</option>
+                    {{-- TODO: cr-legacy-to-json currently does not supply
+                        data for this field.
+                    --}}
+                    <select name="number_of_bedrooms" class="offer-filter-form-wide-elem-plus">
+                        <option value="1">1 Schlaufraum</option>
+                        <option value="2">2 Schlaufräume</option>
+                        <option value="3">3 Schlaufräume</option>
+                        <option value="4">4 Schlaufräume</option>
+                        <option value="5">5 Schlaufräume</option>
+                        <option value="6">6 Schlaufräume</option>
+                        <option value="7">7 Schlaufräume</option>
+                        <option value="8">8 Schlaufräume</option>
                     </select>
                 </td>
             </tr>
             <tr class="border-row">
                 <td>Mietzeit:</td>
                 <td colspan=2>
-                    <input type="text" id="start-date" name="start-date" placeholder="frei ab" onclick="alert('TODO: Kalendarauswahl, Ticket #962.');" class="offer-filter-form-wide-elem">
+                    <input type="text" name="start_date" placeholder="frei ab" onclick="alert('TODO: Kalendarauswahl, Ticket #962.');" class="offer-filter-form-wide-elem">
                 </td>
                 <td>
-                    <select id="min-months" name="min-months" class="offer-filter-form-wide-elem-plus">
-                        <option>Mindestmietdauer</option>
-                        <option>1 Monat</option>
-                        <option>2 Monate</option>
-                        <option>3 Monate</option>
-                        <option>6 Monate</option>
-                        <option>12 Monate</option>
+                    <select name="min_months" class="offer-filter-form-wide-elem-plus">
+                        <option value="">Mindestmietdauer</option>
+                        <option value="1">1 Monat</option>
+                        <option value="2">2 Monate</option>
+                        <option value="3">3 Monate</option>
+                        <option value="6">6 Monate</option>
+                        <option value="12">12 Monate</option>
                     </select>
                 </td>
             </tr>
             <tr class="border-row">
                 <td>Lage:</td>
                 <td colspan=2>
-                    <select id="neighborhood" name="neighborhood" class="offer-filter-form-wide-elem">
+                    <select name="neighborhood" class="offer-filter-form-wide-elem">
                         <option>Frankfurt u. Umgebung</option>
                         <option>Frankfurt-Stadt</option>
                         <option>Frankfurt-Innenstadt</option>
@@ -127,12 +129,12 @@
             <tr class="border-row">
                 <td>
                     Kategorie:
-                    <select style="min-width: 100px;" id="star-rating" name="star-rating">
-                        <option>*</option>
-                        <option>**</option>
-                        <option>***</option>
-                        <option>****</option>
-                        <option>*****</option>
+                    <select style="min-width: 100px;" name="rating">
+                        <option value="1.0">*</option>
+                        <option value="2.0">**</option>
+                        <option value="3.0">***</option>
+                        <option value="4.0">****</option>
+                        <option value="5.0">*****</option>
                     </select>
                 </td>
                 <td>
@@ -179,7 +181,7 @@
             <tr class="border-row">
                 <td>
                     U-/S-Bahn
-                    <select id="public-transit" name="public-transit">
+                    <select name="nearby_public_transit">
                         <option>--</option>
                         <option>U1</option>
                         <option>U2</option>
@@ -194,7 +196,7 @@
                     <br>(<a href="#">Netzplan</a>)
                 </td>
                 <td>
-                    <input type="submit" class="cr-submit-button no-radius" value="101 Ergebnisse anzeigen">
+                    <input type="submit" class="cr-submit-button no-radius" value="{{ $offerCount }} Ergebnisse anzeigen">
                 </td>
             </tr>
         </table>
