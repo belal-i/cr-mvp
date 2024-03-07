@@ -22,7 +22,10 @@ return new class extends Migration
             $table->string('house_number', 10);
             $table->string('zip_code', 10);
             $table->string('city', 30);
-            $table->string('apartment_type', 20);
+            $table->enum('apartment_type', [
+                'APARTMENT',
+                'HOUSE',
+            ]);
             $table->json('notes');
             $table->float('number_of_rooms', 3, 2);
             $table->smallInteger('size_sq_m');
