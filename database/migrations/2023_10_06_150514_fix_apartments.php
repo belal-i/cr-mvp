@@ -17,7 +17,10 @@ return new class extends Migration
             $table->string('house_number', 40)->nullable()->change();
             $table->string('zip_code', 10)->nullable()->change();
             $table->string('city', 30)->nullable()->change();
-            $table->string('apartment_type', 20)->nullable()->change();
+            $table->enum('apartment_type', [
+                'APARTMENT',
+                'HOUSE',
+            ])->nullable()->change();
             $table->json('notes')->nullable()->change();
             $table->float('number_of_rooms', 5, 2)->nullable()->change();
             $table->smallInteger('size_sq_m')->nullable()->change();
@@ -39,7 +42,10 @@ return new class extends Migration
             $table->string('house_number', 10)->nullable(false)->change();
             $table->string('zip_code', 10)->nullable(false)->change();
             $table->string('city', 30)->nullable(false)->change();
-            $table->string('apartment_type', 20)->nullable(false)->change();
+            $table->enum('apartment_type', [
+                'APARTMENT',
+                'HOUSE',
+            ])->nullable(false)->change();
             $table->json('notes')->nullable(false)->change();
             $table->float('number_of_rooms', 3, 2)->nullable(false)->change();
             $table->smallInteger('size_sq_m')->nullable(false)->change();

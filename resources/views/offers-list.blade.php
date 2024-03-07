@@ -233,8 +233,7 @@ $css_toggle_suffix_int = 1;
         <div class="col-7">
             <h4><strong>{{ $offer->apartment->title }}</strong></h4>
             <?php
-            // TODO: See Feature #961.
-            if ($offer->apartment->apartment_type == 'Haus') {
+            if ($offer->apartment->apartment_type == 'HOUSE') {
                 $nr_of_rooms_text = 'Haus mit ' . $offer->apartment->number_of_rooms . 'Zimmern';
             } else {
                 $nr_of_rooms_text = $offer->apartment->number_of_rooms . '-Zi. Wohnung';

@@ -10,7 +10,7 @@
 
 <?php
 $info_at_a_glance_text = $offer->apartment->number_of_rooms . '-Zi. '
-    . $offer->apartment->apartment_type . ' | '
+    . $offer->apartment->translateApartmentType() . ' | '
     . $offer->apartment->size_sq_m . 'm<sup>2</sup> | '
     . get_euro_text($offer->rent) . ' | '
     . $offer->apartment->house->address->neighborhood;
@@ -61,7 +61,7 @@ $l = count($room_pic_boxes);
 
 <div class="row site-content cr-detail-view-content border-bottom">
     <div class="col-3"><strong>Typ und Größe</strong></div>
-    <div class="col-9">{{ $offer->apartment->number_of_rooms }}-Zi. {{ $offer->apartment->apartment_type }}, {{ $offer->apartment->size_sq_m }}m<sup>2</sup></div>
+    <div class="col-9">{{ $offer->apartment->number_of_rooms }}-Zi. {{ $offer->apartment->translateApartmentType() }}, {{ $offer->apartment->size_sq_m }}m<sup>2</sup></div>
 </div>
 <div class="row site-content cr-detail-view-content border-bottom">
     <div class="col-3"><strong>Monatsmiete</strong></div>
