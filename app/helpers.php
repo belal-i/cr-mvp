@@ -31,6 +31,10 @@ function get_offer_limitations_text($offer)
 function extract_german_apartment_specials($apartment_specials)
 {
     $apartment_specials = json_decode($apartment_specials, true);
+
+    if (empty($apartment_specials))
+        return [];
+
     foreach ($apartment_specials as $specials_entry) {
         // TODO: For now, just using the German ones,
         // but this needs to be refactored.
@@ -41,6 +45,9 @@ function extract_german_apartment_specials($apartment_specials)
 
 function php_array_to_ul_elem($php_array)
 {
+    if (empty($php_array))
+        return '<ul></ul>';
+
     $ret_html = "<ul>";
     foreach ($php_array as $txt) {
         $ret_html .= "<li>$txt</li>";
@@ -92,7 +99,8 @@ function get_public_transit_uls($public_transit_json)
     $ret_html = '<p class="border-bottom">U-Bahn:</p>';
     $ret_html .= "<ul>";
     $public_transit_array = json_decode($public_transit_json, true);
-    foreach ($public_transit_array['subway'] as $station => $distance) {
+    $subway_array = $public_transit_array['subway'] ?? [];
+    foreach ($subway_array as $station => $distance) {
         $ret_html .= "<li>Haltestelle \"$station\" ($distance)</li>"; 
     }
     $ret_html .= "</ul>";
@@ -123,6 +131,8 @@ function get_points_of_interest_ul($poi_json)
 {
     $ret_html = "<ul>";
     $poi_array = json_decode($poi_json, true);
+    if (empty($poi_array))
+        $poi_array = [];
     foreach ($poi_array as $poi_entry ) {
         if (isset($poi_entry['sub'])) {
             $ret_html .= "<li>{$poi_entry['sub']}";
