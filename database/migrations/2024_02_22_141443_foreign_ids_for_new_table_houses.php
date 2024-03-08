@@ -15,10 +15,16 @@ return new class extends Migration
             $table->foreignId('house_id')->nullable();
         });
         Schema::table('houses', function(Blueprint $table) {
-            $table->foreignId('address_id');
+            $table->foreignId('address_id')
+                  ->constrained()
+                  ->onUpdate('cascade')
+                  ->onDelete('cascade');
         });
         Schema::table('apartments', function(Blueprint $table) {
-            $table->foreignId('house_id');
+            $table->foreignId('house_id')
+                  ->constrained()
+                  ->onUpdate('cascade')
+                  ->onDelete('cascade');
         });
     }
 

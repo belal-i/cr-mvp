@@ -182,7 +182,7 @@
     "apartments": {
         "1": {
             "account_manager": "Aa",
-            "apartment_type": "Wohnung",
+            "apartment_type": "APARTMENT",
             "contact_id": null,
             "date_created": "1994-01-25",
             "flooring": null,
@@ -225,7 +225,7 @@
         },
         "2": {
             "account_manager": "Aa",
-            "apartment_type": "Wohnung",
+            "apartment_type": "HOUSE",
             "contact_id": 2,
             "date_created": "1994-01-25",
             "flooring": null,

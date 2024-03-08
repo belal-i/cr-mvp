@@ -3,12 +3,12 @@
 <div class="row">
     <div class="col" id="homepage-cover-image">
         <div id="quickfilter-container" class="container">
-            <form class="row form-inline" id="quickfilter-form">
+            <form action="/offers" method="get" class="row form-inline" id="quickfilter-form">
                 <div class="col-2"></div>
 
                 <div class="col-sm-auto quickfilter-form-elem quickfilter-form-label">Zimmer</div>
                 <div class="col-sm-auto quickfilter-form-elem quickfilter-elem-with-line">
-                    <select class="no-radius" id="quickfilter-nr-rooms">
+                    <select class="no-radius" id="quickfilter-nr-rooms" name="number_of_rooms-min">
                         <option>1</option>
                         <option>2</option>
                         <option>3</option>
@@ -19,22 +19,18 @@
 
                 <div class="col-md-auto quickfilter-form-elem quickfilter-form-label">Miete (max.)</div>
                 <div class="col quickfilter-form-elem quickfilter-elem-with-line">
-                    <input class="form-control no-radius" type="text" id="quickfilter-rent" placeholder="EUR">
+                    <input class="form-control no-radius" type="text" id="quickfilter-rent" name="rent-max" placeholder="EUR">
                 </div>
 
                 <div class="col-sm-auto quickfilter-form-elem quickfilter-form-label">ab</div>
                 <div class="col quickfilter-form-elem">
-                    <select class="no-radius" id="quickfilter-start-month">
-                        <option>sofort</option>
-                        <option>Oktober</option>
-                        <option>November</option>
-                        <option>Dezember</option>
-                        <option>später</option>
+                    <select class="no-radius" id="quickfilter-start-month" name="start_date">
+                        <?php echo get_current_month_options(4); ?>
                     </select>
                 </div>
 
-                <div id="quickfilter-submit-button" class="col-3 quickfilter-form-elem quickfilter-form-label" onclick="window.location.href = '/offers';">
-                    101 Angebote zeigen
+                <div id="quickfilter-submit-button" class="col-3 quickfilter-form-elem quickfilter-form-label" onclick="$('#quickfilter-form').submit();">
+                    {{ $offerCount }} Angebote zeigen
                 </div>
 
                 <div class="col-2"></div>

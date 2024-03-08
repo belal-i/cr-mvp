@@ -1,7 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Models\Offer;
+use Illuminate\Http\Request;
+use App\Http\Repositories\OfferRepository;
+use App\Http\Controllers\OfferController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,19 +17,29 @@ use App\Models\Offer;
 */
 
 Route::get('/', function () {
-    return view('home');
+    $offerCount = OfferRepository::getFreeOffers()->count();
+    return view('home', ['offerCount' => $offerCount]);
 });
 
-Route::get('/offers', function () {
-    $offers = Offer::where('status', '=', 'F')->paginate(25);
-    return view('offers', [
+Route::get('/offers', function (Request $request) {
+    $filterParams = OfferController::extractValidFilterParamsFromRequest(
+        $request
+    );
+    $whereClauses = OfferController::makeEloquentOfferWhereClauses(
+        $filterParams,
+        [['status', '=', 'F']]
+    );
+
+    $offers = OfferRepository::getFilteredOffers($whereClauses);
+    $offerCount = $offers->count();
+    $offers = $offers->paginate(25);
+
+    return view('offers-list', [
         'offers' => $offers,
+        'offerCount' => $offerCount,
+        // TODO: Use the session for this. See https://laravel.com/docs/10.x/session
+        'filterParams' => $filterParams,
     ]);
 });
 
-Route::get('/offer/{id}', function ($id) {
-    $offer = Offer::findOrFail($id);
-    return view('offer', [
-        'offer' => $offer,
-    ]);
-});
+Route::get('/offers/{offer}', [OfferController::class, 'show']);

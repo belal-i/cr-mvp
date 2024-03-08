@@ -8,6 +8,9 @@
         <link href="{{ asset('css/style.css') }}" rel="stylesheet">
         <script src="{{ asset('js/app.js') }}"></script>
 
+        {{-- TODO: Figure out some way to get the $offerCount into 
+            EVERY view, so that we can set this dynamically as well.
+        --}}
         <title>Wohnen auf Zeit Frankfurt: 60 Wohnungen und Apartments : Möblierte Wohnungen und Apartments</title>
         <link href="{{ asset('images/favicon.ico') }}" rel="shortcut icon">
 
@@ -114,5 +117,6 @@
                 </div>
             </div>
         </div><!-- .container -->
+        <script src="{{ asset('js/main.js') }}"></script>
     </body>
 </html>

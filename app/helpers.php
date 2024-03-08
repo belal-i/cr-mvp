@@ -31,6 +31,10 @@ function get_offer_limitations_text($offer)
 function extract_german_apartment_specials($apartment_specials)
 {
     $apartment_specials = json_decode($apartment_specials, true);
+
+    if (empty($apartment_specials))
+        return [];
+
     foreach ($apartment_specials as $specials_entry) {
         // TODO: For now, just using the German ones,
         // but this needs to be refactored.
@@ -41,6 +45,9 @@ function extract_german_apartment_specials($apartment_specials)
 
 function php_array_to_ul_elem($php_array)
 {
+    if (empty($php_array))
+        return '<ul></ul>';
+
     $ret_html = "<ul>";
     foreach ($php_array as $txt) {
         $ret_html .= "<li>$txt</li>";
@@ -92,7 +99,8 @@ function get_public_transit_uls($public_transit_json)
     $ret_html = '<p class="border-bottom">U-Bahn:</p>';
     $ret_html .= "<ul>";
     $public_transit_array = json_decode($public_transit_json, true);
-    foreach ($public_transit_array['subway'] as $station => $distance) {
+    $subway_array = $public_transit_array['subway'] ?? [];
+    foreach ($subway_array as $station => $distance) {
         $ret_html .= "<li>Haltestelle \"$station\" ($distance)</li>"; 
     }
     $ret_html .= "</ul>";
@@ -123,6 +131,8 @@ function get_points_of_interest_ul($poi_json)
 {
     $ret_html = "<ul>";
     $poi_array = json_decode($poi_json, true);
+    if (empty($poi_array))
+        $poi_array = [];
     foreach ($poi_array as $poi_entry ) {
         if (isset($poi_entry['sub'])) {
             $ret_html .= "<li>{$poi_entry['sub']}";
@@ -134,4 +144,61 @@ function get_points_of_interest_ul($poi_json)
     }
     $ret_html .= "</ul>";
     return $ret_html;
+}
+
+function get_current_month_options($number_of_months = 2)
+{
+    $today = date('Y-m-d');
+    $current_month = (int)explode('-', $today)[1];
+    $current_year = (int)explode('-', $today)[0];
+    $ret_html = sprintf('<option value="%s">sofort</option>', $today);
+    for ($i = 0; $i < $number_of_months; ++$i) {
+        ++$current_month;
+        $month_translations = [
+            1  => 'Januar',
+            2  => 'Februar',
+            3  => 'März',
+            4  => 'April',
+            5  => 'Mai',
+            6  => 'Juni',
+            7  => 'Juli',
+            8  => 'August',
+            9  => 'September',
+            10 => 'Oktober',
+            11 => 'November',
+            12 => 'Dezember',
+        ];
+        $ret_html .= sprintf(
+            '<option value="%s">%s</option>',
+            // TODO: You have until 2025 to improve this...
+            "$current_year-$current_month-01",
+            $i == $number_of_months - 1 ? 'später' : $month_translations[$current_month]
+        );
+    }
+    return $ret_html;
+}
+
+function make_select_html($name, $options,
+    $selectedValue = null, $classes = null, $id = null, $other_attributes = null)
+{
+    $ret_html = sprintf(
+        '<select name="%s"%s%s%s>',
+        $name,
+        $classes ? ' class="' . implode(' ', $classes) . '"' : '',
+        $id ? ' id="' . $id . '"' : '',
+        $other_attributes ? ' ' . implode(' ', $other_attributes) : ''
+    );
+
+    foreach ($options as $value => $prettyText) {
+        $ret_html .= sprintf(
+            '<option%s%s>%s</option>',
+            $value != $prettyText ? ' value="' . $value . '"' : '',
+            $selectedValue && $selectedValue == $value ? ' selected' : '',
+            $prettyText
+        );
+    }
+    $ret_html .= '</selected>';
+
+    return $ret_html;
+
 }

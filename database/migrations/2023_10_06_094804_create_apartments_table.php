@@ -13,13 +13,19 @@ return new class extends Migration
     {
         Schema::create('apartments', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('contact_id');
+            $table->foreignId('contact_id')
+                  ->constrained()
+                  ->onUpdate('cascade')
+                  ->onDelete('cascade');
             $table->string('source_id', 10);
             $table->string('street', 50);
             $table->string('house_number', 10);
             $table->string('zip_code', 10);
             $table->string('city', 30);
-            $table->string('apartment_type', 20);
+            $table->enum('apartment_type', [
+                'APARTMENT',
+                'HOUSE',
+            ]);
             $table->json('notes');
             $table->float('number_of_rooms', 3, 2);
             $table->smallInteger('size_sq_m');
