@@ -23,4 +23,4 @@ mix.copy('resources/images/*.png', 'public/images');
 mix.copy('resources/images/*.jpg', 'public/images');
 mix.copy('resources/images/favicon.ico', 'public/images');
 mix.copy('resources/css/style.css', 'public/css');
-mix.copy('resources/js/functions.js', 'public/js');
+mix.copy('resources/js/main.js', 'public/js');

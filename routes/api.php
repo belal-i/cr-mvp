@@ -2,6 +2,8 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\OfferController;
+use App\Http\Repositories\OfferRepository;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,4 +18,14 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
+});
+
+Route::get('/offers', function (Request $request) {
+    $filterParams = OfferController::makeValidatedFilterParams($request);
+    return OfferRepository::getFilteredOffers($filterParams, true);
+});
+
+Route::get('/offers/count', function (Request $request) {
+    $filterParams = OfferController::makeValidatedFilterParams($request);
+    return OfferRepository::getFilteredOffers($filterParams)->count();
 });

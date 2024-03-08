@@ -82,7 +82,9 @@ class OfferController extends Controller
             'number_of_persons',
             // TODO: cr-legacy-to-json currently does not supply data for this field.
             // 'number_of_bedrooms',
-            'start_date',
+            // TODO: Currently there is a problem with the dates, I think
+            // we're getting wrong results, seems like I'm getting too few results.
+            // 'start_date',
             'min_months',
             'neighborhood',
             'rating',
@@ -100,13 +102,13 @@ class OfferController extends Controller
                 case 'rent-min':
                 case 'number_of_persons': // this goes here?
                 case 'number_of_rooms': // this goes here?
-                case 'start_date': // this goes here?
                 case 'min_months': // this goes here?
                 case 'rating':
                     $fieldName = explode('-', $field)[0];
                     $filterParams[] = [$fieldName, '>=', $value];
                     break;
                 case 'number_of_rooms-max':
+                case 'start_date': // this goes here?
                 case 'rent-max':
                     $fieldName = explode('-', $field)[0];
                     $filterParams[] = [$fieldName, '<=', $value];
