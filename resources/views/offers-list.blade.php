@@ -12,111 +12,166 @@
             <tr class="border-row">
                 <td>Mietobjekt:</td>
                 <td colspan=2>
-                    <select name="apartment_type" class="offer-filter-form-wide-elem">
-                        <option value="APARTMENT">Wohnung</option>
-                        <option value="HOUSE">Haus</option>
-                    </select>
+                    <?php
+                        echo make_select_html(
+                            'apartment_type',
+                            [
+                                'APARTMENT' => 'Wohnung',
+                                'HOUSE' => 'House',
+                            ],
+                            $filterParams['apartment_type'] ?? null,
+                            ['offer-filter-form-wide-elem']
+                        );
+                    ?>
                 </td>
                 <td>
-                    <select name="size_sq_m" class="offer-filter-form-wide-elem-plus">
-                        <option value="">Größe(m<sup>2</sup>) mind.</option>
-                        <option value="20">20m<sup>2</sup></option>
-                        <option value="30">30m<sup>2</sup></option>
-                        <option value="50">50m<sup>2</sup></option>
-                    </select>
+                    <?php
+                        echo make_select_html(
+                            'size_sq_m',
+                            [
+                                '' => 'Größe(m<sup>2</sup>) mind.',
+                                '20' => '20m<sup>2</sup>',
+                                '30' => '30m<sup>2</sup>',
+                                '50' => '50m<sup>2</sup>',
+                            ],
+                            $filterParams['size_sq_m'] ?? null,
+                            ['offer-filter-form-wide-elem-plus']
+                        );
+                    ?>
                 </td>
             </tr>
             <tr class="border-row">
                 <td>Zimmer:</td>
                 <td>
-                    <select name="number_of_rooms-min" class="offer-filter-form-wide-elem">
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
-                        <option>6</option>
-                        <option>7</option>
-                    </select>
+                    <?php
+                        echo make_select_html(
+                            'number_of_rooms-min',
+                            [
+                                '1' => '1',
+                                '2' => '2',
+                                '3' => '3',
+                                '4' => '4',
+                                '5' => '5',
+                                '6' => '6',
+                                '7' => '7',
+                            ],
+                            $filterParams['number_of_rooms-min'] ?? null,
+                            ['offer-filter-form-wide-elem']
+                        );
+                    ?>
                 </td>
                 <td>bis</td>
                 <td>
-                    <select name="number_of_rooms-max" class="offer-filter-form-wide-elem-plus">
-                        <option value="">maximal</option>
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
-                        <option>6</option>
-                        <option>7</option>
-                        <option>8</option>
-                    </select>
+                    <?php
+                        echo make_select_html(
+                            'number_of_rooms-max',
+                            [
+                                '' => 'maximal',
+                                '1' => '1',
+                                '2' => '2',
+                                '3' => '3',
+                                '4' => '4',
+                                '5' => '5',
+                                '6' => '6',
+                                '7' => '7',
+                                '8' => '8',
+                            ],
+                            $filterParams['number_of_rooms-max'] ?? null,
+                            ['offer-filter-form-wide-elem-plus']
+                        );
+                    ?>
                 </td>
             </tr>
             <tr class="border-row">
                 <td>Miete (Euro):</td>
                 <td>
-                    <input type="text" name="rent-min" class="offer-filter-form-wide-elem">
+                    <input type="text" name="rent-min" class="offer-filter-form-wide-elem" value="<?php echo $filterParams['rent-min'] ?? ''; ?>">
                 </td>
                 <td>bis</td>
                 <td>
-                    <input type="text" name="rent-max" placeholder="max." class="offer-filter-form-wide-elem-plus">
+                    <input type="text" name="rent-max" placeholder="max." class="offer-filter-form-wide-elem-plus" value="<?php echo $filterParams['rent-max'] ?? ''; ?>">
                 </td>
             </tr>
             <tr class="border-row">
                 <td>Personen:</td>
                 <td colspan=2>
-                    <select name="number_of_persons" class="offer-filter-form-wide-elem">
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
-                    </select>
+                    <?php
+                        echo make_select_html(
+                            'number_of_persons',
+                            [
+                                '1' => '1',
+                                '2' => '2',
+                                '3' => '3',
+                                '4' => '4',
+                                '5' => '5',
+                            ],
+                            $filterParams['number_of_persons'] ?? null,
+                            ['offer-filter-form-wide-elem']
+                        );
+                    ?>
                 </td>
                 <td>
                     {{-- TODO: cr-legacy-to-json currently does not supply
                         data for this field.
                     --}}
-                    <select name="number_of_bedrooms" class="offer-filter-form-wide-elem-plus">
-                        <option value="1">1 Schlaufraum</option>
-                        <option value="2">2 Schlaufräume</option>
-                        <option value="3">3 Schlaufräume</option>
-                        <option value="4">4 Schlaufräume</option>
-                        <option value="5">5 Schlaufräume</option>
-                        <option value="6">6 Schlaufräume</option>
-                        <option value="7">7 Schlaufräume</option>
-                        <option value="8">8 Schlaufräume</option>
-                    </select>
+                    <?php
+                        echo make_select_html(
+                            'number_of_bedrooms',
+                            [
+                                '1' => '1 Schlafraum',
+                                '2' => '2 Schlafräume',
+                                '3' => '3 Schlafräume',
+                                '4' => '4 Schlafräume',
+                                '5' => '5 Schlafräume',
+                                '6' => '6 Schlafräume',
+                                '7' => '7 Schlafräume',
+                                '8' => '8 Schlafräume',
+                            ],
+                            $filterParams['number_of_bedrooms'] ?? null,
+                            ['offer-filter-form-wide-elem-plus']
+                        );
+                    ?>
                 </td>
             </tr>
             <tr class="border-row">
                 <td>Mietzeit:</td>
                 <td colspan=2>
-                    <input type="text" name="start_date" placeholder="frei ab" onclick="alert('TODO: Kalendarauswahl, Ticket #962.');" class="offer-filter-form-wide-elem">
+                <input type="text" name="start_date" placeholder="frei ab" onclick="alert('TODO: Kalendarauswahl, Ticket #962.');" class="offer-filter-form-wide-elem" value="<?php echo $filterParams['start_date'] ?? ''; ?>">
                 </td>
                 <td>
-                    <select name="min_months" class="offer-filter-form-wide-elem-plus">
-                        <option value="">Mindestmietdauer</option>
-                        <option value="1">1 Monat</option>
-                        <option value="2">2 Monate</option>
-                        <option value="3">3 Monate</option>
-                        <option value="6">6 Monate</option>
-                        <option value="12">12 Monate</option>
-                    </select>
+                    <?php
+                        echo make_select_html(
+                            'min_months',
+                            [
+                                '1'  => '1 Monat',
+                                '2'  => '2 Monate',
+                                '3'  => '3 Monate',
+                                '6'  => '6 Monate',
+                                '12' => '12 Monate',
+                            ],
+                            $filterParams['min_months'] ?? null,
+                            ['offer-filter-form-wide-elem-plus']
+                        );
+                    ?>
                 </td>
             </tr>
             <tr class="border-row">
                 <td>Lage:</td>
                 <td colspan=2>
-                    <select name="neighborhood" class="offer-filter-form-wide-elem">
-                        <option>Frankfurt u. Umgebung</option>
-                        <option>Frankfurt-Stadt</option>
-                        <option>Frankfurt-Innenstadt</option>
-                        <option>Offenbach u. Umgebung</option>
-                        <option>Vordertaunus</option>
-                    </select>
+                    <?php
+                        echo make_select_html(
+                            'neighborhood',
+                            [
+                                'Frankfurt u. Umgebung'  => 'Frankfurt u. Umgebung',
+                                'Frankfurt-Stadt'  => 'Frankfurt-Stadt',
+                                'Frankfurt-Innenstadt'  => 'Frankfurt-Innenstadt',
+                                'Offenbach u. Umgebung'  => 'Offenbach u. Umgebung',
+                                'Vordertaunus' => 'Vordertaunus',
+                            ],
+                            $filterParams['neighborhood'] ?? null,
+                            ['offer-filter-form-wide-elem']
+                        );
+                    ?>
                 </td>
                 <td>
                     <a href="#" onclick="alert('TODO: Stadttteilauswahl');">Stadtteile auswählen</a>
@@ -129,16 +184,25 @@
             <tr class="border-row">
                 <td>
                     Kategorie:
-                    <select style="min-width: 100px;" name="rating">
-                        <option value="1.0">*</option>
-                        <option value="2.0">**</option>
-                        <option value="3.0">***</option>
-                        <option value="4.0">****</option>
-                        <option value="5.0">*****</option>
-                    </select>
+                    <?php
+                        echo make_select_html(
+                            'rating',
+                            [
+                                '1.0'  => '*',
+                                '2.0'  => '**',
+                                '3.0'  => '***',
+                                '4.0'  => '****',
+                                '5.0'  => '*****',
+                            ],
+                            $filterParams['rating'] ?? null,
+                            null,
+                            null,
+                            ['style="mid-width: 100px;"']
+                        );
+                    ?>
                 </td>
                 <td>
-                    <input type="button" value="Alles zurücksetzten">
+                    <input type="button" value="Alles zurücksetzten" onclick="window.location.href = '/offers';">
                 </td>
             </tr>
             <tr class="border-row">

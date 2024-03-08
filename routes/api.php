@@ -21,11 +21,15 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::get('/offers', function (Request $request) {
-    $filterParams = OfferController::makeValidatedFilterParams($request);
-    return OfferRepository::getFilteredOffers($filterParams, true);
+    $whereClauses = OfferController::makeEloquentOfferWhereClauses(
+        OfferController::extractValidFilterParamsFromRequest($request)
+    );
+    return OfferRepository::getFilteredOffers($whereClauses, true);
 });
 
 Route::get('/offers/count', function (Request $request) {
-    $filterParams = OfferController::makeValidatedFilterParams($request);
-    return OfferRepository::getFilteredOffers($filterParams)->count();
+    $whereClauses = OfferController::makeEloquentOfferWhereClauses(
+        OfferController::extractValidFilterParamsFromRequest($request)
+    );
+    return OfferRepository::getFilteredOffers($whereClauses)->count();
 });

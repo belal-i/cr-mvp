@@ -22,18 +22,23 @@ Route::get('/', function () {
 });
 
 Route::get('/offers', function (Request $request) {
-    $filterParams = OfferController::makeValidatedFilterParams(
-        $request,
+    $filterParams = OfferController::extractValidFilterParamsFromRequest(
+        $request
+    );
+    $whereClauses = OfferController::makeEloquentOfferWhereClauses(
+        $filterParams,
         [['status', '=', 'F']]
     );
 
-    $offers = OfferRepository::getFilteredOffers($filterParams);
+    $offers = OfferRepository::getFilteredOffers($whereClauses);
     $offerCount = $offers->count();
     $offers = $offers->paginate(25);
 
     return view('offers-list', [
         'offers' => $offers,
         'offerCount' => $offerCount,
+        // TODO: Use the session for this. See https://laravel.com/docs/10.x/session
+        'filterParams' => $filterParams,
     ]);
 });
 

@@ -66,11 +66,10 @@ class OfferController extends Controller
         //
     }
 
-    public static function makeValidatedFilterParams(
-        Request &$request, $predefinedParams = []): array
+    public static function extractValidFilterParamsFromRequest(
+        Request &$request): array
     {
-        $filterParams = $predefinedParams;
-
+        $returnParams = [];
         $filterFields = [
             'status',
             'apartment_type',
@@ -96,6 +95,18 @@ class OfferController extends Controller
             $value = $request->input($field);
             if ($value === null)
                 continue;
+            // TODO: Sanitize?
+            $returnParams[$field] = $value;
+        }
+        return $returnParams;
+    }
+
+    public static function makeEloquentOfferWhereClauses(
+        array $filterParams, $predefinedClauses = []): array
+    {
+        $whereClauses = $predefinedClauses;
+
+        foreach ($filterParams as $field => $value) {
             switch ($field) {
                 case 'size_sq_m':
                 case 'number_of_rooms-min':
@@ -105,22 +116,22 @@ class OfferController extends Controller
                 case 'min_months': // this goes here?
                 case 'rating':
                     $fieldName = explode('-', $field)[0];
-                    $filterParams[] = [$fieldName, '>=', $value];
+                    $whereClauses[] = [$fieldName, '>=', $value];
                     break;
                 case 'number_of_rooms-max':
                 case 'start_date': // this goes here?
                 case 'rent-max':
                     $fieldName = explode('-', $field)[0];
-                    $filterParams[] = [$fieldName, '<=', $value];
+                    $whereClauses[] = [$fieldName, '<=', $value];
                     break;
                 // TODO: Special cases which we must deal with later on.
                 case 'neighborhood':
                     break;
                 default:
-                    $filterParams[] = [$field, '=', $value];
+                    $whereClauses[] = [$field, '=', $value];
                     break;
             }
         }
-        return $filterParams;
+        return $whereClauses;
     }
 }

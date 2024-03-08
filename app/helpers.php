@@ -177,3 +177,28 @@ function get_current_month_options($number_of_months = 2)
     }
     return $ret_html;
 }
+
+function make_select_html($name, $options,
+    $selectedValue = null, $classes = null, $id = null, $other_attributes = null)
+{
+    $ret_html = sprintf(
+        '<select name="%s"%s%s%s>',
+        $name,
+        $classes ? ' class="' . implode(' ', $classes) . '"' : '',
+        $id ? ' id="' . $id . '"' : '',
+        $other_attributes ? ' ' . implode(' ', $other_attributes) : ''
+    );
+
+    foreach ($options as $value => $prettyText) {
+        $ret_html .= sprintf(
+            '<option%s%s>%s</option>',
+            $value != $prettyText ? ' value="' . $value . '"' : '',
+            $selectedValue && $selectedValue == $value ? ' selected' : '',
+            $prettyText
+        );
+    }
+    $ret_html .= '</selected>';
+
+    return $ret_html;
+
+}
