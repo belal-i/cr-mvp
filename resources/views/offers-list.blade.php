@@ -260,7 +260,7 @@
                     <br>(<a href="#">Netzplan</a>)
                 </td>
                 <td>
-                    <input type="submit" class="cr-submit-button no-radius" value="{{ $offerCount }} Ergebnisse anzeigen">
+                    <input type="submit" id="offer-filter-submit" class="cr-submit-button no-radius" value="{{ $offerCount }} Ergebnisse anzeigen">
                 </td>
             </tr>
         </table>
