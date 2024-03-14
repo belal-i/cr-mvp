@@ -27,8 +27,22 @@ class Apartment extends Model
         return $this->belongsTo(House::class);
     }
 
-    public function translateApartmentType()
+    public function getTranslatedApartmentType()
     {
         return self::APARTMENT_TYPE_TRANSLATIONS[$this->apartment_type];
+    }
+
+    public function getNumberOfRoomsText()
+    {
+        if ($this->apartment_type == 'HOUSE') {
+            if ($this->number_of_rooms == 1)
+                $noun = 'Zimmer';
+            else
+                $noun = 'Zimmern';
+            return sprintf('Haus mit %d %s', $this->number_of_rooms, $noun);
+        }
+        else {
+            return $this->number_of_rooms . '-Zi. Wohnung';
+        }
     }
 }

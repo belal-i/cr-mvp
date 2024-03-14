@@ -15,4 +15,12 @@ class Offer extends Model
     {
         return $this->belongsTo(Apartment::class);
     }
+
+    public function getMaxMonthsText()
+    {
+        if ($this->max_months > 0)
+            return 'höchstens ' . $this->max_months . ' Monate';
+        else
+            return 'für unbefristet';
+    }
 }
