@@ -101,6 +101,26 @@ class OfferController extends Controller
         return $returnParams;
     }
 
+    public static function extractOfferOrderByFromRequest(Request &$request): array
+    {
+        $orderBy = $request->input('order-by');
+        switch ($orderBy) {
+            case 'apartments.rating':
+                return [$orderBy, 'ASC'];
+            case 'start_date-ASC':
+            case 'start_date-DESC':
+            case 'rent-ASC':
+            case 'rent-DESC':
+            case 'apartments.size_sq_m-ASC':
+            case 'apartments.size_sq_m-DESC':
+                $column    = explode('-', $orderBy)[0];
+                $direction = explode('-', $orderBy)[1];
+                return [$column, $direction];
+            default:
+                return ['start_date', 'DESC'];
+        }
+    }
+
     public static function makeEloquentOfferWhereClauses(
         array $filterParams, $predefinedClauses = []): array
     {

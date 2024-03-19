@@ -22,4 +22,11 @@ class Address extends Model
     {
         return $this->hasOne(House::class);
     }
+
+    public function getSubwayStationsAsList(): array
+    {
+        $subway_stations = json_decode($this->nearby_public_transit, true);
+        $subway_stations = $subway_stations["subway"] ?? [];
+        return array_keys($subway_stations);
+    }
 }

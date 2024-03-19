@@ -260,7 +260,7 @@
                     <br>(<a href="#">Netzplan</a>)
                 </td>
                 <td>
-                    <input type="submit" class="cr-submit-button no-radius" value="{{ $offerCount }} Ergebnisse anzeigen">
+                    <input type="submit" id="offer-filter-submit" class="cr-submit-button no-radius" value="{{ $offerCount }} Ergebnisse anzeigen">
                 </td>
             </tr>
         </table>
@@ -272,18 +272,26 @@
     <div class="col-sm-auto cr-ui-tab-1">Ergebnisliste</div>
     <div class="col-7"></div>
     <div class="col-sm-auto">
-        Sortierung: <select class="no-radius">
-            <option>frei ab</option>
-            <option>Kategorie</option>
-            <option>Preis - niedrigster zuerst</option>
-            <option>Preis - höchster zuerst</option>
-            <option>Wohnfläche</option>
-            <option>Lage</option>
-        </select>
-        {{-- TODO: Ascending and descending. --}}
+        Sortierung:
+        <?php echo make_select_html(
+            'offers-order-by',
+            [
+                'start_date-DESC'           => 'frei ab - neuste zuerst',
+                'start_date-ASC'            => 'frei ab - älteste zuerst',
+                'apartments.rating'         => 'Kategorie',
+                'rent-ASC'                  => 'Preis - niedrigster zuerst',
+                'rent-DESC'                 => 'Preis - höchster zuerst',
+                'apartments.size_sq_m-ASC'  => 'Wohnfläche - kleinste zuerst',
+                'apartments.size_sq_m-DESC' => 'Wohnfläche - größte zuerst',
+            ],
+            null,
+            ['no-radius'],
+            'offers-order-by'
+        ); ?>
     </div>
 </div>
 
+<div id="list-view-elements">
 <?php
 $css_toggle_suffix_int = 1;
 ?>
@@ -299,31 +307,10 @@ $css_toggle_suffix_int = 1;
         <div class="col-7">
             <h4><strong>{{ $offer->apartment->title }}</strong></h4>
             <?php
-            if ($offer->apartment->apartment_type == 'HOUSE') {
-                $nr_of_rooms_text = 'Haus mit ' . $offer->apartment->number_of_rooms . 'Zimmern';
-            } else {
-                $nr_of_rooms_text = $offer->apartment->number_of_rooms . '-Zi. Wohnung';
-            }
-
-            $start_date_text = get_start_text_from_date($offer->start_date);
-
-            if ($offer->max_months > 0) {
-                $max_months_text = 'höchstens ' . $offer->max_months . ' Monate';
-            } else {
-                $max_months_text = 'für unbefristet';
-            }
-
-            $rent_text = get_euro_text($offer->rent);
-
-            $subway_stations = json_decode(
-                $offer->apartment
-                      ->house
-                      ->address
-                      ->nearby_public_transit,
-                  true
-            );
-            $subway_stations = $subway_stations["subway"] ?? [];
-            $subway_stations = array_keys($subway_stations);
+            $subway_stations = $offer->apartment
+                                     ->house
+                                     ->address
+                                     ->getSubwayStationsAsList();
 
             $neighborhood = $offer->apartment->house->address->neighborhood;
             $neighborhood_text = !empty($neighborhood)
@@ -332,15 +319,16 @@ $css_toggle_suffix_int = 1;
 
             ?>
 
-            <p>{{ $nr_of_rooms_text }}, {{ $offer->apartment->size_sq_m }}m<sup>2</sup>{{ $neighborhood_text }}, {{ $offer->apartment->house->address->street }}</p>
+            <p>{{ $offer->apartment->getNumberOfRoomsText() }}, {{ $offer->apartment->size_sq_m }}m<sup>2</sup>{{ $neighborhood_text }}, {{ $offer->apartment->house->address->street }}</p>
             @foreach ($subway_stations as $station)
                 <p>{{ $station }}</p>
             @endforeach
             <div style="text-align:right; width:100%;">
-            <span style="float:left;"><strong>frei ab {{ $start_date_text }}</strong>, {{ $max_months_text }}, Mindestmietzeit {{ $offer->min_months }} Monate</span>Miete pro Monat: <strong>{{ $rent_text }}</strong>
+            <span style="float:left;"><strong>frei ab {{ get_start_text_from_date($offer->start_date) }}</strong>, {{ $offer->getMaxMonthsText() }}, Mindestmietzeit {{ $offer->min_months }} Monate</span>Miete pro Monat: <strong>{{ get_euro_text($offer->rent) }}</strong>
             </div>
 
         </div>
     </a><!-- .row -->
 @endforeach
+</div>
 @endsection
