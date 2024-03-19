@@ -272,15 +272,22 @@
     <div class="col-sm-auto cr-ui-tab-1">Ergebnisliste</div>
     <div class="col-7"></div>
     <div class="col-sm-auto">
-        Sortierung: <select class="no-radius">
-            <option>frei ab</option>
-            <option>Kategorie</option>
-            <option>Preis - niedrigster zuerst</option>
-            <option>Preis - höchster zuerst</option>
-            <option>Wohnfläche</option>
-            <option>Lage</option>
-        </select>
-        {{-- TODO: Ascending and descending. --}}
+        Sortierung:
+        <?php echo make_select_html(
+            'offers-order-by',
+            [
+                'start_date-DESC'           => 'frei ab - neuste zuerst',
+                'start_date-ASC'            => 'frei ab - älteste zuerst',
+                'apartments.rating'         => 'Kategorie',
+                'rent-ASC'                  => 'Preis - niedrigster zuerst',
+                'rent-DESC'                 => 'Preis - höchster zuerst',
+                'apartments.size_sq_m-ASC'  => 'Wohnfläche - kleinste zuerst',
+                'apartments.size_sq_m-DESC' => 'Wohnfläche - größte zuerst',
+            ],
+            null,
+            ['no-radius'],
+            'offers-order-by'
+        ); ?>
     </div>
 </div>
 
