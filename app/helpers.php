@@ -197,7 +197,7 @@ function make_select_html($name, $options,
             $prettyText
         );
     }
-    $ret_html .= '</selected>';
+    $ret_html .= '</select>';
 
     return $ret_html;
 

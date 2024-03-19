@@ -73,3 +73,30 @@ $('#offer-filter-form').change(function () {
         }
     });
 });
+
+// TODO: This could be a lot more DRY.
+$('#offers-order-by').change(function () {
+    serializedParams = '?status=F&ajax=1&'
+        + $('#offer-filter-form').serialize()
+        + '&order-by=' + $('#offers-order-by').val();
+
+    $.ajax({
+        url: 'api/offers' + serializedParams,
+        type: 'get',
+        success: function (response) {
+            offers = response['data'];
+            cssToggleSuffix = 1;
+            for (i = 0; i < offers.length; ++i) {
+                offers[i]['cssToggleSuffix'] = cssToggleSuffix;
+                cssToggleSuffix *= -1;
+            }
+            noun = offers.length == 1 ? 'Ergebnis' : 'Ergebnisse';
+            $('#offer-filter-submit').prop('value',
+                offers.length + ' ' + noun + ' anzeigen');
+            if (offers.length > 0)
+                $('#list-view-elements').html(offers.map(offerTemplate).join(''));
+            else
+                $('#list-view-elements').html(emptyTemplate);
+        }
+    });
+});

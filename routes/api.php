@@ -25,7 +25,13 @@ Route::get('/offers', function (Request $request) {
     $whereClauses = OfferController::makeEloquentOfferWhereClauses(
         OfferController::extractValidFilterParamsFromRequest($request)
     );
-    return new OfferResource(OfferRepository::getFilteredOffers($whereClauses, true));
+    $orderBy = OfferController::extractOfferOrderByFromRequest($request);
+
+    return new OfferResource(
+        OfferRepository::getFilteredOffers($whereClauses)
+                       ->orderBy($orderBy[0], $orderBy[1])
+                       ->get()
+    );
 });
 
 Route::get('/offers/count', function (Request $request) {
