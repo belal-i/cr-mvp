@@ -206,6 +206,7 @@
                 "Note 1",
                 "Note 2"
             ],
+            "number_of_bedrooms": 1,
             "number_of_rooms": 2.0,
             "rating": 5.0,
             "size_sq_m": "33",
@@ -225,7 +226,7 @@
         },
         "2": {
             "account_manager": "Aa",
-            "apartment_type": "HOUSE",
+            "apartment_type": "APARTMENT",
             "contact_id": 2,
             "date_created": "1994-01-25",
             "flooring": null,
@@ -249,6 +250,7 @@
                 "Note 1",
                 "Note 2"
             ],
+            "number_of_bedrooms": 3,
             "number_of_rooms": 4.0,
             "rating": 5.0,
             "size_sq_m": "70",
@@ -300,7 +302,7 @@
             "security_deposit_type": "MONTHLY_RENTS",
             "smoking_ok": false,
             "source_id": "29492/36",
-            "start_date": "2011-07-28",
+            "start_date": "2024-03-20",
             "status": "F",
             "time_last_changed": "12:41",
             "utility_cost_amount": 50,
@@ -328,7 +330,7 @@
             "is_premium": null,
             "last_changed_by": "Aa",
             "max_months": 3,
-            "min_months": null,
+            "min_months": 1,
             "notes": [
                 "Note 1",
                 "Note 2"
@@ -341,7 +343,7 @@
             "security_deposit_type": "EURO_AMOUNT",
             "smoking_ok": false,
             "source_id": "29492/36",
-            "start_date": "2011-07-28",
+            "start_date": "2024-06-20",
             "status": "F",
             "time_last_changed": "12:41",
             "utility_cost_amount": 50,

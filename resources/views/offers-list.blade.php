@@ -17,7 +17,7 @@
                             'apartment_type',
                             [
                                 'APARTMENT' => 'Wohnung',
-                                'HOUSE' => 'House',
+                                'HOUSE'     => 'Haus',
                             ],
                             $filterParams['apartment_type'] ?? null,
                             ['offer-filter-form-wide-elem']
@@ -29,7 +29,7 @@
                         echo make_select_html(
                             'size_sq_m',
                             [
-                                '' => 'Größe(m<sup>2</sup>) mind.',
+                                ''   => 'Größe(m<sup>2</sup>) mind.',
                                 '20' => '20m<sup>2</sup>',
                                 '30' => '30m<sup>2</sup>',
                                 '50' => '50m<sup>2</sup>',
@@ -66,7 +66,7 @@
                         echo make_select_html(
                             'number_of_rooms-max',
                             [
-                                '' => 'maximal',
+                                ''  => 'maximal',
                                 '1' => '1',
                                 '2' => '2',
                                 '3' => '3',
@@ -111,9 +111,6 @@
                     ?>
                 </td>
                 <td>
-                    {{-- TODO: cr-legacy-to-json currently does not supply
-                        data for this field.
-                    --}}
                     <?php
                         echo make_select_html(
                             'number_of_bedrooms',
@@ -207,39 +204,48 @@
             </tr>
             <tr class="border-row">
                 <td>
-                    <input type="checkbox"> Waschmaschine
+                    <input id="washing-machine" name="washing-machine" type="checkbox">
+                    <label for="washing-machine">Waschmaschine</label>
                 </td>
                 <td>
-                    <input type="checkbox"> PKW-Stellplatz
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <input type="checkbox"> Waschmaschine in der Wohnung
-                </td>
-                <td>
-                    <input type="checkbox"> Balkon, Terrasse
+                    <input id="parking-space" name="parking-space" type="checkbox">
+                    <label for="parking-space">PKW-Stellplatz</label>
                 </td>
             </tr>
             <tr>
                 <td>
-                    <input type="checkbox"> Trockner
+                    <input id="washing-machine-in-apartment" name="washing-machine-in-apartment" type="checkbox">
+                    <label for="washing-machine-in-apartment">Waschmaschine in der Wohnung</label>
                 </td>
                 <td>
-                    <input type="checkbox"> ab <input type="number" style="max-width: 40px;"> Etage nur mit Lift
+                    <input id="balcony" name="balcony" type="checkbox">
+                    <label for="balcony">Balkon, Terrasse</label>
                 </td>
             </tr>
             <tr>
                 <td>
-                    <input type="checkbox"> Spülmaschine
+                    <input id="dryer" name="dryer" type="checkbox">
+                    <label for="dryer">Trockner</label>
                 </td>
                 <td>
-                    <input type="checkbox"> Internet
+                    <input id="elevator" name="elevator" type="checkbox"> ab <input type="number" name="elevator-cutoff-story" style="max-width: 40px;">
+                    <label for="elevator">Etage nur mit Lift</label>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input id="dish-washer" name="dish-washer" type="checkbox">
+                    <label for="dish-washer">Spülmaschine</label>
+                </td>
+                <td>
+                    <input id="internet" name="internet" type="checkbox">
+                    <label for="internet">Internet</label>
                 </td>
             </tr>
             <tr>
                 <td colspan=2>
-                    <input type="checkbox"> Haustiere erlaubt
+                    <input id="pets-ok" name="pets-ok" type="checkbox">
+                    <label for="pets-ok">Haustiere erlaubt</label>
                 </td>
             </tr>
             <tr class="border-row">
@@ -276,8 +282,8 @@
         <?php echo make_select_html(
             'offers-order-by',
             [
-                'start_date-DESC'           => 'frei ab - neuste zuerst',
-                'start_date-ASC'            => 'frei ab - älteste zuerst',
+                'apartments.date_created'   => 'Neuste zuerst',
+                'start_date'                => 'frei ab',
                 'apartments.rating'         => 'Kategorie',
                 'rent-ASC'                  => 'Preis - niedrigster zuerst',
                 'rent-DESC'                 => 'Preis - höchster zuerst',

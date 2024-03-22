@@ -15,7 +15,7 @@ class CrNormalizedSeeder extends Seeder
     {
         $normalizedJson = json_decode(
             file_get_contents(
-                resource_path() . '/normalized.json'
+                database_path() . '/normalized.json'
             ),
             true
         )[$this->table];
