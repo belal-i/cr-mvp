@@ -28,6 +28,7 @@ class OfferRepository
                 case 'apartment_type':
                 case 'size_sq_m':
                 case 'number_of_rooms':
+                case 'number_of_bedrooms':
                 case 'rating':
                     $eloquentWhereClause[0] = "apartments.$fieldName";
                     break;
