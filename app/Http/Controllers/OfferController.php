@@ -79,11 +79,8 @@ class OfferController extends Controller
             'rent-min',
             'rent-max',
             'number_of_persons',
-            // TODO: cr-legacy-to-json currently does not supply data for this field.
-            // 'number_of_bedrooms',
-            // TODO: Currently there is a problem with the dates, I think
-            // we're getting wrong results, seems like I'm getting too few results.
-            // 'start_date',
+            'number_of_bedrooms',
+            'start_date',
             'min_months',
             'neighborhood',
             'rating',
@@ -106,9 +103,8 @@ class OfferController extends Controller
         $orderBy = $request->input('order-by');
         switch ($orderBy) {
             case 'apartments.rating':
+            case 'start_date':
                 return [$orderBy, 'ASC'];
-            case 'start_date-ASC':
-            case 'start_date-DESC':
             case 'rent-ASC':
             case 'rent-DESC':
             case 'apartments.size_sq_m-ASC':
@@ -117,7 +113,7 @@ class OfferController extends Controller
                 $direction = explode('-', $orderBy)[1];
                 return [$column, $direction];
             default:
-                return ['start_date', 'DESC'];
+                return ['apartments.date_created', 'DESC'];
         }
     }
 
@@ -131,15 +127,16 @@ class OfferController extends Controller
                 case 'size_sq_m':
                 case 'number_of_rooms-min':
                 case 'rent-min':
-                case 'number_of_persons': // this goes here?
-                case 'number_of_rooms': // this goes here?
-                case 'min_months': // this goes here?
+                case 'number_of_persons':
+                case 'number_of_rooms':
+                case 'number_of_bedrooms':
+                case 'min_months':
                 case 'rating':
                     $fieldName = explode('-', $field)[0];
                     $whereClauses[] = [$fieldName, '>=', $value];
                     break;
+                case 'start_date':
                 case 'number_of_rooms-max':
-                case 'start_date': // this goes here?
                 case 'rent-max':
                     $fieldName = explode('-', $field)[0];
                     $whereClauses[] = [$fieldName, '<=', $value];
