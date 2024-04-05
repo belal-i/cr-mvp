@@ -200,5 +200,20 @@ function make_select_html($name, $options,
     $ret_html .= '</select>';
 
     return $ret_html;
+}
 
+function make_checkbox($name, $label_text, $checked = false, $id = null)
+{
+    if ($id === null)
+        $id = $name;
+
+    if ($checked)
+        $checked = ' checked';
+    else
+        $checked = '';
+
+    return <<<EOF
+    <input type="checkbox" id="$id" name="$name"$checked>
+    <label for="$id">$label_text</label>
+EOF;
 }
