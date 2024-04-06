@@ -188,6 +188,12 @@
     "apartments": {
         "1": {
             "account_manager": "Aa",
+            "bathroom_description": "Kleines",
+            "bathroom_equipment": "Dusche",
+            "bathroom_furniture": [
+                "helle Fliesen"
+            ],
+            "bathroom_type": "Bad",
             "apartment_type": "APARTMENT",
             "contact_id": null,
             "date_created": "1994-01-25",
@@ -199,6 +205,7 @@
                 "modernen Stil"
             ],
             "furnishing_style": null,
+            "has_television": true,
             "has_balcony": true,
             "has_dish_washer": true,
             "has_dryer": true,
@@ -207,6 +214,14 @@
             "has_washing_machine": true,
             "house_id": 1,
             "is_furnished": true,
+            "kitchen_description": "Moderne",
+            "kitchen_equipment": "mit guter Ausstattung",
+            "kitchen_furniture": [
+                "Herd mit Backofen",
+                "Kaffeemaschine"
+            ],
+            "kitchen_situation": "offen zum Wohnraum",
+            "kitchen_type": "Kitchenette",
             "key_number": "",
             "living_room_contents": [
                 "Sofa",
@@ -214,6 +229,9 @@
             ],
             "living_room_description": "H\u00fcbsches",
             "living_room_type": "Wohn-Esszimmer",
+            "luxury_items": [
+                "Klimaanlage"
+            ],
             "notes": [
                 "Note 1",
                 "Note 2"
@@ -234,11 +252,21 @@
                     "5": "Something in Italian"
                 }
             ],
+            "television_size_inches": 40,
             "title": "A very nice apartment",
-            "view": "Beautiful view of the skyline"
+            "view": "Beautiful view of the skyline",
+            "windows": [
+                "bodentiefe Fenster"
+            ]
         },
         "2": {
             "account_manager": "Aa",
+            "bathroom_description": "Kleines",
+            "bathroom_equipment": "Dusche",
+            "bathroom_furniture": [
+                "helle Fliesen"
+            ],
+            "bathroom_type": "Bad",
             "apartment_type": "APARTMENT",
             "contact_id": 2,
             "date_created": "1994-01-25",
@@ -250,6 +278,7 @@
                 "modernen Stil"
             ],
             "furnishing_style": null,
+            "has_television": true,
             "has_balcony": true,
             "has_dish_washer": true,
             "has_dryer": true,
@@ -258,6 +287,14 @@
             "has_washing_machine": true,
             "house_id": 2,
             "is_furnished": true,
+            "kitchen_description": "Moderne",
+            "kitchen_equipment": "mit guter Ausstattung",
+            "kitchen_furniture": [
+                "Herd mit Backofen",
+                "Kaffeemaschine"
+            ],
+            "kitchen_situation": "offen zum Wohnraum",
+            "kitchen_type": "Kitchenette",
             "key_number": "",
             "living_room_contents": [
                 "Sofa",
@@ -265,6 +302,9 @@
             ],
             "living_room_description": "H\u00fcbsches",
             "living_room_type": "Wohn-Esszimmer",
+            "luxury_items": [
+                "Klimaanlage"
+            ],
             "notes": [
                 "Note 1",
                 "Note 2"
@@ -285,8 +325,12 @@
                 }
             ],
             "story": -2,
+            "television_size_inches": 40,
             "title": "Another very nice apartment",
-            "view": "Beautiful view of the skyline"
+            "view": "Beautiful view of the skyline",
+            "windows": [
+                "bodentiefe Fenster"
+            ]
         }
     },
     "offers": {
