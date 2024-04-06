@@ -26,11 +26,20 @@ class OfferRepository
             $fieldName = $eloquentWhereClause[0];
             switch ($fieldName) {
                 case 'apartment_type':
-                case 'size_sq_m':
-                case 'number_of_rooms':
+                case 'has_balcony':
+                case 'has_dish_washer':
+                case 'has_internet':
+                case 'has_parking_space':
+                case 'has_washing_machine':
                 case 'number_of_bedrooms':
+                case 'number_of_rooms':
+                case 'pets_ok':
                 case 'rating':
+                case 'size_sq_m':
                     $eloquentWhereClause[0] = "apartments.$fieldName";
+                    break;
+                case 'has_elevator':
+                    $eloquentWhereClause[0] = "houses.$fieldName";
                     break;
                 default:
                     $eloquentWhereClause[0] = $fieldName;

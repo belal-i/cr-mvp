@@ -204,48 +204,93 @@
             </tr>
             <tr class="border-row">
                 <td>
-                    <input id="washing-machine" name="washing-machine" type="checkbox">
-                    <label for="washing-machine">Waschmaschine</label>
+                    <?php echo make_checkbox(
+                        'washing_machine',
+                        'Waschmaschine',
+                        isset($filterParams['washing_machine'])
+                    );
+                    ?>
                 </td>
                 <td>
-                    <input id="parking-space" name="parking-space" type="checkbox">
-                    <label for="parking-space">PKW-Stellplatz</label>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <input id="washing-machine-in-apartment" name="washing-machine-in-apartment" type="checkbox">
-                    <label for="washing-machine-in-apartment">Waschmaschine in der Wohnung</label>
-                </td>
-                <td>
-                    <input id="balcony" name="balcony" type="checkbox">
-                    <label for="balcony">Balkon, Terrasse</label>
+                    <?php echo make_checkbox(
+                        'has_parking_space',
+                        'PKW-Stellplatz',
+                        isset($filterParams['has_parking_space'])
+                    );
+                    ?>
                 </td>
             </tr>
             <tr>
                 <td>
-                    <input id="dryer" name="dryer" type="checkbox">
-                    <label for="dryer">Trockner</label>
+                    <?php echo make_checkbox(
+                        'washing_machine_in_apartment',
+                        'Waschmaschine in der Wohnung',
+                        isset($filterParams['washing_machine_in_apartment'])
+                    );
+                    ?>
                 </td>
                 <td>
-                    <input id="elevator" name="elevator" type="checkbox"> ab <input type="number" name="elevator-cutoff-story" style="max-width: 40px;">
+                    <?php echo make_checkbox(
+                        'has_balcony',
+                        'Balkon, Terrasse',
+                        isset($filterParams['has_balcony'])
+                    );
+                    ?>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <?php echo make_checkbox(
+                        'has_dryer',
+                        'Trockner',
+                        isset($filterParams['has_dryer'])
+                    );
+                    ?>
+                </td>
+                <td>
+                    <?php echo make_checkbox(
+                        'has_elevator',
+                        'mit Lift',
+                        isset($filterParams['has_elevator'])
+                    );
+                    ?>
+                </td>
+                {{--
+                See Redmine #1176 - implement that possibility into
+                the backend, then replace the above checkbox with this one
+                below.
+                <td>
+                    <input id="has_elevator" name="has_elevator" type="checkbox"<?php echo isset($filterParams['has_elevator']) ? ' checked' : ''; ?>> ab <input type="number" name="elevator-cutoff-story" style="max-width: 40px;">
                     <label for="elevator">Etage nur mit Lift</label>
                 </td>
+                --}}
             </tr>
             <tr>
                 <td>
-                    <input id="dish-washer" name="dish-washer" type="checkbox">
-                    <label for="dish-washer">Spülmaschine</label>
+                    <?php echo make_checkbox(
+                        'has_dish_washer',
+                        'Spülmaschine',
+                        isset($filterParams['has_dish_washer'])
+                    );
+                    ?>
                 </td>
                 <td>
-                    <input id="internet" name="internet" type="checkbox">
-                    <label for="internet">Internet</label>
+                    <?php echo make_checkbox(
+                        'has_internet',
+                        'Internet',
+                        isset($filterParams['has_internet'])
+                    );
+                    ?>
                 </td>
             </tr>
             <tr>
                 <td colspan=2>
-                    <input id="pets-ok" name="pets-ok" type="checkbox">
-                    <label for="pets-ok">Haustiere erlaubt</label>
+                    <?php echo make_checkbox(
+                        'pets_ok',
+                        'Haustiere erlaubt',
+                        isset($filterParams['pets_ok'])
+                    );
+                    ?>
                 </td>
             </tr>
             <tr class="border-row">
