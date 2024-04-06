@@ -95,8 +95,8 @@ class Apartment extends Model
                     $this->flooring,
                     $this->flooring_material
                 ),
-                implode(', ', json_decode($this->luxury_items)),
-                implode(', ', json_decode($this->windows)),
+                empty($this->luxury_items) ? '' : implode(', ', json_decode($this->luxury_items)),
+                empty($this->windows) ? '' : implode(', ', json_decode($this->windows)),
             ]),
             php_array_to_ul_elem([
                 $this->has_internet ? 'Internetzugang' : '',
