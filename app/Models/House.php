@@ -22,4 +22,16 @@ class House extends Model
     {
         return $this->hasMany(Apartment::class);
     }
+
+    public function getInfoText()
+    {
+        $infoArray = [];
+        if (!empty($this->house_description) && !empty($this->house_type)) {
+            $infoArray[] = "$this->house_description $this->house_type";
+        }
+        if (!empty($this->year_of_construction)) {
+            $infoArray[] = "Bj. $this->year_of_construction";
+        }
+        return implode(', ', $infoArray);
+    }
 }
