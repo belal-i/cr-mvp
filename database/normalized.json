@@ -231,7 +231,7 @@
             "kitchen_situation": "offen zum Wohnraum",
             "kitchen_type": "Kitchenette",
             "key_number": "",
-            "living_room_contents": [
+            "living_room_furniture": [
                 "Sofa",
                 "Esstisch mit St\u00fchlen"
             ],
@@ -304,7 +304,7 @@
             "kitchen_situation": "offen zum Wohnraum",
             "kitchen_type": "Kitchenette",
             "key_number": "",
-            "living_room_contents": [
+            "living_room_furniture": [
                 "Sofa",
                 "Esstisch mit St\u00fchlen"
             ],

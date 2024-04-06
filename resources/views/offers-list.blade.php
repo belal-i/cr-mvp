@@ -375,7 +375,7 @@ $css_toggle_suffix_int = 1;
                 <p>{{ $station }}</p>
             @endforeach
             <div style="text-align:right; width:100%;">
-            <span style="float:left;"><strong>frei ab {{ get_start_text_from_date($offer->start_date) }}</strong>, {{ $offer->getMaxMonthsText() }}, Mindestmietzeit {{ $offer->min_months }} Monate</span>Miete pro Monat: <strong>{{ get_euro_text($offer->rent) }}</strong>
+            <span style="float:left;"><strong>frei ab {{ $offer->getStartText() }}</strong>, {{ $offer->getMaxMonthsText() }}, Mindestmietzeit {{ $offer->min_months }} Monate</span>Miete pro Monat: <strong>{{ get_euro_text($offer->rent) }}</strong>
             </div>
 
         </div>
