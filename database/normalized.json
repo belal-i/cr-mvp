@@ -6,21 +6,6 @@
             "house_number": "1",
             "nearby_points_of_interest": [
                 {
-                    "type": "supermarkt",
-                    "sub": "Penny",
-                    "dist": "300m"
-                },
-                {
-                    "type": "supermarkt",
-                    "sub": "REWE",
-                    "dist": "500m"
-                },
-                {
-                    "type": "supermarkt",
-                    "sub": "Bio-Supermarkt",
-                    "dist": "250m"
-                },
-                {
                     "type": "einkaufsmeile",
                     "sub": "Berger Stra\u00dfe",
                     "dist": "200m"
@@ -42,6 +27,23 @@
                 },
                 "bus": {}
             },
+            "nearby_shops": [
+                {
+                    "type": "supermarkt",
+                    "sub": "Penny",
+                    "dist": "300m"
+                },
+                {
+                    "type": "supermarkt",
+                    "sub": "REWE",
+                    "dist": "500m"
+                },
+                {
+                    "type": "supermarkt",
+                    "sub": "Bio-Supermarkt",
+                    "dist": "250m"
+                }
+	    ],
             "neighborhood": "Some nice neighborhood",
             "parking_rating": 4.0,
             "source_id": 29492,
@@ -54,21 +56,6 @@
             "house_number": "2",
             "nearby_points_of_interest": [
                 {
-                    "type": "supermarkt",
-                    "sub": "Penny",
-                    "dist": "300m"
-                },
-                {
-                    "type": "supermarkt",
-                    "sub": "REWE",
-                    "dist": "500m"
-                },
-                {
-                    "type": "supermarkt",
-                    "sub": "Bio-Supermarkt",
-                    "dist": "250m"
-                },
-                {
                     "type": "einkaufsmeile",
                     "sub": "Berger Stra\u00dfe",
                     "dist": "200m"
@@ -90,6 +77,23 @@
                 },
                 "bus": {}
             },
+            "nearby_shops": [
+                {
+                    "type": "supermarkt",
+                    "sub": "Penny",
+                    "dist": "300m"
+                },
+                {
+                    "type": "supermarkt",
+                    "sub": "REWE",
+                    "dist": "500m"
+                },
+                {
+                    "type": "supermarkt",
+                    "sub": "Bio-Supermarkt",
+                    "dist": "250m"
+                }
+	    ],
             "neighborhood": "Some nice neighborhood",
             "parking_rating": 4.0,
             "source_id": 29492,
