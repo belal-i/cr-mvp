@@ -2,6 +2,8 @@
     "addresses": {
         "1": {
             "city": "Test City",
+            "compass_direction_from_city_center": "NE",
+            "distance_from_city_center_m": 10000,
             "house_id": 1,
             "house_number": "1",
             "nearby_points_of_interest": [
@@ -52,6 +54,8 @@
         },
         "2": {
             "city": "Other Test City",
+            "compass_direction_from_city_center": "NE",
+            "distance_from_city_center_m": 10000,
             "house_id": 2,
             "house_number": "2",
             "nearby_points_of_interest": [
