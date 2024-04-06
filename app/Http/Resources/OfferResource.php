@@ -25,7 +25,7 @@ class OfferResource extends JsonResource
                     $address->getSubwayStationsAsList();
                 $apartment->number_of_rooms =
                     $apartment->getNumberOfRoomsText();
-                $offer->start_date = get_start_text_from_date($offer->start_date);
+                $offer->start_date = $offer->getStartText();
                 $offer->max_months = $offer->getMaxMonthsText();
                 $offer->rent = get_euro_text($offer->rent);
             }

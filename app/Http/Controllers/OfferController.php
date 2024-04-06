@@ -71,19 +71,29 @@ class OfferController extends Controller
     {
         $returnParams = [];
         $filterFields = [
-            'status',
             'apartment_type',
-            'size_sq_m',
-            'number_of_rooms-min',
-            'number_of_rooms-max',
-            'rent-min',
-            'rent-max',
-            'number_of_persons',
-            'number_of_bedrooms',
-            'start_date',
+            'elevator-cutoff-story',
+            'has_balcony',
+            'has_dish_washer',
+            'has_dryer',
+            'has_elevator',
+            'has_internet',
+            'has_parking_space',
             'min_months',
             'neighborhood',
+            'number_of_bedrooms',
+            'number_of_persons',
+            'number_of_rooms-max',
+            'number_of_rooms-min',
+            'pets_ok',
             'rating',
+            'rent-max',
+            'rent-min',
+            'size_sq_m',
+            'start_date',
+            'status',
+            'washing_machine',
+            'washing_machine_in_apartment',
             // TODO: We'll likely ignore this field as well, until we complete
             // Redmine #1147
             // 'nearby_public_transit',
@@ -123,6 +133,9 @@ class OfferController extends Controller
         $whereClauses = $predefinedClauses;
 
         foreach ($filterParams as $field => $value) {
+            // Checkboxes
+            if ($value == 'on')
+                $value = '1';
             switch ($field) {
                 case 'size_sq_m':
                 case 'number_of_rooms-min':
@@ -141,8 +154,17 @@ class OfferController extends Controller
                     $fieldName = explode('-', $field)[0];
                     $whereClauses[] = [$fieldName, '<=', $value];
                     break;
+                case 'washing_machine_in_apartment':
+                    $whereClauses[] = ['has_washing_machine', '=', $value];
                 // TODO: Special cases which we must deal with later on.
                 case 'neighborhood':
+                // These ones are tricky. They will require having an OR-clause
+                // nested with our AND-clauses, which likely requires
+                // us to use Closures in our big WHERE-clause.
+                case 'washing_machine':
+                case 'has_dryer':
+                // TODO: See Redmine #1176
+                case 'elevator-cutoff-story':
                     break;
                 default:
                     $whereClauses[] = [$field, '=', $value];

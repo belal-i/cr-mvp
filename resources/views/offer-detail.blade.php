@@ -1,23 +1,15 @@
 @extends ('layouts/site')
 @section ('content')
 
-{{-- TODO: See Redmine #1135. This was implemented very quickly and not very clean. --}}
 <div class="row site-content" style="border-bottom: 1px solid black; margin-top: 10px;">
     <div class="col-sm-auto cr-ui-tab-1" style="margin-right: 5px;">Expose</div>
     <div class="col-sm-auto cr-ui-tab-2">Lage</div>
     <div class="col-sm-auto cr-ui-tab-3" style="margin-left: 45px;"><a href="/offers">Ergebnisliste</a></div>
 </div>
 
-<?php
-$info_at_a_glance_text = $offer->apartment->number_of_rooms . '-Zi. '
-    . $offer->apartment->getTranslatedApartmentType() . ' | '
-    . $offer->apartment->size_sq_m . 'm<sup>2</sup> | '
-    . get_euro_text($offer->rent) . ' | '
-    . $offer->apartment->house->address->neighborhood;
-?>
 <div class="row site-content cr-detail-view-heading">
     <div class="col-sm-auto"><strong>A-{{ $offer->apartment->source_id }}</strong></div>
-    <div class="col-sm-auto"><strong><?php echo $info_at_a_glance_text; ?></strong></div>
+    <div class="col-sm-auto"><strong><?php echo $offer->getInfoAtAGlanceText(); ?></strong></div>
 </div>
 <div class="row site-content cr-detail-view-content">
     <img src="/images/pexels-vecislavas-popa-1571463.jpg" style="width: 100%;">
@@ -69,7 +61,7 @@ $l = count($room_pic_boxes);
 </div>
 <div class="row site-content cr-detail-view-content border-bottom">
     <div class="col-3"><strong>verfügbar</strong></div>
-    <div class="col-9">{{ get_start_text_from_date($offer->start_date) }}</div>
+    <div class="col-9">{{ $offer->getStartText() }}</div>
 </div>
 
 <div class="row site-content cr-detail-view-content border-bottom">
@@ -83,13 +75,13 @@ $l = count($room_pic_boxes);
         <br>
         {{ $offer->apartment->house->address->street }}
         <br>
-        <small>Siehe <a href="https://redmine.city-residence.de/issues/1135">Feature #1135</a> Die Entfernung zur Innenstadt soll dann auch angezeigt werden.</small>
+        {{ $offer->apartment->house->address->getCityCenterText() }}
     </div>
 </div>
 <div class="row site-content cr-detail-view-content border-bottom">
     <div class="col-3"><strong>Einschränkungen</strong></div>
     <div class="col-9">
-        {{ get_offer_limitations_text($offer) }}
+        {{ $offer->getLimitationsText() }}
     </div>
 </div>
 
@@ -102,35 +94,38 @@ $l = count($room_pic_boxes);
     <div class="col-9">
         <?php
             echo php_array_to_ul_elem(
-                extract_german_apartment_specials($offer->apartment->specials)
+                $offer->apartment->getSpecials()
             );
         ?>
     </div>
 </div>
 <div class="row site-content cr-detail-view-content border-bottom">
     <div class="col-3"><strong>Hausinfo</strong></div>
-    <div class="col-9">{{ get_house_info_text($offer->apartment->house) }}</div>
+    <div class="col-9">{{ $offer->apartment->house->getInfoText() }}</div>
 </div>
 <div class="row site-content cr-detail-view-content border-bottom">
     <div class="col-3"><strong>Wohnräume</strong></div>
-    <div class="col-9">{{ get_living_room_text($offer->apartment) }}</div>
+    <div class="col-9">{{ $offer->apartment->getRoomText('living_room') }}</div>
 </div>
 <div class="row site-content cr-detail-view-content border-bottom">
     <div class="col-3"><strong>Küche</strong></div>
-    <div class="col-9"><small>Diese Daten müssen noch von der ETL-Pipeline normalisiert werden. In einer zukünftigen Version der Laravel-App möglicherweise schon ab v0.5, wird dieser Datensatz dann ebenfalls hier stehen. Siehe Features <a href="https://redmine.city-residence.de/issues/1135">1135</a> und <a href="https://redmine.city-residence.de/issues/1140">1140</a></small></div>
+    <div class="col-9"><?php echo $offer->apartment->getRoomText('kitchen', true); ?></div>
 </div>
 <div class="row site-content cr-detail-view-content border-bottom">
     <div class="col-3"><strong>Bad</strong></div>
-    <div class="col-9"><small>Diese Daten müssen noch von der ETL-Pipeline normalisiert werden. In einer zukünftigen Version der Laravel-App möglicherweise schon ab v0.5, wird dieser Datensatz dann ebenfalls hier stehen. Siehe Features <a href="https://redmine.city-residence.de/issues/1135">1135</a> und <a href="https://redmine.city-residence.de/issues/1140">1140</a></small></div>
+    <div class="col-9"><?php echo $offer->apartment->getRoomText('bathroom', true); ?></div>
 </div>
 <div class="row site-content cr-detail-view-content border-bottom">
     <div class="col-3"><strong>Ausstattung</strong></div>
-    <div class="col-9"><small>Diese Daten müssen noch von der ETL-Pipeline normalisiert werden. In einer zukünftigen Version der Laravel-App möglicherweise schon ab v0.5, wird dieser Datensatz dann ebenfalls hier stehen. Siehe Features <a href="https://redmine.city-residence.de/issues/1135">1135</a> und <a href="https://redmine.city-residence.de/issues/1140">1140</a></small></div>
+    <div class="col-9"><?php echo $offer->apartment->getEquipmentText(); ?></div>
 </div>
+{{--
+TODO: See Feature #1178
 <div class="row site-content cr-detail-view-content border-bottom">
     <div class="col-3"><strong>Parken</strong></div>
     <div class="col-9"><small>Diese Daten müssen noch von der ETL-Pipeline normalisiert werden. In einer zukünftigen Version der Laravel-App möglicherweise schon ab v0.5, wird dieser Datensatz dann ebenfalls hier stehen. Siehe Features <a href="https://redmine.city-residence.de/issues/1135">1135</a> und <a href="https://redmine.city-residence.de/issues/1140">1140</a></small></div>
 </div>
+--}}
 
 <div class="row site-content cr-detail-view-heading">
     <div class="col-9"><strong>Information zum Mietpreis</strong></div>
@@ -139,7 +134,7 @@ $l = count($room_pic_boxes);
 <div class="row site-content cr-detail-view-content border-bottom">
     <div class="col-3"><strong>Kaution</strong></div>
     {{-- TODO: This will be refactored. See Feature #972. --}}
-    <div class="col-9">{{ get_security_deposit_text($offer->security_deposit, $offer->security_deposit_type) }}</div>
+    <div class="col-9">{{ $offer->getSecurityDepositText() }}</div>
 </div>
 <div class="row site-content cr-detail-view-content border-bottom">
     <div class="col-3"><strong>Radio- und TV-Empfang</strong></div>
@@ -168,22 +163,28 @@ $l = count($room_pic_boxes);
 </div>
 <div class="row site-content cr-detail-view-content border-bottom">
     <div class="col-3"><strong>Öffentliche Verkehrsmittel</strong></div>
-    <div class="col-9"> <?php echo get_public_transit_uls($offer->apartment->house->address->nearby_public_transit); ?></div>
+    <div class="col-9"> <?php echo $offer->apartment->house->address->getPublicTransitUls(); ?></div>
 </div>
 <div class="row site-content cr-detail-view-content border-bottom">
     <div class="col-3"><strong>PKW</strong></div>
-    <div class="col-9"> {{ get_parking_situation_text($offer->apartment->house->address->parking_rating) }}</div>
+    <div class="col-9"> {{ $offer->apartment->house->address->getParkingRatingText() }}</div>
 </div>
-{{-- TODO: See Feature #1139. We'll have two separate columns for this in the future. --}}
 <div class="row site-content cr-detail-view-content border-bottom">
-    <div class="col-3"><strong>Einkaufen und Freizeit</strong></div>
-    <div class="col-9"> <?php echo get_points_of_interest_ul($offer->apartment->house->address->nearby_points_of_interest); ?><small>Die ETL-Pipeline liefert in ihrer aktuellen Version (cr-legacy-to-json-0.2) Freizeit- und Einkaufsmöglichkeiten in einem Feld. In einer zukünftigen Version sollen diese Daten allerdings in 2 getrennten Feldern verfügbar sein. Siehe <a href="https://redmine.city-residence.de/issues/1139">Feature #1139</a></small></div>
+    <div class="col-3"><strong>Einkaufen</strong></div>
+    <div class="col-9"><?php echo $offer->apartment->house->address->getShopsUl(); ?></div>
+</div>
+<div class="row site-content cr-detail-view-content border-bottom">
+    <div class="col-3"><strong>Freizeit</strong></div>
+    <div class="col-9"><?php echo $offer->apartment->house->address->getPointsOfInterestUl(); ?></div>
 </div>
 
 <div class="row site-content cr-detail-view-heading">
     <div class="col-9"><strong>Energieausweis</strong></div>
 </div>
 
+{{--
+TODO: See Feature #1181
+--}}
 <div class="row site-content cr-detail-view-content border-bottom">
     <div class="col-3"></div>
     <div class="col-9">
@@ -216,7 +217,6 @@ $l = count($room_pic_boxes);
                 </td>
             </tr>
         </table>
-        <small>Siehe <a href="https://redmine.city-residence.de/issues/1135">Feature #1135</a> Wir müssen bloß klären, wie alle möglichen Enum-Werte zu den Energieausweisen übersetzt werden sollen, bzw. ich muss es aus dem Legacy-Code herauslesen.</small>
     </div>
 </div>
 @endsection

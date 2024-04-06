@@ -2,24 +2,11 @@
     "addresses": {
         "1": {
             "city": "Test City",
+            "compass_direction_from_city_center": "NE",
+            "distance_from_city_center_m": 10000,
             "house_id": 1,
             "house_number": "1",
             "nearby_points_of_interest": [
-                {
-                    "type": "supermarkt",
-                    "sub": "Penny",
-                    "dist": "300m"
-                },
-                {
-                    "type": "supermarkt",
-                    "sub": "REWE",
-                    "dist": "500m"
-                },
-                {
-                    "type": "supermarkt",
-                    "sub": "Bio-Supermarkt",
-                    "dist": "250m"
-                },
                 {
                     "type": "einkaufsmeile",
                     "sub": "Berger Stra\u00dfe",
@@ -42,6 +29,23 @@
                 },
                 "bus": {}
             },
+            "nearby_shops": [
+                {
+                    "type": "supermarkt",
+                    "sub": "Penny",
+                    "dist": "300m"
+                },
+                {
+                    "type": "supermarkt",
+                    "sub": "REWE",
+                    "dist": "500m"
+                },
+                {
+                    "type": "supermarkt",
+                    "sub": "Bio-Supermarkt",
+                    "dist": "250m"
+                }
+	    ],
             "neighborhood": "Some nice neighborhood",
             "parking_rating": 4.0,
             "source_id": 29492,
@@ -50,24 +54,11 @@
         },
         "2": {
             "city": "Other Test City",
+            "compass_direction_from_city_center": "NE",
+            "distance_from_city_center_m": 10000,
             "house_id": 2,
             "house_number": "2",
             "nearby_points_of_interest": [
-                {
-                    "type": "supermarkt",
-                    "sub": "Penny",
-                    "dist": "300m"
-                },
-                {
-                    "type": "supermarkt",
-                    "sub": "REWE",
-                    "dist": "500m"
-                },
-                {
-                    "type": "supermarkt",
-                    "sub": "Bio-Supermarkt",
-                    "dist": "250m"
-                },
                 {
                     "type": "einkaufsmeile",
                     "sub": "Berger Stra\u00dfe",
@@ -90,6 +81,23 @@
                 },
                 "bus": {}
             },
+            "nearby_shops": [
+                {
+                    "type": "supermarkt",
+                    "sub": "Penny",
+                    "dist": "300m"
+                },
+                {
+                    "type": "supermarkt",
+                    "sub": "REWE",
+                    "dist": "500m"
+                },
+                {
+                    "type": "supermarkt",
+                    "sub": "Bio-Supermarkt",
+                    "dist": "250m"
+                }
+	    ],
             "neighborhood": "Some nice neighborhood",
             "parking_rating": 4.0,
             "source_id": 29492,
@@ -155,6 +163,9 @@
             "energy_rating_type": "ENERGY_CONSUMPTION",
             "energy_source": "GAS",
             "energy_usage_value": 142.0,
+            "has_dryer": true,
+            "has_elevator": true,
+            "has_washing_machine": true,
             "house_character": "Nachkriegsbau",
             "house_description": "Gepflegtes",
             "house_type": "Mehrfamilienhaus",
@@ -170,6 +181,9 @@
             "energy_rating_type": "ENERGY_CONSUMPTION",
             "energy_source": "GAS",
             "energy_usage_value": 142.0,
+            "has_dryer": true,
+            "has_elevator": true,
+            "has_washing_machine": true,
             "house_character": "Nachkriegsbau",
             "house_description": "Gepflegtes",
             "house_type": "Mehrfamilienhaus",
@@ -182,6 +196,12 @@
     "apartments": {
         "1": {
             "account_manager": "Aa",
+            "bathroom_description": "Kleines",
+            "bathroom_equipment": "Dusche",
+            "bathroom_furniture": [
+                "helle Fliesen"
+            ],
+            "bathroom_type": "Bad",
             "apartment_type": "APARTMENT",
             "contact_id": null,
             "date_created": "1994-01-25",
@@ -193,21 +213,40 @@
                 "modernen Stil"
             ],
             "furnishing_style": null,
+            "has_television": true,
+            "has_balcony": true,
+            "has_dish_washer": true,
+            "has_dryer": true,
+            "has_internet": true,
+            "has_parking_space": true,
+            "has_washing_machine": true,
             "house_id": 1,
             "is_furnished": true,
+            "kitchen_description": "Moderne",
+            "kitchen_equipment": "mit guter Ausstattung",
+            "kitchen_furniture": [
+                "Herd mit Backofen",
+                "Kaffeemaschine"
+            ],
+            "kitchen_situation": "offen zum Wohnraum",
+            "kitchen_type": "Kitchenette",
             "key_number": "",
-            "living_room_contents": [
+            "living_room_furniture": [
                 "Sofa",
                 "Esstisch mit St\u00fchlen"
             ],
             "living_room_description": "H\u00fcbsches",
             "living_room_type": "Wohn-Esszimmer",
+            "luxury_items": [
+                "Klimaanlage"
+            ],
             "notes": [
                 "Note 1",
                 "Note 2"
             ],
             "number_of_bedrooms": 1,
             "number_of_rooms": 2.0,
+            "pets_ok": true,
             "rating": 5.0,
             "size_sq_m": "33",
             "source_id": 29492,
@@ -221,11 +260,21 @@
                     "5": "Something in Italian"
                 }
             ],
+            "television_size_inches": 40,
             "title": "A very nice apartment",
-            "view": "Beautiful view of the skyline"
+            "view": "Beautiful view of the skyline",
+            "windows": [
+                "bodentiefe Fenster"
+            ]
         },
         "2": {
             "account_manager": "Aa",
+            "bathroom_description": "Kleines",
+            "bathroom_equipment": "Dusche",
+            "bathroom_furniture": [
+                "helle Fliesen"
+            ],
+            "bathroom_type": "Bad",
             "apartment_type": "APARTMENT",
             "contact_id": 2,
             "date_created": "1994-01-25",
@@ -237,21 +286,40 @@
                 "modernen Stil"
             ],
             "furnishing_style": null,
+            "has_television": true,
+            "has_balcony": true,
+            "has_dish_washer": true,
+            "has_dryer": true,
+            "has_internet": true,
+            "has_parking_space": true,
+            "has_washing_machine": true,
             "house_id": 2,
             "is_furnished": true,
+            "kitchen_description": "Moderne",
+            "kitchen_equipment": "mit guter Ausstattung",
+            "kitchen_furniture": [
+                "Herd mit Backofen",
+                "Kaffeemaschine"
+            ],
+            "kitchen_situation": "offen zum Wohnraum",
+            "kitchen_type": "Kitchenette",
             "key_number": "",
-            "living_room_contents": [
+            "living_room_furniture": [
                 "Sofa",
                 "Esstisch mit St\u00fchlen"
             ],
             "living_room_description": "H\u00fcbsches",
             "living_room_type": "Wohn-Esszimmer",
+            "luxury_items": [
+                "Klimaanlage"
+            ],
             "notes": [
                 "Note 1",
                 "Note 2"
             ],
             "number_of_bedrooms": 3,
             "number_of_rooms": 4.0,
+            "pets_ok": true,
             "rating": 5.0,
             "size_sq_m": "70",
             "source_id": 29492,
@@ -265,8 +333,12 @@
                 }
             ],
             "story": -2,
+            "television_size_inches": 40,
             "title": "Another very nice apartment",
-            "view": "Beautiful view of the skyline"
+            "view": "Beautiful view of the skyline",
+            "windows": [
+                "bodentiefe Fenster"
+            ]
         }
     },
     "offers": {
