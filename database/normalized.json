@@ -249,6 +249,7 @@
             "pets_ok": true,
             "rating": 5.0,
             "size_sq_m": "33",
+            "smoking_ok": false,
             "source_id": 29492,
             "story": 4,
             "specials": [
@@ -322,6 +323,7 @@
             "pets_ok": true,
             "rating": 5.0,
             "size_sq_m": "70",
+            "smoking_ok": false,
             "source_id": 29492,
             "specials": [
                 {
@@ -372,7 +374,6 @@
             "rent": 1000.0,
             "security_deposit": 2,
             "security_deposit_type": "MONTHLY_RENTS",
-            "smoking_ok": false,
             "source_id": "29492/36",
             "start_date": "2024-03-20",
             "status": "F",
@@ -413,7 +414,6 @@
             "rent": 1000.0,
             "security_deposit": 2000,
             "security_deposit_type": "EURO_AMOUNT",
-            "smoking_ok": false,
             "source_id": "29492/36",
             "start_date": "2024-06-20",
             "status": "F",
