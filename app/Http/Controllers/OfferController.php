@@ -182,13 +182,24 @@ class OfferController extends Controller
                     break;
                 case 'washing_machine_in_apartment':
                     $whereClauses[] = ['apartments.has_washing_machine', '=', $value];
+                    break;
                 // TODO: Special cases which we must deal with later on.
                 case 'addresses.neighborhood':
                 // These ones are tricky. They will require having an OR-clause
                 // nested with our AND-clauses, which likely requires
                 // us to use Closures in our big WHERE-clause.
                 case 'washing_machine':
+                    $whereClauses[] = [
+                        ['apartments.has_washing_machine', '=', $value],
+                        ['houses.has_washing_machine', '=', $value],
+                    ];
+                    break;
                 case 'dryer':
+                    $whereClauses[] = [
+                        ['apartments.has_dryer', '=', $value],
+                        ['houses.has_dryer', '=', $value],
+                    ];
+                    break;
                 // TODO: See Redmine #1176
                 case 'elevator-cutoff-story':
                     break;
