@@ -241,7 +241,7 @@
             <tr>
                 <td>
                     <?php echo make_checkbox(
-                        'has_dryer',
+                        'dryer',
                         'Trockner',
                         isset($filterParams['has_dryer'])
                     );
