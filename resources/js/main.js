@@ -1,5 +1,5 @@
 $('#quickfilter-form').change(function () {
-    serializedParams = '?status=F&' + $('#quickfilter-form').serialize();
+    serializedParams = '?status=FREE&' + $('#quickfilter-form').serialize();
     $.ajax({
         url: 'api/offers/count' + serializedParams,
         type: 'get',
@@ -50,7 +50,7 @@ const emptyTemplate = `
 `;
 
 $('#offer-filter-form').change(function () {
-    serializedParams = '?status=F&ajax=1&'
+    serializedParams = '?status=FREE&ajax=1&'
         + $('#offer-filter-form').serialize();
 
     $.ajax({
@@ -76,7 +76,7 @@ $('#offer-filter-form').change(function () {
 
 // TODO: This could be a lot more DRY.
 $('#offers-order-by').change(function () {
-    serializedParams = '?status=F&ajax=1&'
+    serializedParams = '?status=FREE&ajax=1&'
         + $('#offer-filter-form').serialize()
         + '&order-by=' + $('#offers-order-by').val();
 
