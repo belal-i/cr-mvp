@@ -75,12 +75,12 @@ class OfferController extends Controller
             'elevator-cutoff-story',
             'has_balcony',
             'has_dish_washer',
-            'has_dryer',
+            'dryer',
             'has_elevator',
             'has_internet',
             'has_parking_space',
             'min_months',
-            'neighborhood',
+            // 'neighborhood',
             'number_of_bedrooms',
             'number_of_persons',
             'number_of_rooms-max',
@@ -133,36 +133,69 @@ class OfferController extends Controller
         $whereClauses = $predefinedClauses;
 
         foreach ($filterParams as $field => $value) {
+            switch ($field) {
+                case 'apartment_type':
+                case 'has_balcony':
+                case 'has_dish_washer':
+                case 'has_internet':
+                case 'has_parking_space':
+                case 'number_of_bedrooms':
+                case 'number_of_rooms':
+                case 'number_of_rooms-min':
+                case 'number_of_rooms-max':
+                case 'pets_ok':
+                case 'rating':
+                case 'size_sq_m':
+                    $field = "apartments.$field";
+                    break;
+                case 'has_elevator':
+                    $field = "houses.$field";
+                    break;
+                case 'neighborhood':
+                    $field = "addresses.$field";
+                    break;
+                default:
+                    break;
+            }
+
             // Checkboxes
             if ($value == 'on')
                 $value = '1';
             switch ($field) {
-                case 'size_sq_m':
-                case 'number_of_rooms-min':
+                case 'apartments.size_sq_m':
+                case 'apartments.number_of_rooms-min':
                 case 'rent-min':
                 case 'number_of_persons':
-                case 'number_of_rooms':
-                case 'number_of_bedrooms':
+                case 'apartments.number_of_rooms':
+                case 'apartments.number_of_bedrooms':
                 case 'min_months':
-                case 'rating':
+                case 'apartments.rating':
                     $fieldName = explode('-', $field)[0];
                     $whereClauses[] = [$fieldName, '>=', $value];
                     break;
                 case 'start_date':
-                case 'number_of_rooms-max':
+                case 'apartments.number_of_rooms-max':
                 case 'rent-max':
                     $fieldName = explode('-', $field)[0];
                     $whereClauses[] = [$fieldName, '<=', $value];
                     break;
                 case 'washing_machine_in_apartment':
-                    $whereClauses[] = ['has_washing_machine', '=', $value];
+                    $whereClauses[] = ['apartments.has_washing_machine', '=', $value];
+                    break;
                 // TODO: Special cases which we must deal with later on.
-                case 'neighborhood':
-                // These ones are tricky. They will require having an OR-clause
-                // nested with our AND-clauses, which likely requires
-                // us to use Closures in our big WHERE-clause.
                 case 'washing_machine':
-                case 'has_dryer':
+                    $whereClauses[] = [
+                        ['apartments.has_washing_machine', '=', $value],
+                        ['houses.has_washing_machine', '=', $value],
+                    ];
+                    break;
+                case 'dryer':
+                    $whereClauses[] = [
+                        ['apartments.has_dryer', '=', $value],
+                        ['houses.has_dryer', '=', $value],
+                    ];
+                    break;
+                case 'addresses.neighborhood':
                 // TODO: See Redmine #1176
                 case 'elevator-cutoff-story':
                     break;
