@@ -155,7 +155,6 @@ class OfferController extends Controller
                     $field = "addresses.$field";
                     break;
                 default:
-                    // TODO: Prefix fields with 'offers.'?
                     break;
             }
 

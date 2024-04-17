@@ -13,8 +13,7 @@ class OfferRepository
 
     public static function getFreeOffers(bool $returnResource = false)
     {
-        $filterParams = [['status', 'FREE']];
-        return self::getFilteredOffers($filterParams, $returnResource);
+        return self::getFilteredOffers([['status', '=', 'FREE']], $returnResource);
     }
 
     public static function getFilteredOffers(

@@ -27,7 +27,6 @@ Route::get('/offers', function (Request $request) {
     );
     $whereClauses = OfferController::makeEloquentOfferWhereClauses(
         $filterParams,
-        // TODO: Preface this with 'offers.'?
         [['status', '=', 'FREE']]
     );
 
