@@ -182,7 +182,6 @@ class OfferController extends Controller
                 case 'washing_machine_in_apartment':
                     $whereClauses[] = ['apartments.has_washing_machine', '=', $value];
                     break;
-                // TODO: Special cases which we must deal with later on.
                 case 'washing_machine':
                     $whereClauses[] = [
                         ['apartments.has_washing_machine', '=', $value],
@@ -195,9 +194,27 @@ class OfferController extends Controller
                         ['houses.has_dryer', '=', $value],
                     ];
                     break;
-                case 'addresses.neighborhood':
-                // TODO: See Redmine #1176
+                case 'houses.has_elevator':
+                    if (isset($filterParams['elevator-cutoff-story'])
+                        && $filterParams['elevator-cutoff-story'] > 0
+                    ) {
+                        $whereClauses[] = [
+                            [$field, '=', $value],
+                            ['apartments.story',
+                                '<', $filterParams['elevator-cutoff-story']],
+                        ];
+                    } else {
+                        $whereClauses[] = [$field, '=', $value];
+                    }
+                    break;
+                // In some cases, it's a valid filter field, but it's handled
+                // separately because it's a special case, and so when it is
+                // processed by the switch statement, we actually want to do
+                // nothing.
                 case 'elevator-cutoff-story':
+                    break;
+                // TODO: Special cases which we must deal with later on.
+                case 'addresses.neighborhood':
                     break;
                 default:
                     $whereClauses[] = [$field, '=', $value];
