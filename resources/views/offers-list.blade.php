@@ -248,22 +248,9 @@
                     ?>
                 </td>
                 <td>
-                    <?php echo make_checkbox(
-                        'has_elevator',
-                        'mit Lift',
-                        isset($filterParams['has_elevator'])
-                    );
-                    ?>
-                </td>
-                {{--
-                See Redmine #1176 - implement that possibility into
-                the backend, then replace the above checkbox with this one
-                below.
-                <td>
                     <input id="has_elevator" name="has_elevator" type="checkbox"<?php echo isset($filterParams['has_elevator']) ? ' checked' : ''; ?>> ab <input type="number" name="elevator-cutoff-story" style="max-width: 40px;">
                     <label for="elevator">Etage nur mit Lift</label>
                 </td>
-                --}}
             </tr>
             <tr>
                 <td>
