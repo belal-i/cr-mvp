@@ -8,13 +8,21 @@
 
                 <div class="col-sm-auto quickfilter-form-elem quickfilter-form-label">Zimmer</div>
                 <div class="col-sm-auto quickfilter-form-elem quickfilter-elem-with-line">
-                    <select class="no-radius" id="quickfilter-nr-rooms" name="number_of_rooms-min">
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
-                    </select>
+                <?php
+                    echo make_select_html(
+                        'number_of_rooms-min',
+                        [
+                            '1' => '1',
+                            '2' => '2',
+                            '3' => '3',
+                            '4' => '4',
+                            '5' => '5',
+                        ],
+                        null,
+                        ['no-radius'],
+                        'quickfilter-nr-rooms'
+                    );
+                ?>
                 </div>
 
                 <div class="col-md-auto quickfilter-form-elem quickfilter-form-label">Miete (max.)</div>
@@ -24,9 +32,15 @@
 
                 <div class="col-sm-auto quickfilter-form-elem quickfilter-form-label">ab</div>
                 <div class="col quickfilter-form-elem">
-                    <select class="no-radius" id="quickfilter-start-month" name="start_date">
-                        <?php echo get_current_month_options(4); ?>
-                    </select>
+                <?php
+                    echo make_select_html(
+                        'start_date',
+                        get_current_months(4),
+                        null,
+                        ['no-radius'],
+                        'quickfilter-start-month'
+                    );
+                ?>
                 </div>
 
                 <div id="quickfilter-submit-button" class="col-3 quickfilter-form-elem quickfilter-form-label" onclick="$('#quickfilter-form').submit();">
