@@ -133,7 +133,7 @@
             <tr class="border-row">
                 <td>Mietzeit:</td>
                 <td colspan=2>
-                <input type="text" name="start_date" placeholder="frei ab" onclick="alert('TODO: Kalendarauswahl, Ticket #962.');" class="offer-filter-form-wide-elem" value="<?php echo $filterParams['start_date'] ?? ''; ?>">
+                <input type="date" name="start_date" placeholder="frei ab" class="offer-filter-form-wide-elem" value="<?php echo $filterParams['start_date'] ?? ''; ?>">
                 </td>
                 <td>
                     <?php
@@ -241,29 +241,16 @@
             <tr>
                 <td>
                     <?php echo make_checkbox(
-                        'has_dryer',
+                        'dryer',
                         'Trockner',
-                        isset($filterParams['has_dryer'])
+                        isset($filterParams['dryer'])
                     );
                     ?>
                 </td>
-                <td>
-                    <?php echo make_checkbox(
-                        'has_elevator',
-                        'mit Lift',
-                        isset($filterParams['has_elevator'])
-                    );
-                    ?>
-                </td>
-                {{--
-                See Redmine #1176 - implement that possibility into
-                the backend, then replace the above checkbox with this one
-                below.
                 <td>
                     <input id="has_elevator" name="has_elevator" type="checkbox"<?php echo isset($filterParams['has_elevator']) ? ' checked' : ''; ?>> ab <input type="number" name="elevator-cutoff-story" style="max-width: 40px;">
                     <label for="elevator">Etage nur mit Lift</label>
                 </td>
-                --}}
             </tr>
             <tr>
                 <td>

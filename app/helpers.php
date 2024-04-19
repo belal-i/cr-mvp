@@ -17,36 +17,36 @@ function php_array_to_ul_elem($php_array)
     return $ret_html;
 }
 
-function get_current_month_options($number_of_months = 2)
+function get_current_months($number_of_months = 2)
 {
     $today = date('Y-m-d');
     $current_month = (int)explode('-', $today)[1];
     $current_year = (int)explode('-', $today)[0];
-    $ret_html = sprintf('<option value="%s">sofort</option>', $today);
+    $month_translations = [
+        1  => 'Januar',
+        2  => 'Februar',
+        3  => 'März',
+        4  => 'April',
+        5  => 'Mai',
+        6  => 'Juni',
+        7  => 'Juli',
+        8  => 'August',
+        9  => 'September',
+        10 => 'Oktober',
+        11 => 'November',
+        12 => 'Dezember',
+    ];
+    $ret_arr = [
+        '' => 'sofort',
+    ];
     for ($i = 0; $i < $number_of_months; ++$i) {
         ++$current_month;
-        $month_translations = [
-            1  => 'Januar',
-            2  => 'Februar',
-            3  => 'März',
-            4  => 'April',
-            5  => 'Mai',
-            6  => 'Juni',
-            7  => 'Juli',
-            8  => 'August',
-            9  => 'September',
-            10 => 'Oktober',
-            11 => 'November',
-            12 => 'Dezember',
-        ];
-        $ret_html .= sprintf(
-            '<option value="%s">%s</option>',
+        $ret_arr[
             // TODO: You have until 2025 to improve this...
-            "$current_year-$current_month-01",
-            $i == $number_of_months - 1 ? 'später' : $month_translations[$current_month]
-        );
+            sprintf('%s-%s-01', $current_year, $current_month)
+        ] = $i == $number_of_months - 1 ? 'später' : $month_translations[$current_month];
     }
-    return $ret_html;
+    return $ret_arr;
 }
 
 function make_select_html($name, $options,
