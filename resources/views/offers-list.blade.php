@@ -306,7 +306,7 @@
         <?php echo make_select_html(
             'offers-order-by',
             [
-                'apartments.date_created'   => 'Neuste zuerst',
+                'date_published'            => 'Neuste zuerst',
                 'start_date'                => 'frei ab',
                 'rent-ASC'                  => 'Preis - niedrigster zuerst',
                 'rent-DESC'                 => 'Preis - höchster zuerst',

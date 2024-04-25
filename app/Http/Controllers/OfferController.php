@@ -124,7 +124,7 @@ class OfferController extends Controller
                 $direction = explode('-', $orderBy)[1];
                 return [$column, $direction];
             default:
-                return ['apartments.date_created', 'DESC'];
+                return ['date_published', 'DESC'];
         }
     }
 
