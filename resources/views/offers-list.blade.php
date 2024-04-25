@@ -153,7 +153,7 @@
             <tr class="border-row">
                 <td>Mietzeit:</td>
                 <td>
-                <input type="date" name="start_date" placeholder="frei ab" class="offer-filter-form-wide-elem w-100" value="<?php echo $filterParams['start_date'] ?? ''; ?>">
+                <input type="date" name="start_date-ui" placeholder="frei ab" class="offer-filter-form-wide-elem w-100" value="<?php echo $filterParams['start_date'] ?? ''; ?>">
                 </td>
                 <td></td>
                 <td>

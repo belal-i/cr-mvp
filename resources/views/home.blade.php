@@ -34,7 +34,7 @@
                 <div class="col quickfilter-form-elem">
                 <?php
                     echo make_select_html(
-                        'start_date',
+                        'start_date-ui',
                         get_current_months(4),
                         null,
                         ['no-radius'],
