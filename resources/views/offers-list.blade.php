@@ -11,7 +11,7 @@
         <table>
             <tr class="border-row">
                 <td>Mietobjekt:</td>
-                <td colspan=2>
+                <td>
                     <?php
                         echo make_select_html(
                             'apartment_type',
@@ -20,10 +20,14 @@
                                 'HOUSE'     => 'Haus',
                             ],
                             $filterParams['apartment_type'] ?? null,
-                            ['offer-filter-form-wide-elem']
+                            [
+                                'offer-filter-form-wide-elem',
+                                'w-100',
+                            ]
                         );
                     ?>
                 </td>
+                <td></td>
                 <td>
                     <?php
                         echo make_select_html(
@@ -35,7 +39,10 @@
                                 '50' => '50m<sup>2</sup>',
                             ],
                             $filterParams['size_sq_m'] ?? null,
-                            ['offer-filter-form-wide-elem-plus']
+                            [
+                                'offer-filter-form-wide-elem-plus',
+                                'w-100',
+                            ]
                         );
                     ?>
                 </td>
@@ -56,11 +63,14 @@
                                 '7' => '7',
                             ],
                             $filterParams['number_of_rooms-min'] ?? null,
-                            ['offer-filter-form-wide-elem']
+                            [
+                                'offer-filter-form-wide-elem',
+                                'w-100',
+                            ]
                         );
                     ?>
                 </td>
-                <td>bis</td>
+                <td>bis&emsp;</td>
                 <td>
                     <?php
                         echo make_select_html(
@@ -77,7 +87,10 @@
                                 '8' => '8',
                             ],
                             $filterParams['number_of_rooms-max'] ?? null,
-                            ['offer-filter-form-wide-elem-plus']
+                            [
+                                'offer-filter-form-wide-elem-plus',
+                                'w-100',
+                            ]
                         );
                     ?>
                 </td>
@@ -85,16 +98,16 @@
             <tr class="border-row">
                 <td>Miete (Euro):</td>
                 <td>
-                    <input type="text" name="rent-min" class="offer-filter-form-wide-elem" value="<?php echo $filterParams['rent-min'] ?? ''; ?>">
+                    <input type="text" name="rent-min" class="offer-filter-form-wide-elem w-100" value="<?php echo $filterParams['rent-min'] ?? ''; ?>">
                 </td>
-                <td>bis</td>
+                <td>bis&emsp;</td>
                 <td>
-                    <input type="text" name="rent-max" placeholder="max." class="offer-filter-form-wide-elem-plus" value="<?php echo $filterParams['rent-max'] ?? ''; ?>">
+                    <input type="text" name="rent-max" placeholder="max." class="offer-filter-form-wide-elem-plus w-100" value="<?php echo $filterParams['rent-max'] ?? ''; ?>">
                 </td>
             </tr>
             <tr class="border-row">
                 <td>Personen:</td>
-                <td colspan=2>
+                <td>
                     <?php
                         echo make_select_html(
                             'number_of_persons',
@@ -106,10 +119,14 @@
                                 '5' => '5',
                             ],
                             $filterParams['number_of_persons'] ?? null,
-                            ['offer-filter-form-wide-elem']
+                            [
+                                'offer-filter-form-wide-elem',
+                                'w-100',
+                            ]
                         );
                     ?>
                 </td>
+                <td></td>
                 <td>
                     <?php
                         echo make_select_html(
@@ -125,16 +142,20 @@
                                 '8' => '8 Schlafräume',
                             ],
                             $filterParams['number_of_bedrooms'] ?? null,
-                            ['offer-filter-form-wide-elem-plus']
+                            [
+                                'offer-filter-form-wide-elem-plus',
+                                'w-100',
+                            ]
                         );
                     ?>
                 </td>
             </tr>
             <tr class="border-row">
                 <td>Mietzeit:</td>
-                <td colspan=2>
-                <input type="date" name="start_date-ui" placeholder="frei ab" class="offer-filter-form-wide-elem" value="<?php echo $filterParams['start_date'] ?? ''; ?>">
+                <td>
+                <input type="date" name="start_date-ui" placeholder="frei ab" class="offer-filter-form-wide-elem w-100" value="<?php echo $filterParams['start_date'] ?? ''; ?>">
                 </td>
+                <td></td>
                 <td>
                     <?php
                         echo make_select_html(
@@ -147,14 +168,17 @@
                                 '12' => '12 Monate',
                             ],
                             $filterParams['min_months'] ?? null,
-                            ['offer-filter-form-wide-elem-plus']
+                            [
+                                'offer-filter-form-wide-elem-plus',
+                                'w-100',
+                            ]
                         );
                     ?>
                 </td>
             </tr>
             <tr class="border-row">
                 <td>Lage:</td>
-                <td colspan=2>
+                <td>
                     <?php
                         echo make_select_html(
                             'neighborhood',
@@ -166,10 +190,14 @@
                                 'Vordertaunus' => 'Vordertaunus',
                             ],
                             $filterParams['neighborhood'] ?? null,
-                            ['offer-filter-form-wide-elem']
+                            [
+                                'offer-filter-form-wide-elem',
+                                'w-100',
+                            ]
                         );
                     ?>
                 </td>
+                <td></td>
                 <td>
                     <a href="#" onclick="alert('TODO: Stadttteilauswahl');">Stadtteile auswählen</a>
                 </td>
@@ -180,22 +208,11 @@
         <table>
             <tr class="border-row">
                 <td>
-                    Kategorie:
-                    <?php
-                        echo make_select_html(
-                            'rating',
-                            [
-                                '1.0'  => '*',
-                                '2.0'  => '**',
-                                '3.0'  => '***',
-                                '4.0'  => '****',
-                                '5.0'  => '*****',
-                            ],
-                            $filterParams['rating'] ?? null,
-                            null,
-                            null,
-                            ['style="mid-width: 100px;"']
-                        );
+                    <?php echo make_checkbox(
+                        'washing_machine',
+                        'Waschmaschine',
+                        isset($filterParams['washing_machine'])
+                    );
                     ?>
                 </td>
                 <td>
@@ -205,9 +222,9 @@
             <tr class="border-row">
                 <td>
                     <?php echo make_checkbox(
-                        'washing_machine',
-                        'Waschmaschine',
-                        isset($filterParams['washing_machine'])
+                        'washing_machine_in_apartment',
+                        'Waschmaschine in der Wohnung',
+                        isset($filterParams['washing_machine_in_apartment'])
                     );
                     ?>
                 </td>
@@ -223,9 +240,9 @@
             <tr>
                 <td>
                     <?php echo make_checkbox(
-                        'washing_machine_in_apartment',
-                        'Waschmaschine in der Wohnung',
-                        isset($filterParams['washing_machine_in_apartment'])
+                        'dryer',
+                        'Trockner',
+                        isset($filterParams['dryer'])
                     );
                     ?>
                 </td>
@@ -241,9 +258,9 @@
             <tr>
                 <td>
                     <?php echo make_checkbox(
-                        'dryer',
-                        'Trockner',
-                        isset($filterParams['dryer'])
+                        'has_dish_washer',
+                        'Spülmaschine',
+                        isset($filterParams['has_dish_washer'])
                     );
                     ?>
                 </td>
@@ -255,9 +272,9 @@
             <tr>
                 <td>
                     <?php echo make_checkbox(
-                        'has_dish_washer',
-                        'Spülmaschine',
-                        isset($filterParams['has_dish_washer'])
+                        'pets_ok',
+                        'Haustiere erlaubt',
+                        isset($filterParams['pets_ok'])
                     );
                     ?>
                 </td>
@@ -270,33 +287,8 @@
                     ?>
                 </td>
             </tr>
-            <tr>
-                <td colspan=2>
-                    <?php echo make_checkbox(
-                        'pets_ok',
-                        'Haustiere erlaubt',
-                        isset($filterParams['pets_ok'])
-                    );
-                    ?>
-                </td>
-            </tr>
             <tr class="border-row">
-                <td>
-                    U-/S-Bahn
-                    <select name="nearby_public_transit">
-                        <option>--</option>
-                        <option>U1</option>
-                        <option>U2</option>
-                        <option>...</option>
-                        <option>S1</option>
-                        <option>S2</option>
-                        <option>...</option>
-                        <option>T1</option>
-                        <option>T2</option>
-                        <option>...</option>
-                    </select>
-                    <br>(<a href="#">Netzplan</a>)
-                </td>
+                <td></td>
                 <td>
                     <input type="submit" id="offer-filter-submit" class="cr-submit-button no-radius" value="{{ $offerCount }} Ergebnisse anzeigen">
                 </td>
@@ -316,7 +308,6 @@
             [
                 'apartments.date_created'   => 'Neuste zuerst',
                 'start_date'                => 'frei ab',
-                'apartments.rating'         => 'Kategorie',
                 'rent-ASC'                  => 'Preis - niedrigster zuerst',
                 'rent-DESC'                 => 'Preis - höchster zuerst',
                 'apartments.size_sq_m-ASC'  => 'Wohnfläche - kleinste zuerst',
