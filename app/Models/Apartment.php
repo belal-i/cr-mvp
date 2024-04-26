@@ -49,16 +49,18 @@ class Apartment extends Model
     public function getSpecials()
     {
         $specials = json_decode($this->specials, true);
+        $returnArray = [];
 
         if (empty($specials))
-            return [];
+            return $returnArray;
 
-        foreach ($specials as $specials_entry) {
+        foreach ($specials as $specialsEntry) {
             // TODO: For now, just using the German ones,
             // but this needs to be refactored.
-            $ret_arr[] = $specials_entry["1"];
+            if (!empty($specialsEntry['1']))
+                $returnArray[] = $specialsEntry['1'];
         }
-        return $ret_arr;
+        return $returnArray;
     }
 
     public function getRoomText($roomType, $furnitureAsUl = false)
@@ -86,24 +88,40 @@ class Apartment extends Model
     // TODO: See Feature #1180
     public function getEquipmentText()
     {
-        return sprintf(
-            'Allgemein%sTechnische Ausstattung%s',
-            php_array_to_ul_elem([
-                sprintf(
-                    '%s %s (%s)',
-                    $this->flooring_description,
-                    $this->flooring,
-                    $this->flooring_material
-                ),
-                empty($this->luxury_items) ? '' : implode(', ', json_decode($this->luxury_items)),
-                empty($this->windows) ? '' : implode(', ', json_decode($this->windows)),
-            ]),
-            php_array_to_ul_elem([
-                $this->has_internet ? 'Internetzugang' : '',
-                $this->has_television 
-                    ? sprintf('%d" Flachbildfernseher', $this->television_size_inches)
-                    : '',
-            ])
+        $generalEquipment = [];
+        $flooringInfo = sprintf(
+            '%s %s',
+            $this->flooring_description,
+            $this->flooring
         );
+        if (!empty($this->flooring_material))
+            $flooringInfo .= sprintf(' (%s)', $this->flooring_material);
+
+        if (!empty(trim($flooringInfo)))
+            $generalEquipment[] = $flooringInfo;
+
+        if (!empty($this->luxury_items))
+            $generalEquipment[] = implode(', ', json_decode($this->luxury_items));
+        if (!empty($this->windows))
+            $generalEquipment[] = implode(', ', json_decode($this->windows));
+
+        $technicalEquipment = [];
+        if ($this->has_internet)
+            $technicalEquipment[] = 'Internetzugang';
+        if ($this->has_television && $this->television_size_inches > 0)
+            $technicalEquipment[] = sprintf('%d" Flachbildfernseher', $this->television_size_inches);
+
+        $returnString = sprintf(
+            'Allgemein%s',
+            php_array_to_ul_elem($generalEquipment)
+        );
+
+        if (!empty($technicalEquipment))
+            $returnString .= sprintf(
+                'Technische Ausstattung%s',
+                php_array_to_ul_elem($technicalEquipment)
+            );
+
+        return $returnString;
     }
 }
