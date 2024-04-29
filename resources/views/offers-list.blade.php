@@ -161,11 +161,12 @@
                         echo make_select_html(
                             'min_months',
                             [
-                                '1'  => '1 Monat',
-                                '2'  => '2 Monate',
-                                '3'  => '3 Monate',
-                                '6'  => '6 Monate',
-                                '12' => '12 Monate',
+                                ''  => 'max. Mietzeit',
+                                '1'  => 'max. 1 Monat',
+                                '2'  => 'max. 2 Monate',
+                                '3'  => 'max. 3 Monate',
+                                '6'  => 'max. 6 Monate',
+                                '12' => 'max. 12 Monate',
                             ],
                             $filterParams['min_months'] ?? null,
                             [
