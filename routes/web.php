@@ -29,8 +29,10 @@ Route::get('/offers', function (Request $request) {
         $filterParams,
         [['status', '=', 'FREE']]
     );
+    $orderBy = OfferController::extractOfferOrderByFromRequest($request);
 
-    $offers = OfferRepository::getFilteredOffers($whereClauses);
+    $offers = OfferRepository::getFilteredOffers($whereClauses)
+                             ->orderBy($orderBy[0], $orderBy[1]);
     $offerCount = $offers->count();
     $offers = $offers->paginate(25);
 
