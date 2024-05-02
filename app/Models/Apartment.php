@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Backpack\CRUD\app\Models\Traits\CrudTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -11,6 +12,7 @@ use App\Models\Offer;
 
 class Apartment extends Model
 {
+    use CrudTrait;
     use HasFactory;
 
     private const APARTMENT_TYPE_TRANSLATIONS = [
