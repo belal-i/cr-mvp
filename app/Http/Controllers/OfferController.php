@@ -80,7 +80,7 @@ class OfferController extends Controller
             'has_internet',
             'has_parking_space',
             'min_months',
-            // 'neighborhood',
+            'neighborhood',
             'number_of_bedrooms',
             'number_of_persons',
             'number_of_rooms-max',
@@ -222,14 +222,42 @@ class OfferController extends Controller
                         $whereClauses[] = [$field, '=', $value];
                     }
                     break;
+                case 'addresses.neighborhood':
+                    switch ($value) {
+                        case 'Frankfurt-Stadt':
+                            $neighborhoods = CR_FRANKFURT_NEIGHBORHOODS;
+                            break;
+                        case 'Frankfurt-Innenstadt':
+                            $neighborhoods = CR_FRANKFURT_DOWNTOWN_NEIGHBORHOODS;
+                            break;
+                        case 'Offenbach u. Umgebung':
+                            $neighborhoods = CR_OFFENBACH_NEIGHBORHOODS;
+                            break;
+                        case 'Vordertaunus':
+                            $neighborhoods = CR_VORDERTAUNUS_NEIGHBORHOODS;
+                            break;
+                        case 'Frankfurt u. Umgebung':
+                        default:
+                            $neighborhoods = [];
+                            break;
+                    }
+
+                    if (empty($neighborhoods))
+                        break;
+
+                    $neighborhoodOrWhereClauses = [];
+                    foreach ($neighborhoods as $neighborhood) {
+                        $neighborhoodOrWhereClauses[] = [$field, '=', $neighborhood];
+                    }
+
+                    $whereClauses[] = $neighborhoodOrWhereClauses;
+
+                    break;
                 // In some cases, it's a valid filter field, but it's handled
                 // separately because it's a special case, and so when it is
                 // processed by the switch statement, we actually want to do
                 // nothing.
                 case 'elevator-cutoff-story':
-                    break;
-                // TODO: Special cases which we must deal with later on.
-                case 'addresses.neighborhood':
                     break;
                 default:
                     $whereClauses[] = [$field, '=', $value];

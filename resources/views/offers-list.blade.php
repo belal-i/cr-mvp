@@ -199,9 +199,11 @@
                     ?>
                 </td>
                 <td></td>
+                {{--
                 <td>
                     <a href="#" onclick="alert('TODO: Stadttteilauswahl');">Stadtteile auswählen</a>
                 </td>
+                --}}
             </tr>
         </table>
     </div><!-- .col -->
