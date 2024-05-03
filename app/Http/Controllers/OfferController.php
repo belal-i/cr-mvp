@@ -80,7 +80,7 @@ class OfferController extends Controller
             'has_internet',
             'has_parking_space',
             'min_months',
-            // 'neighborhood',
+            'neighborhood',
             'number_of_bedrooms',
             'number_of_persons',
             'number_of_rooms-max',
@@ -91,6 +91,7 @@ class OfferController extends Controller
             'rent-min',
             'size_sq_m',
             'start_date',
+            'start_date-ui',
             'status',
             'washing_machine',
             'washing_machine_in_apartment',
@@ -123,7 +124,7 @@ class OfferController extends Controller
                 $direction = explode('-', $orderBy)[1];
                 return [$column, $direction];
             default:
-                return ['apartments.date_created', 'DESC'];
+                return ['date_published', 'DESC'];
         }
     }
 
@@ -162,22 +163,36 @@ class OfferController extends Controller
             if ($value == 'on')
                 $value = '1';
             switch ($field) {
-                case 'apartments.size_sq_m':
+                case 'apartments.number_of_bedrooms':
                 case 'apartments.number_of_rooms-min':
+                case 'apartments.number_of_rooms':
+                case 'apartments.rating':
+                case 'apartments.size_sq_m':
                 case 'rent-min':
                 case 'number_of_persons':
-                case 'apartments.number_of_rooms':
-                case 'apartments.number_of_bedrooms':
-                case 'min_months':
-                case 'apartments.rating':
                     $fieldName = explode('-', $field)[0];
                     $whereClauses[] = [$fieldName, '>=', $value];
                     break;
-                case 'start_date':
                 case 'apartments.number_of_rooms-max':
+                case 'min_months':
                 case 'rent-max':
+                case 'start_date':
                     $fieldName = explode('-', $field)[0];
                     $whereClauses[] = [$fieldName, '<=', $value];
+                    break;
+                case 'start_date-ui':
+                    // TODO: Improve this validation.
+                    try {
+                        $tmpDate = date_create($value);
+                        date_add(
+                            $tmpDate,
+                            date_interval_create_from_date_string('3 days')
+                        );
+                        $filterDate = date_format($tmpDate, 'Y-m-d');
+                        $whereClauses[] = ['start_date', '<=', $filterDate];
+                    } catch (\Throwable $e) {
+                        break;
+                    }
                     break;
                 case 'washing_machine_in_apartment':
                     $whereClauses[] = ['apartments.has_washing_machine', '=', $value];
@@ -207,14 +222,42 @@ class OfferController extends Controller
                         $whereClauses[] = [$field, '=', $value];
                     }
                     break;
+                case 'addresses.neighborhood':
+                    switch ($value) {
+                        case 'Frankfurt-Stadt':
+                            $neighborhoods = CR_FRANKFURT_NEIGHBORHOODS;
+                            break;
+                        case 'Frankfurt-Innenstadt':
+                            $neighborhoods = CR_FRANKFURT_DOWNTOWN_NEIGHBORHOODS;
+                            break;
+                        case 'Offenbach u. Umgebung':
+                            $neighborhoods = CR_OFFENBACH_NEIGHBORHOODS;
+                            break;
+                        case 'Vordertaunus':
+                            $neighborhoods = CR_VORDERTAUNUS_NEIGHBORHOODS;
+                            break;
+                        case 'Frankfurt u. Umgebung':
+                        default:
+                            $neighborhoods = [];
+                            break;
+                    }
+
+                    if (empty($neighborhoods))
+                        break;
+
+                    $neighborhoodOrWhereClauses = [];
+                    foreach ($neighborhoods as $neighborhood) {
+                        $neighborhoodOrWhereClauses[] = [$field, '=', $neighborhood];
+                    }
+
+                    $whereClauses[] = $neighborhoodOrWhereClauses;
+
+                    break;
                 // In some cases, it's a valid filter field, but it's handled
                 // separately because it's a special case, and so when it is
                 // processed by the switch statement, we actually want to do
                 // nothing.
                 case 'elevator-cutoff-story':
-                    break;
-                // TODO: Special cases which we must deal with later on.
-                case 'addresses.neighborhood':
                     break;
                 default:
                     $whereClauses[] = [$field, '=', $value];

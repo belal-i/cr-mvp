@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use App\Http\Repositories\OfferRepository;
 use App\Http\Controllers\OfferController;
+use App\Models\Text;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,8 +18,11 @@ use App\Http\Controllers\OfferController;
 */
 
 Route::get('/', function () {
-    $offerCount = OfferRepository::getFreeOffers()->count();
-    return view('home', ['offerCount' => $offerCount]);
+    return view('home', [
+        'offerCount'  => OfferRepository::countFreeOffers(),
+        'bannerText'  => Text::getText('HOMEPAGE_BANNER'),
+        'contentText' => Text::getText('HOMEPAGE_CONTENT'),
+    ]);
 });
 
 Route::get('/offers', function (Request $request) {
@@ -29,8 +33,10 @@ Route::get('/offers', function (Request $request) {
         $filterParams,
         [['status', '=', 'FREE']]
     );
+    $orderBy = OfferController::extractOfferOrderByFromRequest($request);
 
-    $offers = OfferRepository::getFilteredOffers($whereClauses);
+    $offers = OfferRepository::getFilteredOffers($whereClauses)
+                             ->orderBy($orderBy[0], $orderBy[1]);
     $offerCount = $offers->count();
     $offers = $offers->paginate(25);
 
@@ -43,3 +49,33 @@ Route::get('/offers', function (Request $request) {
 });
 
 Route::get('/offers/{offer}', [OfferController::class, 'show']);
+
+Route::get('/renter-info', function () {
+    return view('content', [
+        'contentText' => Text::getText('RENTER_INFO'),
+    ]);
+});
+
+Route::get('/make-offer', function () {
+    return view('content', [
+        'contentText' => Text::getText('CONTACT'),
+    ]);
+});
+
+Route::get('/landlord-info', function () {
+    return view('content', [
+        'contentText' => Text::getText('LANDLORD_INFO'),
+    ]);
+});
+
+Route::get('/interior-design', function () {
+    return view('content', [
+        'contentText' => Text::getText('INTERIOR_DESIGN'),
+    ]);
+});
+
+Route::get('/about', function () {
+    return view('content', [
+        'contentText' => Text::getText('ABOUT'),
+    ]);
+});
