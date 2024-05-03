@@ -53,8 +53,11 @@ select,
 /* Specific individual elements */
 /* ============================ */
 
-.homepage-content {
+.homepage-container {
     margin-top: 3em;
+}
+
+.homepage-banner {
     text-align: center;
 }
 
