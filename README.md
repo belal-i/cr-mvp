@@ -23,3 +23,7 @@ The development of cr-legacy-to-json follows closely with this application.
 For this reason, you need to make sure to use the right version of cr-legacy-to-json:
 
 Required cr-legacy-to-json version: `v0.4.1`
+
+### Setting up the Backpack admin panel
+
+https://backpackforlaravel.com/docs/6.x/installation
