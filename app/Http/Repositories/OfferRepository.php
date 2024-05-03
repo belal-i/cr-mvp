@@ -16,6 +16,11 @@ class OfferRepository
         return self::getFilteredOffers([['status', '=', 'FREE']], $returnResource);
     }
 
+    public static function countFreeOffers()
+    {
+        return self::getFreeOffers()->count();
+    }
+
     public static function getFilteredOffers(
         array $whereClauses,
         bool $returnResource = false

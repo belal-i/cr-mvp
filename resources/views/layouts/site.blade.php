@@ -62,19 +62,19 @@
                                 <a class="nav-link" href="/offers">Suchen</a>
                             </div>
                             <div class="col">
-                                <a class="nav-link" href="/">Mieter-Info</a>
+                                <a class="nav-link" href="/renter-info">Mieter-Info</a>
                             </div>
                             <div class="col">
-                                <a class="nav-link" href="/">Anbieten</a>
+                                <a class="nav-link" href="/make-offer">Anbieten</a>
                             </div>
                             <div class="col">
-                                <a class="nav-link" href="/">Vermieter-Info</a>
+                                <a class="nav-link" href="/landlord-info">Vermieter-Info</a>
                             </div>
                             <div class="col">
-                                <a class="nav-link" href="/">Möblierungsservice</a>
+                                <a class="nav-link" href="/interior-design">Möblierungsservice</a>
                             </div>
                             <div class="col">
-                                <a class="nav-link" href="/">Über uns</a>
+                                <a class="nav-link" href="/about">Über uns</a>
                             </div>
                         </div>
                     </div>
