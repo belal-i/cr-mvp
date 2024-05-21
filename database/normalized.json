@@ -426,5 +426,81 @@
             "water_cost_amount": 50,
             "water_cost_included": true
         }
+    },
+    "images": {
+        "1": {
+            "apartment_id": 1,
+            "file_type": "jpg",
+            "image_type": "LIVING",
+            "sort_order": 2
+        },
+        "2": {
+            "apartment_id": 1,
+            "file_type": "jpg",
+            "image_type": "LIVING",
+            "sort_order": 1
+        },
+        "3": {
+            "apartment_id": 1,
+            "file_type": "jpg",
+            "image_type": "BEDROOM"
+        },
+        "4": {
+            "apartment_id": 1,
+            "file_type": "jpg",
+            "image_type": "KITCHEN"
+        },
+        "5": {
+            "house_id": 1,
+            "file_type": "jpg",
+            "image_type": "HALLWAY"
+        },
+        "6": {
+            "house_id": 1,
+            "file_type": "jpg",
+            "image_type": "HOUSE_VIEW"
+        },
+        "7": {
+            "address_id": 1,
+            "file_type": "jpg",
+            "image_type": "NEIGHBORHOOD"
+        },
+        "8": {
+            "apartment_id": 2,
+            "file_type": "jpg",
+            "image_type": "LIVING",
+            "sort_order": 2
+        },
+        "9": {
+            "apartment_id": 2,
+            "file_type": "jpg",
+            "image_type": "LIVING",
+            "sort_order": 1
+        },
+        "10": {
+            "apartment_id": 2,
+            "file_type": "jpg",
+            "image_type": "BEDROOM"
+        },
+        "11": {
+            "apartment_id": 2,
+            "file_type": "jpg",
+            "image_type": "KITCHEN"
+        },
+        "12": {
+            "house_id": 2,
+            "file_type": "jpg",
+            "image_type": "HALLWAY"
+        },
+        "13": {
+            "house_id": 2,
+            "file_type": "jpg",
+            "image_type": "HOUSE_VIEW"
+        },
+        "14": {
+            "address_id": 2,
+            "file_type": "jpg",
+            "image_type": "NEIGHBORHOOD"
+        }
     }
 }

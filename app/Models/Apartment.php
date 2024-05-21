@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Support\Facades\Storage;
+use App\Models\Image;
 use App\Models\House;
 use App\Models\Offer;
 
@@ -19,6 +21,12 @@ class Apartment extends Model
         'APARTMENT' => 'Wohnung',
         'HOUSE'     => 'Haus',
     ];
+
+    public function images(): HasMany
+    {
+        return $this->hasMany(Image::class);
+    }
+
     public function offers(): HasMany
     {
         return $this->hasMany(Offer::class);
@@ -32,6 +40,40 @@ class Apartment extends Model
     public function getTranslatedApartmentType()
     {
         return self::APARTMENT_TYPE_TRANSLATIONS[$this->apartment_type];
+    }
+
+    public function getCoverImage($returnType = 'URL')
+    {
+        $livingRoomImages = $this->images
+                      ->where('image_type', 'LIVING')
+                      ->sortBy('sort_order');
+
+        if (empty($livingRoomImages)) {
+            // TODO
+        }
+
+        $imagePath = $livingRoomImages[0]->getFilePath();
+
+        if (Storage::missing($imagePath)) {
+            // TODO
+        }
+        if ($returnType == 'URL')
+            return Storage::url($imagePath);
+        else
+            return Storage::get($imagePath);
+
+    }
+
+    public function getAllImageUrls()
+    {
+        $returnArray = [];
+        $allImages = $this->images
+                          ->combine($this->house->images)
+                          ->combine($this->house->address->images);
+        foreach ($allImages as $img) {
+            $returnArray[] = Storage::url($img->getFilePath());
+        }
+        return $returnArray;
     }
 
     public function getNumberOfRoomsText()

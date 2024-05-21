@@ -12,27 +12,13 @@
     <div class="col-sm-auto"><strong><?php echo $offer->getInfoAtAGlanceText(); ?></strong></div>
 </div>
 <div class="row site-content cr-detail-view-content">
-    <img src="/images/pexels-vecislavas-popa-1571463.jpg" style="width: 100%;">
+    <img src="{{ $offer->apartment->getCoverImage() }}" style="width: 100%;">
 </div>
 
 <?php
-// TODO: This is hardcoded, obviously it needs to be fetched from
-// the database dynamically.
-$room_pic_boxes = [
-    'Übersicht',
-    'Wohnen (7)',
-    'Schlafzimmer (7)',
-    '2. Schlafzimmer (7)',
-    'Küche (7)',
-    'Bad (7)',
-    'Balkon/Terasse (7)',
-    '2. Balkon (7)',
-    'Flur (7)',
-    'Hausflur (7)',
-    'Umgebung (7)',
-    'Außenansicht (7)',
-];
-$l = count($room_pic_boxes);
+var_dump($offer->apartment->getAllGroupedImageUrls());
+exit();
+$l = 9001;
 ?>
 
 @for ($i = 0; $i < $l; $i++)

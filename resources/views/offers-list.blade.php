@@ -334,7 +334,7 @@ $css_toggle_suffix_int = 1;
     ?>
     <a href="/offers/{{ $offer->id }}" class="row site-content offer-list-view-entry offer-list-view-entry-toggle-{{ $css_toggle_suffix }}">
         <div class="col-4">
-            <img src="images/pexels-vecislavas-popa-1571463.jpg" width="300" height="200">
+            <img src="{{ $offer->apartment->getCoverImage() }}" width="300" height="200">
         </div>
         <div class="col-7">
             <h4><strong>{{ $offer->apartment->title }}</strong></h4>
