@@ -326,17 +326,25 @@
 <div id="list-view-elements">
 <?php
 $css_toggle_suffix_int = 1;
+$splide_count = 0;
 ?>
 @foreach ($offers as $offer)
     <?php
     $css_toggle_suffix_int *= -1;
     $css_toggle_suffix = (string)$css_toggle_suffix_int;
     ?>
-    <a href="/offers/{{ $offer->id }}" class="row site-content offer-list-view-entry offer-list-view-entry-toggle-{{ $css_toggle_suffix }}">
+    <div class="row site-content offer-list-view-entry offer-list-view-entry-toggle-{{ $css_toggle_suffix }}">
         <div class="col-4">
-            <img src="{{ $offer->apartment->getCoverImage() }}" width="300" height="200">
+            <?php
+                echo $offer->apartment->makeImageSlideshow(
+                    sprintf('splide-%s', $splide_count),
+                    ['splide'],
+                    ['list-view-image']
+                );
+                $splide_count++;
+            ?>
         </div>
-        <div class="col-7">
+        <div class="col-7" onclick="window.location.href = '/offers/{{ $offer->id }}';">
             <h4><strong>{{ $offer->apartment->title }}</strong></h4>
             <?php
             $subway_stations = $offer->apartment
@@ -360,7 +368,12 @@ $css_toggle_suffix_int = 1;
             </div>
 
         </div>
-    </a><!-- .row -->
+    </div><!-- .row -->
 @endforeach
 </div>
+@for ($i = 0; $i < $splide_count; ++$i)
+    <script>
+        new Splide('#splide-{{ $i }}').mount();
+    </script>
+@endfor
 @endsection

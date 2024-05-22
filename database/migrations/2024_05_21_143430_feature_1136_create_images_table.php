@@ -42,7 +42,7 @@ return new class extends Migration
                 'NEIGHBORHOOD',
                 'HOUSE_VIEW',
             ]);
-            $table->tinyInteger('sort_order')->nullable();
+            $table->smallInteger('sort_order')->default(900);
             $table->timestamps();
         });
     }

@@ -6,7 +6,10 @@
 
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
         <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/splide.css') }}" rel="stylesheet">
+
         <script src="{{ asset('js/app.js') }}"></script>
+        <script src="{{ asset('js/splide.js') }}"></script>
 
         {{-- TODO: Figure out some way to get the $offerCount into 
             EVERY view, so that we can set this dynamically as well.

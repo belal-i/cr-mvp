@@ -443,27 +443,32 @@
         "3": {
             "apartment_id": 1,
             "file_type": "jpg",
-            "image_type": "BEDROOM"
+            "image_type": "BEDROOM",
+            "sort_order": 100
         },
         "4": {
             "apartment_id": 1,
             "file_type": "jpg",
-            "image_type": "KITCHEN"
+            "image_type": "KITCHEN",
+            "sort_order": 200
         },
         "5": {
             "house_id": 1,
             "file_type": "jpg",
-            "image_type": "HALLWAY"
+            "image_type": "HALLWAY",
+            "sort_order": 500
         },
         "6": {
             "house_id": 1,
             "file_type": "jpg",
-            "image_type": "HOUSE_VIEW"
+            "image_type": "HOUSE_VIEW",
+            "sort_order": 700
         },
         "7": {
             "address_id": 1,
             "file_type": "jpg",
-            "image_type": "NEIGHBORHOOD"
+            "image_type": "NEIGHBORHOOD",
+            "sort_order": 800
         },
         "8": {
             "apartment_id": 2,
@@ -480,27 +485,32 @@
         "10": {
             "apartment_id": 2,
             "file_type": "jpg",
-            "image_type": "BEDROOM"
+            "image_type": "BEDROOM",
+            "sort_order": 100
         },
         "11": {
             "apartment_id": 2,
             "file_type": "jpg",
-            "image_type": "KITCHEN"
+            "image_type": "KITCHEN",
+            "sort_order": 200
         },
         "12": {
             "house_id": 2,
             "file_type": "jpg",
-            "image_type": "HALLWAY"
+            "image_type": "HALLWAY",
+            "sort_order": 500
         },
         "13": {
             "house_id": 2,
             "file_type": "jpg",
-            "image_type": "HOUSE_VIEW"
+            "image_type": "HOUSE_VIEW",
+            "sort_order": 700
         },
         "14": {
             "address_id": 2,
             "file_type": "jpg",
-            "image_type": "NEIGHBORHOOD"
+            "image_type": "NEIGHBORHOOD",
+            "sort_order": 800
         }
     }
 }

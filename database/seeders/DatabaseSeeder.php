@@ -27,7 +27,7 @@ class DatabaseSeeder extends Seeder
         $this->call(UserSeeder::class);
         $this->call(ImageSeeder::class);
 
-        // TODO: Improve this.
+        // TODO: We may want to store the images in another path.
         $phar = new \PharData(database_path() . '/images.tar.gz');
         $phar->extractTo(storage_path() . '/app/public/');
     }
