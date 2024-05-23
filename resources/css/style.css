@@ -221,6 +221,11 @@ select,
     background: #d81c32;
     color: #fff;
 }
+
+.list-view-image {
+    width: 300px;
+    height: 200px;
+}
 /* --------- */
 
 /* Detail view */
@@ -234,6 +239,14 @@ select,
 /* TODO: Maybe refactor this to make it site wide. */
 .cr-detail-view-content {
     margin-top: 2em;
+}
+
+.detail-view-image {
+    height: 682px;
+    max-width: 100%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .room-pics-box {

@@ -24,3 +24,12 @@ mix.copy('resources/images/*.jpg', 'public/images');
 mix.copy('resources/images/favicon.ico', 'public/images');
 mix.copy('resources/css/style.css', 'public/css');
 mix.copy('resources/js/main.js', 'public/js');
+
+mix.scripts([
+    'node_modules/@splidejs/splide/dist/js/splide.min.js',
+], 'public/js/splide.js')
+.styles([
+    'node_modules/@splidejs/splide/dist/css/splide.min.css',
+    // Include this one if you want to fully customize the look.
+    // 'node_modules/@splidejs/splide/dist/css/splide-core.min.css',
+], 'public/css/splide.css');

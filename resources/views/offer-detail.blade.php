@@ -12,39 +12,35 @@
     <div class="col-sm-auto"><strong><?php echo $offer->getInfoAtAGlanceText(); ?></strong></div>
 </div>
 <div class="row site-content cr-detail-view-content">
-    <img src="/images/pexels-vecislavas-popa-1571463.jpg" style="width: 100%;">
+    <?php
+        echo $offer->apartment->makeImageSlideshow(
+            null,
+            ['splide'],
+            ['detail-view-image']
+        );
+    ?>
 </div>
+<script>
+    new Splide('.splide').mount();
+</script>
 
-<?php
-// TODO: This is hardcoded, obviously it needs to be fetched from
-// the database dynamically.
-$room_pic_boxes = [
-    'Übersicht',
-    'Wohnen (7)',
-    'Schlafzimmer (7)',
-    '2. Schlafzimmer (7)',
-    'Küche (7)',
-    'Bad (7)',
-    'Balkon/Terasse (7)',
-    '2. Balkon (7)',
-    'Flur (7)',
-    'Hausflur (7)',
-    'Umgebung (7)',
-    'Außenansicht (7)',
-];
-$l = count($room_pic_boxes);
-?>
-
+{{-- TODO: The boxes for selecting which room's images should be displayed.
+@php
+$l = 9;
+@endphp
 @for ($i = 0; $i < $l; $i++)
     @if ($i % 6 == 0)
         <div class="row site-content" >
     @endif
-    {{-- TODO: The one that's selected should light up with some different colors. --}}
-    <div class="col-sm room-pics-box" onclick="alert('TODO: Feature #1136: Bilder');">{{ $room_pic_boxes[$i] }}</div>
+    <!--
+    TODO: The one that's selected should light up with some different colors.
+    -->
+    <div class="col-sm room-pics-box" onclick="alert('TODO: Feature #1136: Bilder');">TODO</div>
     @if ($i % 6 == 5 || $i == $l-1)
         </div>
     @endif
 @endfor
+--}}
 
 <div class="row site-content cr-detail-view-heading">
     <div class="col-3"><strong>A-{{ $offer->apartment->source_id }}</strong></div>

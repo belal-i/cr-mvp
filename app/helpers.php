@@ -4,16 +4,33 @@ function get_euro_text($rent)
     return number_format((float)$rent, 0, ',', '.') . ' EUR';
 }
 
-function php_array_to_ul_elem($php_array)
+function php_array_to_ul_elem($php_array, $ulCssClasses = [], $liCssClasses = [])
 {
     if (empty($php_array))
         return '<ul></ul>';
 
-    $ret_html = "<ul>";
+    $ret_html = sprintf(
+        '<ul%s>',
+        empty($ulCssClasses)
+        ? ''
+        : sprintf(
+            ' class="%s"',
+            implode(' ', $ulCssClasses)
+        )
+    );
     foreach ($php_array as $txt) {
-        $ret_html .= "<li>$txt</li>";
+        $ret_html .= sprintf(
+            '<li%s>%s</li>',
+            empty($liCssClasses)
+            ? ''
+            : sprintf(
+                ' class="%s"',
+                implode(' ', $liCssClasses)
+            ),
+            $txt
+        );
     }
-    $ret_html .= "</ul>";
+    $ret_html .= '</ul>';
     return $ret_html;
 }
 
