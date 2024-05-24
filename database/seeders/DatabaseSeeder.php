@@ -28,7 +28,13 @@ class DatabaseSeeder extends Seeder
         $this->call(ImageSeeder::class);
 
         // TODO: We may want to store the images in another path.
-        $phar = new \PharData(database_path() . '/images.tar.gz');
-        $phar->extractTo(storage_path() . '/app/public/');
+        if (env('APP_ENV') === 'local') {
+            try {
+                $phar = new \PharData(database_path() . '/images.tar.gz');
+                $phar->extractTo(storage_path() . '/app/public/');
+            } catch (\PharException) {
+                // Files already exist.
+            }
+        }
     }
 }

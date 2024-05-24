@@ -25,22 +25,26 @@ return new class extends Migration
             // TODO: Do we even need a filepath? We can just name the
             // images by their ID, if we also know the file type.
             // $table->string('filepath', 50);
-            $table->enum('file_type', [
+            $table->enum('file_extension', [
                 'jpg',
                 'png',
                 'gif',
                 // TODO: TBC...
             ]);
             $table->enum('image_type', [
-                'LIVING',
-                'BEDROOM',
-                'KITCHEN',
-                'BATHROOM',
-                'ENTRANCE',
-                'HALLWAY',
-                'LAYOUT',
-                'NEIGHBORHOOD',
-                'HOUSE_VIEW',
+                'LIVING',       //    0
+                'BEDROOM',      //  100
+                'KITCHEN',      //  200
+                'BATHROOM',     //  300
+                'BALCONY',      //  400
+                'ENTRANCE',     //  500
+                'HALLWAY',      //  600
+                'LAYOUT',       //  700
+                'VIEW',         //  800
+                'PARKING',      //  900
+                'STORAGE',      // 1000
+                'NEIGHBORHOOD', // 1100
+                'HOUSE_VIEW',   // 1200
             ]);
             $table->smallInteger('sort_order')->default(900);
             $table->timestamps();
