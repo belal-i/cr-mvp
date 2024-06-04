@@ -125,6 +125,6 @@
                 </div>
             </div>
         </div><!-- .container -->
-        <script src="{{ asset('js/main.js') }}"></script>
+        <script src="{{ asset($jsPath . '/main.js') }}"></script>
     </body>
 </html>

@@ -4,7 +4,7 @@ const version = '0.7.0-alpha-2';
 
 const publicCssPath    = 'public/css'    + version;
 const publicJsPath     = 'public/js'     + version;
-const publicImagesPath = 'public/images' + version;
+const publicImagesPath = 'public/images';
 
 /*
 |--------------------------------------------------------------------------
@@ -17,19 +17,19 @@ const publicImagesPath = 'public/images' + version;
 |
 */
 
-mix.js('resources/js/app.js', publicJsPath)
-   .postCss('resources/css/app.css', publicCssPath, [
+mix.js('resources/js/app.js', publicJsPath + '/app.js')
+   .postCss('resources/css/app.css', publicCssPath + '/app.css', [
 	          //
    ]);
 
-mix.sass('resources/sass/app.scss', publicCssPath);
+mix.sass('resources/sass/app.scss', publicCssPath + '/app.css');
 mix.copy('resources/images/*.svg', publicImagesPath);
 mix.copy('resources/images/*.gif', publicImagesPath);
 mix.copy('resources/images/*.png', publicImagesPath);
 mix.copy('resources/images/*.jpg', publicImagesPath);
 mix.copy('resources/images/favicon.ico', publicImagesPath);
-mix.copy('resources/css/style.css', publicCssPath);
-mix.copy('resources/js/main.js', publicJsPath);
+mix.copy('resources/css/style.css', publicCssPath + '/style.css');
+mix.copy('resources/js/main.js', publicJsPath + '/main.js');
 
 mix.scripts([
     'node_modules/@splidejs/splide/dist/js/splide.min.js',
