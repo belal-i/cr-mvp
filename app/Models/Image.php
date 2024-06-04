@@ -35,7 +35,7 @@ class Image extends Model
         return sprintf(
             '%s.%s',
             $this->id,
-            $this->file_type
+            $this->file_extension
         );
     }
 }

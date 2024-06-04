@@ -24,6 +24,8 @@ class CrNormalizedSeeder extends Seeder
             $insertArray = [];
             $insertArray['id'] = $id;
             foreach ($data as $key => $val) {
+                if (strpos($key, 'LEGACY') !== false)
+                    continue;
                 if (is_array($val))
                     $val = json_encode($val);
                 $insertArray[$key] = $val;
