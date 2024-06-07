@@ -4,9 +4,18 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-        <link href="{{ asset('css/style.css') }}" rel="stylesheet">
-        <script src="{{ asset('js/app.js') }}"></script>
+        <?php
+        $version = config('app.version');
+        $cssPath = 'css' . $version;
+        $jsPath  = 'js'  . $version;
+        ?>
+        <link href="{{ asset($cssPath . '/app.css') }}" rel="stylesheet">
+        <link href="{{ asset($cssPath . '/style.css') }}" rel="stylesheet">
+        <link href="{{ asset($cssPath . '/splide.css') }}" rel="stylesheet">
+
+        <script src="{{ asset($jsPath . '/app.js') }}"></script>
+        <script src="{{ asset($jsPath . '/splide.js') }}"></script>
+        <script src="{{ asset($jsPath . '/functions.js') }}"></script>
 
         {{-- TODO: Figure out some way to get the $offerCount into 
             EVERY view, so that we can set this dynamically as well.
@@ -117,6 +126,6 @@
                 </div>
             </div>
         </div><!-- .container -->
-        <script src="{{ asset('js/main.js') }}"></script>
+        <script src="{{ asset($jsPath . '/ajax.js') }}"></script>
     </body>
 </html>

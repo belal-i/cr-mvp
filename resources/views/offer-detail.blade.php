@@ -12,39 +12,72 @@
     <div class="col-sm-auto"><strong><?php echo $offer->getInfoAtAGlanceText(); ?></strong></div>
 </div>
 <div class="row site-content cr-detail-view-content">
-    <img src="/images/pexels-vecislavas-popa-1571463.jpg" style="width: 100%;">
+    <?php
+        echo $offer->apartment->makeImageSlideshow(
+            'splide-main-slider',
+            ['splide'],
+            // This was necessary at one point, but now
+            // apparently not, thought I'm not sure why.
+            // ['detail-view-image']
+        );
+        echo $offer->apartment->makeImageSlideshow(
+            'splide-thumbnail-slider',
+            ['splide'],
+            // This does not work as I had hoped.
+            // ['mt-3']
+        );
+    ?>
 </div>
+<script>
+    var main = new Splide('#splide-main-slider', {
+        type       : 'fade',
+        heightRatio: 0.5,
+        pagination : false,
+        arrows     : false,
+        cover      : true,
+    });
+    var thumbnails = new Splide('#splide-thumbnail-slider', {
+        rewind          : true,
+        fixedWidth      : 104,
+        fixedHeight     : 58,
+        isNavigation    : true,
+        gap             : 10,
+        focus           : 'center',
+        pagination      : false,
+        cover           : true,
+        dragMinThreshold: {
+            mouse: 4,
+            touch: 10,
+        },
+        breakpoints : {
+            640: {
+                fixedWidth  : 66,
+                fixedHeight : 38,
+            },
+        },
+    });
+    main.sync(thumbnails);
+    main.mount();
+    thumbnails.mount();
+</script>
 
-<?php
-// TODO: This is hardcoded, obviously it needs to be fetched from
-// the database dynamically.
-$room_pic_boxes = [
-    'Übersicht',
-    'Wohnen (7)',
-    'Schlafzimmer (7)',
-    '2. Schlafzimmer (7)',
-    'Küche (7)',
-    'Bad (7)',
-    'Balkon/Terasse (7)',
-    '2. Balkon (7)',
-    'Flur (7)',
-    'Hausflur (7)',
-    'Umgebung (7)',
-    'Außenansicht (7)',
-];
-$l = count($room_pic_boxes);
-?>
-
+{{-- TODO: The boxes for selecting which room's images should be displayed.
+@php
+$l = 9;
+@endphp
 @for ($i = 0; $i < $l; $i++)
     @if ($i % 6 == 0)
         <div class="row site-content" >
     @endif
-    {{-- TODO: The one that's selected should light up with some different colors. --}}
-    <div class="col-sm room-pics-box" onclick="alert('TODO: Feature #1136: Bilder');">{{ $room_pic_boxes[$i] }}</div>
+    <!--
+    TODO: The one that's selected should light up with some different colors.
+    -->
+    <div class="col-sm room-pics-box" onclick="alert('TODO: Feature #1136: Bilder');">TODO</div>
     @if ($i % 6 == 5 || $i == $l-1)
         </div>
     @endif
 @endfor
+--}}
 
 <div class="row site-content cr-detail-view-heading">
     <div class="col-3"><strong>A-{{ $offer->apartment->source_id }}</strong></div>

@@ -9,6 +9,7 @@ use Database\Seeders\ApartmentSeeder;
 use Database\Seeders\OfferSeeder;
 use Database\Seeders\TextSeeder;
 use Database\Seeders\UserSeeder;
+use Database\Seeders\ImageSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -24,5 +25,16 @@ class DatabaseSeeder extends Seeder
         $this->call(OfferSeeder::class);
         $this->call(TextSeeder::class);
         $this->call(UserSeeder::class);
+        $this->call(ImageSeeder::class);
+
+        // TODO: We may want to store the images in another path.
+        if (env('APP_ENV') === 'local') {
+            try {
+                $phar = new \PharData(database_path() . '/images.tar.gz');
+                $phar->extractTo(storage_path() . '/app/public/');
+            } catch (\PharException) {
+                // Files already exist.
+            }
+        }
     }
 }

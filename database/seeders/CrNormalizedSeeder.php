@@ -21,8 +21,11 @@ class CrNormalizedSeeder extends Seeder
         )[$this->table];
 
         foreach ($normalizedJson as $id => $data) {
+            $insertArray = [];
             $insertArray['id'] = $id;
             foreach ($data as $key => $val) {
+                if (strpos($key, 'LEGACY') !== false)
+                    continue;
                 if (is_array($val))
                     $val = json_encode($val);
                 $insertArray[$key] = $val;

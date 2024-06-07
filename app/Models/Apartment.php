@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Support\Facades\Storage;
+use App\Models\Image;
 use App\Models\House;
 use App\Models\Offer;
 
@@ -19,6 +21,12 @@ class Apartment extends Model
         'APARTMENT' => 'Wohnung',
         'HOUSE'     => 'Haus',
     ];
+
+    public function images(): HasMany
+    {
+        return $this->hasMany(Image::class);
+    }
+
     public function offers(): HasMany
     {
         return $this->hasMany(Offer::class);
@@ -32,6 +40,63 @@ class Apartment extends Model
     public function getTranslatedApartmentType()
     {
         return self::APARTMENT_TYPE_TRANSLATIONS[$this->apartment_type];
+    }
+
+    public function getAllImageUrls()
+    {
+        $returnArray = [];
+        $allImages = $this->images->sortBy('sort_order')
+                          ->merge($this->house->images->sortBy('sort_order'))
+                          ->merge($this->house->address->images->sortBy('sort_order'));
+        foreach ($allImages as $img) {
+            $returnArray[] = Storage::url($img->getFilePath());
+        }
+        return $returnArray;
+    }
+
+    public function makeImageSlideshow(
+        $splideId = null,
+        $splideClasses = null,
+        $imgCssClasses = null
+    ) {
+        $templateString = <<<EOF
+            <section %s %s aria-label="Splide">
+                <div class="splide__track">
+                        %s
+                </div>
+            </section>
+EOF;
+        $imageUrls = $this->getAllImageUrls();
+        $liElems = [];
+        foreach ($imageUrls as $url) {
+            $liElems[] = sprintf(
+                '<img src="%s"%s>',
+                $url,
+                empty($imgCssClasses) ? ''
+                : sprintf(
+                    ' class="%s"',
+                    implode(' ', $imgCssClasses)
+                )
+            );
+        }
+        return sprintf(
+            $templateString,
+
+            empty($splideId) ? ''
+            : sprintf(' id="%s"', $splideId),
+
+            empty($splideClasses) ? ''
+            : sprintf(
+                ' class="%s"',
+                implode(' ', $splideClasses)
+            ),
+
+            php_array_to_ul_elem(
+                $liElems,
+                ['splide__list'],
+                ['splide__slide'],
+            )
+        );
     }
 
     public function getNumberOfRoomsText()
