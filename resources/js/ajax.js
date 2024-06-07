@@ -110,9 +110,3 @@ $('#offers-order-by').change(function () {
 
     mountSplides(offers.length);
 });
-
-function mountSplides(num) {
-    for (i = 0; i < num; i++) {
-        new Splide('#splide-' + i).mount();
-    }
-}

@@ -15,6 +15,7 @@
 
         <script src="{{ asset($jsPath . '/app.js') }}"></script>
         <script src="{{ asset($jsPath . '/splide.js') }}"></script>
+        <script src="{{ asset($jsPath . '/functions.js') }}"></script>
 
         {{-- TODO: Figure out some way to get the $offerCount into 
             EVERY view, so that we can set this dynamically as well.
@@ -125,6 +126,6 @@
                 </div>
             </div>
         </div><!-- .container -->
-        <script src="{{ asset($jsPath . '/main.js') }}"></script>
+        <script src="{{ asset($jsPath . '/ajax.js') }}"></script>
     </body>
 </html>

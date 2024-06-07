@@ -371,9 +371,8 @@ $splide_count = 0;
     </div><!-- .row -->
 @endforeach
 </div>
-@for ($i = 0; $i < $splide_count; ++$i)
-    <script>
-        new Splide('#splide-{{ $i }}').mount();
-    </script>
-@endfor
+
+<script>
+    mountSplides({{ $splide_count }});
+</script>
 @endsection
