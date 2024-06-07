@@ -185,6 +185,6 @@ return [
         // 'Example' => App\Facades\Example::class,
     ])->toArray(),
 
-    'version' => '0.7.0-alpha-2',
+    'version' => '0.7.0-rc-1',
 
 ];
