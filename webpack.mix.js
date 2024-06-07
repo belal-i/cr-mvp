@@ -29,7 +29,8 @@ mix.copy('resources/images/*.png', publicImagesPath);
 mix.copy('resources/images/*.jpg', publicImagesPath);
 mix.copy('resources/images/favicon.ico', publicImagesPath);
 mix.copy('resources/css/style.css', publicCssPath + '/style.css');
-mix.copy('resources/js/main.js', publicJsPath + '/main.js');
+mix.copy('resources/js/functions.js', publicJsPath + '/functions.js');
+mix.copy('resources/js/ajax.js', publicJsPath + '/ajax.js');
 
 mix.scripts([
     'node_modules/@splidejs/splide/dist/js/splide.min.js',

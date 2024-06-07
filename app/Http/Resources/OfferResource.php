@@ -15,6 +15,7 @@ class OfferResource extends JsonResource
     public function toArray(Request $request): array
     {
         $isAjaxRequest = $request->input('ajax') === '1';
+        $splideCount = 0;
 
         foreach ($this->resource as &$offer) {
             $apartment = &$offer->apartment;
@@ -55,6 +56,12 @@ class OfferResource extends JsonResource
                     '<p>'
                     . implode('</p><p>', $address->nearby_public_transit)
                     . '</p>';
+                $offer['apartment__image_slideshow'] = $apartment->makeImageSlideshow(
+                    sprintf('splide-%s', $splideCount),
+                    ['splide'],
+                    ['list-view-image']
+                );
+                ++$splideCount;
             } else {
                 // TODO: Maybe there's a better way to do this?
                 $offer['apartment'] = $apartment;

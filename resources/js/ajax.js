@@ -20,6 +20,7 @@ const offerTemplate = ({
     apartment__title,
     apartment__number_of_rooms,
     apartment__size_sq_m,
+    apartment__image_slideshow,
     address__neighborhood,
     address__street,
     address__nearby_public_transit,
@@ -28,11 +29,11 @@ const offerTemplate = ({
     min_months,
     rent
 }) => `
-    <a href="/offers/${id}" class="row site-content offer-list-view-entry offer-list-view-entry-toggle-${cssToggleSuffix}">
+    <div href="/offers/${id}" class="row site-content offer-list-view-entry offer-list-view-entry-toggle-${cssToggleSuffix}">
         <div class="col-4">
-            <img src="images/pexels-vecislavas-popa-1571463.jpg" width="300" height="200">
+            ${apartment__image_slideshow}
         </div>
-        <div class="col-7">
+        <div class="col-7" onclick="window.location.href = '/offers/${id}';">
             <h4><strong>${apartment__title}</strong></h4>
             <p>${apartment__number_of_rooms}, ${apartment__size_sq_m}m<sup>2</sup>${address__neighborhood}, ${address__street}</p>
             ${address__nearby_public_transit}
@@ -40,7 +41,7 @@ const offerTemplate = ({
             <span style="float:left;"><strong>frei ab ${start_date}</strong>, ${max_months}, Mindestmietzeit ${min_months} Monate</span>Miete pro Monat: <strong>${rent}</strong>
             </div>
         </div>
-    </a><!-- .row -->
+    </div><!-- .row -->
 `;
 
 const emptyTemplate = `
@@ -56,6 +57,7 @@ $('#offer-filter-form').change(function () {
     $.ajax({
         url: 'api/offers' + serializedParams,
         type: 'get',
+        async: false,
         success: function (response) {
             offers = response['data'];
             cssToggleSuffix = 1;
@@ -72,6 +74,8 @@ $('#offer-filter-form').change(function () {
                 $('#list-view-elements').html(emptyTemplate);
         }
     });
+
+    mountSplides(offers.length);
 });
 
 // TODO: This could be a lot more DRY.
@@ -83,6 +87,7 @@ $('#offers-order-by').change(function () {
     $.ajax({
         url: 'api/offers' + serializedParams,
         type: 'get',
+        async: false,
         success: function (response) {
             offers = response['data'];
             cssToggleSuffix = 1;
@@ -99,4 +104,6 @@ $('#offers-order-by').change(function () {
                 $('#list-view-elements').html(emptyTemplate);
         }
     });
+
+    mountSplides(offers.length);
 });
