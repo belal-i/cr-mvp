@@ -98,13 +98,10 @@ $('#offers-order-by').change(function () {
             noun = offers.length == 1 ? 'Ergebnis' : 'Ergebnisse';
             $('#offer-filter-submit').prop('value',
                 offers.length + ' ' + noun + ' anzeigen');
-            if (offers.length > 0) {
-                htmlResult = offers.map(offerTemplate).join('');
-                $('#list-view-elements').html(htmlResult);
-            }
-            else {
+            if (offers.length > 0)
+                $('#list-view-elements').html(offers.map(offerTemplate).join(''));
+            else
                 $('#list-view-elements').html(emptyTemplate);
-            }
         }
     });
 
