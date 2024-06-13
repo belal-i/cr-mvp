@@ -84,7 +84,7 @@ select,
     background-size: cover;
     height: 444px;
     width: 1280px;
-    padding-top: 25%;
+    padding-top: 20%;
 }
 
 #l10n-flags {
@@ -116,11 +116,11 @@ select,
 }
 
 .quickfilter-form-elem {
-    background: #efefef;
+    background: #fff;
 }
 
 .quickfilter-elem-with-line {
-    border-right: 6px rgb(213, 209, 193) solid;
+    border-right: 2px rgb(213, 209, 193) solid;
 }
 
 /*
@@ -137,10 +137,18 @@ select,
 }
 
 #quickfilter-rent {
-    border: 3px rgb(213, 209, 193) solid;
     text-align: center;
-    max-width: 100px;
+    max-width: 5em;
 }
+
+#quickfilter-rent,
+#quickfilter-nr-rooms,
+#quickfilter-start-month {
+    border: 2px rgb(213, 209, 193) solid;
+    height: 2rem;
+    background: #fff;
+}
+
 #quickfilter-submit-button {
     background: rgb(213, 209, 193);
     font-weight: 900;
