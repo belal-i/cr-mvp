@@ -17,8 +17,14 @@ select,
 
 .cr-txt-light,
 .cr-txt-light a,
-.cr-txt-light a:visited {
-    color: #ddd;
+.cr-txt-light a:visited,
+.nav-link{
+    color: #fff;
+}
+
+.nav-link:hover {
+    color: #d81c32;
+    background: rgb(213, 209, 193);
 }
 
 .cr-submit-button {
@@ -47,6 +53,13 @@ select,
 .cr-ui-tab-3 a {
     text-decoration: none;
     color: #111;
+}
+
+/* This tweak makes the navbar at
+ * the top of the site thinner, like on the legacy site.
+ * */
+.navbar {
+    --bs-navbar-padding-x: none;
 }
 /* ======================= */
 

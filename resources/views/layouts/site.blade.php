@@ -60,10 +60,6 @@
                 </div>
             </div>
             <div class="row" id="top-navbar-row">
-                {{-- TODO: Unsetting .navbar --bs-navbar-padding-x: 0; 
-                    in browser dev tools, made the menu look thinner,
-                    more like on actual homepage.
-                --}}
                 <nav class="navbar navbar-dark cr-bg-dark navbar-expand-lg">
                     <div class="container">
                         <div class="row navbar-nav mr-auto nav-fill w-100">
