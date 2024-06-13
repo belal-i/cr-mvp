@@ -90,6 +90,7 @@ select,
 #l10n-flags {
     float: right;
     margin-top: 1.5em;
+    padding-top: 1.5em;
 }
 
 #l10n-flags a {
@@ -103,6 +104,7 @@ select,
 
 #quicksearch form {
     margin-top: 1em;
+    padding-top: 1.5em;
     float: right;
 }
 

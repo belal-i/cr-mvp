@@ -27,7 +27,7 @@
     <body>
         <div class="container">
             <div class="row" id="site-header-row">
-                <div class="col">
+                <div class="col-6">
                     <a href="/">
                         <img src="{{ asset('images/city-residence-logo.svg') }}" id="logo-image">
                     </a>
