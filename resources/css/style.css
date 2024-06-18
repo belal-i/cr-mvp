@@ -17,8 +17,14 @@ select,
 
 .cr-txt-light,
 .cr-txt-light a,
-.cr-txt-light a:visited {
-    color: #ddd;
+.cr-txt-light a:visited,
+.nav-link {
+    color: #fff;
+}
+
+.nav-link:hover {
+    color: #d81c32;
+    background: rgb(213, 209, 193);
 }
 
 .cr-submit-button {
@@ -48,6 +54,13 @@ select,
     text-decoration: none;
     color: #111;
 }
+
+/* This tweak makes the navbar at
+ * the top of the site thinner, like on the legacy site.
+ * */
+.navbar {
+    --bs-navbar-padding-x: none;
+}
 /* ======================= */
 
 /* Specific individual elements */
@@ -71,12 +84,13 @@ select,
     background-size: cover;
     height: 444px;
     width: 1280px;
-    padding-top: 25%;
+    padding-top: 20%;
 }
 
 #l10n-flags {
     float: right;
     margin-top: 1.5em;
+    padding-top: 1.5em;
 }
 
 #l10n-flags a {
@@ -90,6 +104,7 @@ select,
 
 #quicksearch form {
     margin-top: 1em;
+    padding-top: 1.5em;
     float: right;
 }
 
@@ -101,11 +116,11 @@ select,
 }
 
 .quickfilter-form-elem {
-    background: #efefef;
+    background: #fff;
 }
 
 .quickfilter-elem-with-line {
-    border-right: 6px rgb(213, 209, 193) solid;
+    border-right: 2px rgb(213, 209, 193) solid;
 }
 
 /*
@@ -122,10 +137,18 @@ select,
 }
 
 #quickfilter-rent {
-    border: 3px rgb(213, 209, 193) solid;
     text-align: center;
-    max-width: 100px;
+    max-width: 5em;
 }
+
+#quickfilter-rent,
+#quickfilter-nr-rooms,
+#quickfilter-start-month {
+    border: 2px rgb(213, 209, 193) solid;
+    height: 2rem;
+    background: #fff;
+}
+
 #quickfilter-submit-button {
     background: rgb(213, 209, 193);
     font-weight: 900;
@@ -180,6 +203,11 @@ select,
 
 .offer-filter-form-wide-elem-plus {
     width: 120px;
+}
+
+#offer-filter-submit,
+#offer-filter-number-results {
+    float: right;
 }
 /* --------------------- */
 

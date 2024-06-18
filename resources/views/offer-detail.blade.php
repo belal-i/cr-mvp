@@ -1,7 +1,7 @@
 @extends ('layouts/site')
 @section ('content')
 
-<div class="row site-content" style="border-bottom: 1px solid black; margin-top: 10px;">
+<div class="row site-content mt-4" style="border-bottom: 1px solid black; margin-top: 10px;">
     <div class="col-sm-auto cr-ui-tab-1" style="margin-right: 5px;">Expose</div>
     <div class="col-sm-auto cr-ui-tab-2">Lage</div>
     <div class="col-sm-auto cr-ui-tab-3" style="margin-left: 45px;"><a href="/offers">Ergebnisliste</a></div>
@@ -15,7 +15,7 @@
     <?php
         echo $offer->apartment->makeImageSlideshow(
             'splide-main-slider',
-            ['splide'],
+            ['splide', 'p-0'],
             // This was necessary at one point, but now
             // apparently not, thought I'm not sure why.
             // ['detail-view-image']
