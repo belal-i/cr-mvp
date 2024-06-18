@@ -204,6 +204,11 @@ select,
 .offer-filter-form-wide-elem-plus {
     width: 120px;
 }
+
+#offer-filter-submit,
+#offer-filter-number-results {
+    float: right;
+}
 /* --------------------- */
 
 /* List view */
