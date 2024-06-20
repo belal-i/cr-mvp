@@ -341,7 +341,7 @@ $splide_count = 0;
         <div class="col-4 ps-0">
             <?php
                 echo $offer->apartment->makeImageSlideshow(
-                    sprintf('splide-%s', $splide_count),
+                    'splide-' . $splide_count,
                     ['splide'],
                     ['list-view-image']
                 );

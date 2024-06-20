@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Support\Facades\Storage;
 use App\Models\Image;
 use App\Models\House;
 use App\Models\Offer;
@@ -20,6 +19,22 @@ class Apartment extends Model
     private const APARTMENT_TYPE_TRANSLATIONS = [
         'APARTMENT' => 'Wohnung',
         'HOUSE'     => 'Haus',
+    ];
+
+    private const ROOM_TRANSLATIONS = [
+        'LIVING'       => 'Wohnzimmer',
+        'BEDROOM'      => 'Schlafzimmer',
+        'KITCHEN'      => 'Küche',
+        'BATHROOM'     => 'Bad',
+        'BALCONY'      => 'Balkon',
+        'ENTRANCE'     => 'Flur',
+        'HALLWAY'      => 'Hausflur',
+        'LAYOUT'       => 'Grundriss',
+        'VIEW'         => 'Blick',
+        'PARKING'      => 'Parken',
+        'STORAGE'      => 'Abstellraum',
+        'NEIGHBORHOOD' => 'Umgebung',
+        'HOUSE_VIEW'   => 'Außenansicht',
     ];
 
     public function images(): HasMany
@@ -42,60 +57,90 @@ class Apartment extends Model
         return self::APARTMENT_TYPE_TRANSLATIONS[$this->apartment_type];
     }
 
-    public function getAllImageUrls()
+    public function getSortedImages()
     {
         $returnArray = [];
         $allImages = $this->images->sortBy('sort_order')
                           ->merge($this->house->images->sortBy('sort_order'))
                           ->merge($this->house->address->images->sortBy('sort_order'));
         foreach ($allImages as $img) {
-            $returnArray[] = Storage::url($img->getFilePath());
+            $returnArray[$img->image_type][] = $img->getImgUrl();
         }
+
         return $returnArray;
     }
 
     public function makeImageSlideshow(
         $splideId = null,
         $splideClasses = null,
-        $imgCssClasses = null
+        $imgCssClasses = null,
+        $isDetailView = false
     ) {
-        $templateString = <<<EOF
+        $sortedImages = $this->getSortedImages();
+        $imgTags = [];
+        foreach ($sortedImages as $roomKey => $roomGroup) {
+            foreach ($roomGroup as $url) {
+                $imgTags[] = sprintf(
+                    '<img src="%s" %s>',
+                    $url,
+                    empty($imgCssClasses)
+                        ? ''
+                        : 'class="' . implode(' ', $imgCssClasses) . '"'
+                );
+            }
+        }
+
+        $imagesUl = php_array_to_ul_elem(
+            $imgTags,
+            ['splide__list'],   // ul classes
+            ['splide__slide'],  // li classes
+        );
+        $splideTemplate = <<<EOF
             <section %s %s aria-label="Splide">
                 <div class="splide__track">
                         %s
                 </div>
+                %s
             </section>
 EOF;
-        $imageUrls = $this->getAllImageUrls();
-        $liElems = [];
-        foreach ($imageUrls as $url) {
-            $liElems[] = sprintf(
-                '<img src="%s"%s>',
-                $url,
-                empty($imgCssClasses) ? ''
-                : sprintf(
-                    ' class="%s"',
-                    implode(' ', $imgCssClasses)
-                )
-            );
+        if ($isDetailView) {
+            $roomBoxesHtml = '';
+            $roomBoxTemplate = <<<EOF
+                <div
+                    class="col-sm room-pics-box"
+                    onclick="crSplideGoToRoom('%s');">%s (%d)
+                </div>
+EOF;
+            $i = 0;
+            foreach ($sortedImages as $roomKey => $roomGroup) {
+                if ($i % 6 == 0) {
+                    $roomBoxesHtml .= '<div class="row site-content" >';
+                }
+                $roomBoxesHtml .= sprintf(
+                    $roomBoxTemplate,
+                    $roomKey,
+                    self::ROOM_TRANSLATIONS[$roomKey],
+                    count($roomGroup)
+                );
+                if ($i % 6 == 5 || $i == count($sortedImages) - 1) {
+                    $roomBoxesHtml .= '</div>';
+                }
+                ++$i;
+            }
+        } else {
+            $roomBoxesHtml = '';
         }
+
         return sprintf(
-            $templateString,
-
-            empty($splideId) ? ''
-            : sprintf(' id="%s"', $splideId),
-
-            empty($splideClasses) ? ''
-            : sprintf(
-                ' class="%s"',
-                implode(' ', $splideClasses)
-            ),
-
-            php_array_to_ul_elem(
-                $liElems,
-                ['splide__list'],
-                ['splide__slide'],
-            )
+            $splideTemplate,
+            empty($splideId)
+                ? ''
+                : ' id="' . $splideId . '"',
+            empty($splideClasses)
+                ? ''
+                : ' class="' . implode(' ', $splideClasses) . '"',
+            $imagesUl,
+            $roomBoxesHtml
         );
     }
 

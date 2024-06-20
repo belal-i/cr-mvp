@@ -6,6 +6,7 @@ use Backpack\CRUD\app\Models\Traits\CrudTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Support\Facades\Storage;
 use App\Models\Address;
 use App\Models\House;
 use App\Models\Apartment;
@@ -30,12 +31,22 @@ class Image extends Model
         return $this->belongsTo(Address::class);
     }
 
-    public function getFilePath()
+    public function getImgTag($htmlId = null, $htmlClasses = null)
     {
         return sprintf(
-            '%s.%s',
-            $this->id,
-            $this->file_extension
+            '<img src="%s"%s%s>',
+            $this->getImgUrl(),
+            empty($htmlId)
+                ? ''
+                : ' id="' . $htmlId . '"',
+            empty($htmlClasses)
+                ? ''
+                : ' class="' . implode(' ', $htmlClasses) . '"'
         );
+    }
+
+    public function getImgUrl()
+    {
+        return Storage::url($this->id . '.' . $this->file_extension);
     }
 }

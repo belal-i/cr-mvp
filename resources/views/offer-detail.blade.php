@@ -16,31 +16,18 @@
         echo $offer->apartment->makeImageSlideshow(
             null,
             ['splide', 'p-0'],
-            ['detail-view-image']
+            ['detail-view-image'],
+            true
         );
     ?>
 </div>
-<script>
-    new Splide('.splide').mount();
-</script>
 
-{{-- TODO: The boxes for selecting which room's images should be displayed.
-@php
-$l = 9;
-@endphp
-@for ($i = 0; $i < $l; $i++)
-    @if ($i % 6 == 0)
-        <div class="row site-content" >
-    @endif
-    <!--
-    TODO: The one that's selected should light up with some different colors.
-    -->
-    <div class="col-sm room-pics-box" onclick="alert('TODO: Feature #1136: Bilder');">TODO</div>
-    @if ($i % 6 == 5 || $i == $l-1)
-        </div>
-    @endif
-@endfor
---}}
+<script>
+    var splide = new Splide('.splide', {
+        pagination: false,
+    });
+    splide.mount();
+</script>
 
 <div class="row site-content cr-detail-view-heading">
     <div class="col-3"><strong>A-{{ $offer->apartment->source_id }}</strong></div>
