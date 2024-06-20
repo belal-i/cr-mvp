@@ -14,51 +14,14 @@
 <div class="row site-content cr-detail-view-content">
     <?php
         echo $offer->apartment->makeImageSlideshow(
-            'splide-main-slider',
+            null,
             ['splide', 'p-0'],
-            // This was necessary at one point, but now
-            // apparently not, thought I'm not sure why.
-            // ['detail-view-image']
-        );
-        echo $offer->apartment->makeImageSlideshow(
-            'splide-thumbnail-slider',
-            ['splide'],
-            // This does not work as I had hoped.
-            // ['mt-3']
+            ['detail-view-image']
         );
     ?>
 </div>
 <script>
-    var main = new Splide('#splide-main-slider', {
-        type       : 'fade',
-        heightRatio: 0.5,
-        pagination : false,
-        arrows     : false,
-        cover      : true,
-    });
-    var thumbnails = new Splide('#splide-thumbnail-slider', {
-        rewind          : true,
-        fixedWidth      : 104,
-        fixedHeight     : 58,
-        isNavigation    : true,
-        gap             : 10,
-        focus           : 'center',
-        pagination      : false,
-        cover           : true,
-        dragMinThreshold: {
-            mouse: 4,
-            touch: 10,
-        },
-        breakpoints : {
-            640: {
-                fixedWidth  : 66,
-                fixedHeight : 38,
-            },
-        },
-    });
-    main.sync(thumbnails);
-    main.mount();
-    thumbnails.mount();
+    new Splide('.splide').mount();
 </script>
 
 {{-- TODO: The boxes for selecting which room's images should be displayed.
