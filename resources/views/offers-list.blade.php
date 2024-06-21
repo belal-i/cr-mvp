@@ -290,10 +290,14 @@
                     ?>
                 </td>
             </tr>
+            <tr>
+                <td></td>
+            </tr>
             <tr class="border-row">
                 <td></td>
                 <td>
-                    <input type="submit" id="offer-filter-submit" class="cr-submit-button no-radius" value="{{ $offerCount }} Ergebnisse anzeigen">
+                    <input type="submit" id="offer-filter-submit" class="cr-submit-button no-radius" value="Ergebnisse anzeigen">
+                    <strong id="offer-filter-number-results" class="pe-2 pt-1">{{ $offerCount }}</strong>
                 </td>
             </tr>
         </table>
@@ -334,7 +338,7 @@ $splide_count = 0;
     $css_toggle_suffix = (string)$css_toggle_suffix_int;
     ?>
     <div class="row site-content offer-list-view-entry offer-list-view-entry-toggle-{{ $css_toggle_suffix }}">
-        <div class="col-4">
+        <div class="col-4 ps-0">
             <?php
                 echo $offer->apartment->makeImageSlideshow(
                     sprintf('splide-%s', $splide_count),

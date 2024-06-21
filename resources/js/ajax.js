@@ -60,14 +60,17 @@ $('#offer-filter-form').change(function () {
         async: false,
         success: function (response) {
             offers = response['data'];
+
             cssToggleSuffix = 1;
             for (i = 0; i < offers.length; ++i) {
                 offers[i]['cssToggleSuffix'] = cssToggleSuffix;
                 cssToggleSuffix *= -1;
             }
+
             noun = offers.length == 1 ? 'Ergebnis' : 'Ergebnisse';
-            $('#offer-filter-submit').prop('value',
-                offers.length + ' ' + noun + ' anzeigen');
+            $('#offer-filter-submit').prop('value', noun + ' anzeigen');
+            $('#offer-filter-number-results').html(offers.length);
+
             if (offers.length > 0)
                 $('#list-view-elements').html(offers.map(offerTemplate).join(''));
             else
@@ -90,14 +93,17 @@ $('#offers-order-by').change(function () {
         async: false,
         success: function (response) {
             offers = response['data'];
+
             cssToggleSuffix = 1;
             for (i = 0; i < offers.length; ++i) {
                 offers[i]['cssToggleSuffix'] = cssToggleSuffix;
                 cssToggleSuffix *= -1;
             }
+
             noun = offers.length == 1 ? 'Ergebnis' : 'Ergebnisse';
-            $('#offer-filter-submit').prop('value',
-                offers.length + ' ' + noun + ' anzeigen');
+            $('#offer-filter-submit').prop('value', noun + ' anzeigen');
+            $('#offer-filter-number-results').html(offers.length);
+
             if (offers.length > 0)
                 $('#list-view-elements').html(offers.map(offerTemplate).join(''));
             else
