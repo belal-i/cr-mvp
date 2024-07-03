@@ -39,7 +39,16 @@ class UserCrudController extends CrudController
      */
     protected function setupListOperation()
     {
-        CRUD::setFromDb(); // set columns from db columns.
+        CRUD::setColumns([
+            'name',
+            'salutation',
+            'first_name',
+            'last_name',
+            'email',
+            'phone',
+            'last_contact_date',
+            'last_contact_time',
+        ]);
 
         /**
          * Columns can be defined using the fluent syntax:
@@ -56,7 +65,16 @@ class UserCrudController extends CrudController
     protected function setupCreateOperation()
     {
         CRUD::setValidation(UserRequest::class);
-        CRUD::setFromDb(); // set fields from db columns.
+        // CRUD::setFromDb(); // set fields from db columns.
+        CRUD::field('name');
+        CRUD::field('salutation');
+        CRUD::field('first_name');
+        CRUD::field('last_name');
+        CRUD::field('email');
+        CRUD::field('phone');
+        CRUD::field('last_contact_date');
+        CRUD::field('last_contact_time');
+        CRUD::field('password');
 
         /**
          * Fields can be defined using the fluent syntax:

@@ -19,12 +19,11 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         $this->call(AddressSeeder::class);
-        $this->call(ContactSeeder::class);
+        $this->call(UserSeeder::class);
         $this->call(HouseSeeder::class);
         $this->call(ApartmentSeeder::class);
         $this->call(OfferSeeder::class);
         $this->call(TextSeeder::class);
-        $this->call(UserSeeder::class);
         $this->call(ImageSeeder::class);
 
         // TODO: We may want to store the images in another path.

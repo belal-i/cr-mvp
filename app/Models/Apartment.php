@@ -8,9 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Facades\Storage;
-use App\Models\Image;
 use App\Models\House;
+use App\Models\Image;
 use App\Models\Offer;
+use App\Models\User;
 
 class Apartment extends Model
 {
@@ -22,6 +23,11 @@ class Apartment extends Model
         'HOUSE'     => 'Haus',
     ];
 
+    public function house(): BelongsTo
+    {
+        return $this->belongsTo(House::class);
+    }
+
     public function images(): HasMany
     {
         return $this->hasMany(Image::class);
@@ -32,9 +38,9 @@ class Apartment extends Model
         return $this->hasMany(Offer::class);
     }
 
-    public function house(): BelongsTo
+    public function user(): belongsTo
     {
-        return $this->belongsTo(House::class);
+        return $this->belongsTo(User::class);
     }
 
     public function getTranslatedApartmentType()

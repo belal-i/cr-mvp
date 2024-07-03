@@ -3,7 +3,6 @@
 
 <x-backpack::menu-item title="Users" icon="la la-question" :link="backpack_url('user')" />
 <x-backpack::menu-item title="Addresses" icon="la la-question" :link="backpack_url('address')" />
-<x-backpack::menu-item title="Contacts" icon="la la-question" :link="backpack_url('contact')" />
 <x-backpack::menu-item title="Houses" icon="la la-question" :link="backpack_url('house')" />
 <x-backpack::menu-item title="Apartments" icon="la la-question" :link="backpack_url('apartment')" />
 <x-backpack::menu-item title="Offers" icon="la la-question" :link="backpack_url('offer')" />
