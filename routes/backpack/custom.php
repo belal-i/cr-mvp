@@ -18,7 +18,6 @@ Route::group([
 ], function () { // custom admin routes
     Route::crud('user', 'UserCrudController');
     Route::crud('address', 'AddressCrudController');
-    Route::crud('contact', 'ContactCrudController');
     Route::crud('house', 'HouseCrudController');
     Route::crud('apartment', 'ApartmentCrudController');
     Route::crud('offer', 'OfferCrudController');

@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use App\Models\Image;
-use App\Models\Contact;
+use App\Models\User;
 use App\Models\House;
 
 class Address extends Model
@@ -21,9 +21,9 @@ class Address extends Model
         return $this->hasMany(Image::class);
     }
 
-    public function contacts(): HasMany
+    public function users(): HasMany
     {
-        return $this->hasMany(Contact::class);
+        return $this->hasMany(User::class);
     }
 
     public function house(): HasOne

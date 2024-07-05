@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use App\Models\Apartment;
+use App\Models\User;
 
 class Offer extends Model
 {
@@ -16,6 +17,11 @@ class Offer extends Model
     public function apartment(): BelongsTo
     {
         return $this->belongsTo(Apartment::class);
+    }
+
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
     }
 
     public function getMaxMonthsText()
