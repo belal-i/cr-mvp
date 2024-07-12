@@ -108,8 +108,13 @@
     "users": {
         "1": {
             "address_id": 1,
+            "company": "Example Company Ltd.",
+            "date_of_birth": "1970-01-01",
             "email": "contact1@example.com",
             "first_name": "John1",
+            "gender": "MALE",
+            "has_identification": false,
+            "job_type": "self employed",
             "last_contact_date": "2015-07-01",
             "last_contact_time": "15:56",
             "last_name": "Doe",
@@ -118,26 +123,37 @@
                 "123-456789",
                 "987-654321"
             ],
+            "role": "LANDLORD",
             "salutation": "Mr."
         },
         "2": {
             "address_id": 2,
+            "date_of_birth": "1970-01-01",
             "email": "contact2@example.com",
-            "first_name": "John2",
+            "employer": "Example Company Ltd.",
+            "first_name": "Alice",
+            "gender": "FEMALE",
+            "has_identification": true,
+            "job_type": "Software Engineer",
             "last_contact_date": "2015-07-01",
             "last_contact_time": "15:56",
             "last_name": "Doe",
-            "name": "john2",
+            "name": "alice2",
             "phone": [
                 "123-456789",
                 "987-654321"
             ],
-            "salutation": "Mr."
+            "role": "RENTER",
+            "salutation": "Mrs."
         },
         "3": {
             "address_id": 2,
+            "company": "Example Company Ltd.",
+            "date_of_birth": "1970-01-01",
             "email": "contact3@example.com",
             "first_name": "John3",
+            "has_identification": false,
+            "job_type": "self employed",
             "last_contact_date": "2015-07-01",
             "last_contact_time": "15:56",
             "last_name": "Doe",
@@ -146,6 +162,7 @@
                 "123-456789",
                 "987-654321"
             ],
+            "role": "LANDLORD",
             "salutation": "Mr."
         }
     },
@@ -419,6 +436,32 @@
             "va_was_sent": false,
             "water_cost_amount": 50,
             "water_cost_included": true
+        }
+    },
+    "renters": {
+        "1": {
+            "user_id": 2,
+            "number_of_persons": 2,
+            "start_date": "2024-07-12",
+            "end_date": "2024-12-31",
+            "min_months": 3,
+            "max_rent": 2000,
+            "min_number_of_rooms": 2.5,
+            "must_be_furnished": false,
+            "min_size_sq_m": 60,
+            "is_smoker": false
+        },
+        "2": {
+            "user_id": 2,
+            "number_of_persons": 3,
+            "start_date": "2024-08-12",
+            "end_date": "2025-01-31",
+            "min_months": 4,
+            "max_rent": 2500,
+            "min_number_of_rooms": 3.0,
+            "must_be_furnished": true,
+            "min_size_sq_m": 70,
+            "is_smoker": true
         }
     },
     "images": {
