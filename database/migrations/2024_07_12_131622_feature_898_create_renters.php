@@ -18,6 +18,12 @@ return new class extends Migration
                   ->constrained()
                   ->onUpdate('cascade')
                   ->onDelete('cascade');
+            $table->string('source_id', 10);
+            $table->enum('status', [
+                'FREE',
+                'NOT_FREE',
+                'RESERVED',
+            ])->default('RESERVED');
             $table->tinyInteger('number_of_persons')->nullable();
             $table->date('start_date')->nullable();
             $table->date('end_date')->nullable();
