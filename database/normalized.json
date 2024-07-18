@@ -440,28 +440,54 @@
     },
     "renters": {
         "1": {
-            "user_id": 2,
-            "number_of_persons": 2,
-            "start_date": "2024-07-12",
+            "account_manager": "Ga",
+            "date_created": "2024-07-11",
+            "date_last_changed": "2024-07-11",
             "end_date": "2024-12-31",
+            "is_smoker": false,
+            "last_changed_by": "Ga",
+            "max_rent": 2000.0,
             "min_months": 3,
-            "max_rent": 2000,
             "min_number_of_rooms": 2.5,
-            "must_be_furnished": false,
             "min_size_sq_m": 60,
-            "is_smoker": false
+            "must_be_furnished": true,
+            "notes": [
+                "Notiz 1",
+                "Notiz 2",
+                "usw"
+            ],
+            "number_of_persons": 2,
+            "reference": "Sonstiges",
+            "source_id": "12345/67",
+            "start_date": "2024-07-12",
+            "status": "FREE",
+            "time_last_changed": "17:00",
+            "user_id": 2
         },
         "2": {
-            "user_id": 2,
-            "number_of_persons": 3,
-            "start_date": "2024-08-12",
-            "end_date": "2025-01-31",
-            "min_months": 4,
-            "max_rent": 2500,
-            "min_number_of_rooms": 3.0,
+            "account_manager": "Ga",
+            "date_created": "2024-07-11",
+            "date_last_changed": "2024-07-11",
+            "end_date": "2024-12-31",
+            "is_smoker": false,
+            "last_changed_by": "Ga",
+            "max_rent": 2500.0,
+            "min_months": 5,
+            "min_number_of_rooms": 3.5,
+            "min_size_sq_m": 100,
             "must_be_furnished": true,
-            "min_size_sq_m": 70,
-            "is_smoker": true
+            "notes": [
+                "Notiz 1",
+                "Notiz 2",
+                "usw"
+            ],
+            "number_of_persons": 3,
+            "reference": "Sonstiges",
+            "source_id": "12345/68",
+            "start_date": "2024-07-12",
+            "status": "NOT_FREE",
+            "time_last_changed": "17:00",
+            "user_id": 2
         }
     },
     "images": {
