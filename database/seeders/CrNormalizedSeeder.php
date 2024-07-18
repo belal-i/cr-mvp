@@ -24,10 +24,16 @@ class CrNormalizedSeeder extends Seeder
             $insertArray = [];
             $insertArray['id'] = $id;
             foreach ($data as $key => $val) {
-                if (strpos($key, 'LEGACY') !== false)
+                if (strpos($key, 'LEGACY') !== false
+                    || $val === null
+                ) {
                     continue;
-                if (is_array($val))
+                }
+
+                if (is_array($val)) {
                     $val = json_encode($val);
+                }
+
                 $insertArray[$key] = $val;
             }
             DB::table($this->table)->insert($insertArray);

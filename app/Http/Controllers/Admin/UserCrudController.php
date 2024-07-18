@@ -44,8 +44,15 @@ class UserCrudController extends CrudController
             'salutation',
             'first_name',
             'last_name',
+            'date_of_birth',
             'email',
             'phone',
+            'gender',
+            'role',
+            'company',
+            'employer',
+            'job_type',
+            'has_identification',
             'last_contact_date',
             'last_contact_time',
         ]);
@@ -70,8 +77,15 @@ class UserCrudController extends CrudController
         CRUD::field('salutation');
         CRUD::field('first_name');
         CRUD::field('last_name');
+        CRUD::field('date_of_birth');
         CRUD::field('email');
         CRUD::field('phone');
+        CRUD::field('gender');
+        CRUD::field('role');
+        CRUD::field('company');
+        CRUD::field('employer');
+        CRUD::field('job_type');
+        CRUD::field('has_identification');
         CRUD::field('last_contact_date');
         CRUD::field('last_contact_time');
         CRUD::field('password');
