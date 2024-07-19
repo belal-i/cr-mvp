@@ -6,7 +6,7 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Database\Seeders\CrNormalizedSeeder;
 
-class ContactSeeder extends CrNormalizedSeeder
+class RenterSeeder extends CrNormalizedSeeder
 {
-    protected $table = 'contacts';
+    protected $table = 'renters';
 }

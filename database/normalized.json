@@ -105,53 +105,64 @@
             "zip_code": "54321"
         }
     },
-    "contacts": {
+    "users": {
         "1": {
             "address_id": 1,
-            "email": [
-                "contact1@example.com",
-                "contact1@helloworld.com"
-            ],
+            "company": "Example Company Ltd.",
+            "date_of_birth": "1970-01-01",
+            "email": "contact1@example.com",
             "first_name": "John1",
+            "gender": "MALE",
+            "has_identification": false,
+            "job_type": "self employed",
             "last_contact_date": "2015-07-01",
             "last_contact_time": "15:56",
             "last_name": "Doe",
+            "name": "john1",
             "phone": [
                 "123-456789",
                 "987-654321"
             ],
+            "role": "LANDLORD",
             "salutation": "Mr."
         },
         "2": {
             "address_id": 2,
-            "email": [
-                "contact2@example.com",
-                "contact2@helloworld.com"
-            ],
-            "first_name": "John2",
+            "date_of_birth": "1970-01-01",
+            "email": "contact2@example.com",
+            "employer": "Example Company Ltd.",
+            "first_name": "Alice",
+            "gender": "FEMALE",
+            "has_identification": true,
+            "job_type": "Software Engineer",
             "last_contact_date": "2015-07-01",
             "last_contact_time": "15:56",
             "last_name": "Doe",
+            "name": "alice2",
             "phone": [
                 "123-456789",
                 "987-654321"
             ],
-            "salutation": "Mr."
+            "role": "RENTER",
+            "salutation": "Mrs."
         },
         "3": {
             "address_id": 2,
-            "email": [
-                "contact3@example.com",
-                "contact3@helloworld.com"
-            ],
+            "company": "Example Company Ltd.",
+            "date_of_birth": "1970-01-01",
+            "email": "contact3@example.com",
             "first_name": "John3",
+            "has_identification": false,
+            "job_type": "self employed",
             "last_contact_date": "2015-07-01",
             "last_contact_time": "15:56",
             "last_name": "Doe",
+            "name": "john3",
             "phone": [
                 "123-456789",
                 "987-654321"
             ],
+            "role": "LANDLORD",
             "salutation": "Mr."
         }
     },
@@ -203,7 +214,6 @@
             ],
             "bathroom_type": "Bad",
             "apartment_type": "APARTMENT",
-            "contact_id": null,
             "date_created": "1994-01-25",
             "flooring": null,
             "flooring_description": "edles",
@@ -262,6 +272,7 @@
                 }
             ],
             "television_size_inches": 40,
+            "user_id": null,
             "title": "A very nice apartment",
             "view": "Beautiful view of the skyline",
             "windows": [
@@ -277,7 +288,6 @@
             ],
             "bathroom_type": "Bad",
             "apartment_type": "APARTMENT",
-            "contact_id": 2,
             "date_created": "1994-01-25",
             "flooring": null,
             "flooring_description": "edles",
@@ -337,6 +347,7 @@
             "story": -2,
             "television_size_inches": 40,
             "title": "Another very nice apartment",
+            "user_id": 2,
             "view": "Beautiful view of the skyline",
             "windows": [
                 "bodentiefe Fenster"
@@ -348,7 +359,6 @@
             "apartment_id": 1,
             "cleaning_cost_amount": 50,
             "cleaning_cost_included": true,
-            "contact_id": 1,
             "date_created": "2011-05-03",
             "date_last_changed": "2011-08-15",
             "date_published": "2024-05-03",
@@ -379,6 +389,7 @@
             "start_date": "2024-03-20",
             "status": "FREE",
             "time_last_changed": "12:41",
+            "user_id": 1,
             "utility_cost_amount": 50,
             "utility_cost_included": true,
             "va_was_sent": false,
@@ -389,7 +400,6 @@
             "apartment_id": 2,
             "cleaning_cost_amount": 50,
             "cleaning_cost_included": true,
-            "contact_id": 3,
             "date_created": "2011-05-03",
             "date_last_changed": "2011-08-15",
             "date_published": null,
@@ -420,11 +430,64 @@
             "start_date": "2024-06-20",
             "status": "FREE",
             "time_last_changed": "12:41",
+            "user_id": 3,
             "utility_cost_amount": 50,
             "utility_cost_included": true,
             "va_was_sent": false,
             "water_cost_amount": 50,
             "water_cost_included": true
+        }
+    },
+    "renters": {
+        "1": {
+            "account_manager": "Ga",
+            "date_created": "2024-07-11",
+            "date_last_changed": "2024-07-11",
+            "end_date": "2024-12-31",
+            "is_smoker": false,
+            "last_changed_by": "Ga",
+            "max_rent": 2000.0,
+            "min_months": 3,
+            "min_number_of_rooms": 2.5,
+            "min_size_sq_m": 60,
+            "must_be_furnished": true,
+            "notes": [
+                "Notiz 1",
+                "Notiz 2",
+                "usw"
+            ],
+            "number_of_persons": 2,
+            "reference": "Sonstiges",
+            "source_id": "12345/67",
+            "start_date": "2024-07-12",
+            "status": "FREE",
+            "time_last_changed": "17:00",
+            "user_id": 2
+        },
+        "2": {
+            "account_manager": "Ga",
+            "date_created": "2024-07-11",
+            "date_last_changed": "2024-07-11",
+            "end_date": "2024-12-31",
+            "is_smoker": false,
+            "last_changed_by": "Ga",
+            "max_rent": 2500.0,
+            "min_months": 5,
+            "min_number_of_rooms": 3.5,
+            "min_size_sq_m": 100,
+            "must_be_furnished": true,
+            "notes": [
+                "Notiz 1",
+                "Notiz 2",
+                "usw"
+            ],
+            "number_of_persons": 3,
+            "reference": "Sonstiges",
+            "source_id": "12345/68",
+            "start_date": "2024-07-12",
+            "status": "NOT_FREE",
+            "time_last_changed": "17:00",
+            "user_id": 2
         }
     },
     "images": {

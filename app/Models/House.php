@@ -7,19 +7,14 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use App\Models\Image;
 use App\Models\Address;
 use App\Models\Apartment;
+use App\Models\Image;
 
 class House extends Model
 {
     use CrudTrait;
     use HasFactory;
-
-    public function images(): HasMany
-    {
-        return $this->hasMany(Image::class);
-    }
 
     public function address(): BelongsTo
     {
@@ -29,6 +24,11 @@ class House extends Model
     public function apartments(): HasMany
     {
         return $this->hasMany(Apartment::class);
+    }
+
+    public function images(): HasMany
+    {
+        return $this->hasMany(Image::class);
     }
 
     public function getInfoText()

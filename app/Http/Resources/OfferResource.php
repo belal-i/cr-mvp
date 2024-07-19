@@ -32,7 +32,7 @@ class OfferResource extends JsonResource
             }
             // Unset fields with potentially sensitive data.
             unset(
-                $offer->contact_id,
+                $offer->user_id,
                 $offer->notes,
                 $offer->reference,
                 $offer->last_changed_by,
@@ -73,7 +73,7 @@ class OfferResource extends JsonResource
             unset(
                 $offer->apartment_id,
                 $offer['apartment']->house_id,
-                $offer['apartment']->contact_id,
+                $offer['apartment']->user_id,
                 $offer['apartment']['house']->address_id,
             );
 
