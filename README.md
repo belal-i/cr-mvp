@@ -13,6 +13,21 @@
 * Browse to http://localhost:8000
 * RTFS
 
+### Required PHP extensions
+
+These PHP extensions need to be installed on the web server running this application,
+whether production server or local development machine:
+
+* mysql
+* xml
+* mbstring
+* intl
+
+On Ubuntu, and likely on other distros, the full package name is prefaced by
+`phpVERSION-`, so to install, do something like `apt install php8.1-mysql`.
+
+TODO: Define platform requirements in composer.json? See https://getcomposer.org/doc/06-config.md#platform
+
 ### Getting production data into the database.
 
 You need to run the ETL-Pipeline (https://github.com/city-residence/cr-etl),
