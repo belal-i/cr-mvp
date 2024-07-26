@@ -8,6 +8,10 @@
 </div>
 <form class="row form-inline site-content" id="offer-filter-form">
     <div class="col">
+        {{--TODO:
+            See Redmine #1246.
+            This needs to be rewritten to not use table anymore.
+        --}}
         <table>
             <tr class="border-row">
                 <td>Mietobjekt:</td>
@@ -70,8 +74,8 @@
                         );
                     ?>
                 </td>
-                <td>bis&emsp;</td>
-                <td>
+                <td class="not-mobile">bis&emsp;</td>
+                <td class="not-mobile">
                     <?php
                         echo make_select_html(
                             'number_of_rooms-max',
@@ -97,10 +101,10 @@
             </tr>
             <tr class="border-row">
                 <td>Miete (Euro):</td>
-                <td>
+                <td class="not-mobile">
                     <input type="text" name="rent-min" class="offer-filter-form-wide-elem w-100" value="<?php echo $filterParams['rent-min'] ?? ''; ?>">
                 </td>
-                <td>bis&emsp;</td>
+                <td class="not-mobile">bis&emsp;</td>
                 <td>
                     <input type="text" name="rent-max" placeholder="max." class="offer-filter-form-wide-elem-plus w-100" value="<?php echo $filterParams['rent-max'] ?? ''; ?>">
                 </td>
@@ -126,8 +130,8 @@
                         );
                     ?>
                 </td>
-                <td></td>
-                <td>
+                <td class="not-mobile"></td>
+                <td class="not-mobile">
                     <?php
                         echo make_select_html(
                             'number_of_bedrooms',
@@ -156,7 +160,7 @@
                 <input type="date" name="start_date-ui" placeholder="frei ab" class="offer-filter-form-wide-elem w-100" value="<?php echo $filterParams['start_date'] ?? ''; ?>">
                 </td>
                 <td></td>
-                <td>
+                <td class="not-mobile">
                     <?php
                         echo make_select_html(
                             'min_months',
@@ -223,7 +227,7 @@
                 </td>
             </tr>
             <tr class="border-row">
-                <td>
+                <td class="not-mobile">
                     <?php echo make_checkbox(
                         'washing_machine_in_apartment',
                         'Waschmaschine in der Wohnung',
@@ -241,7 +245,7 @@
                 </td>
             </tr>
             <tr>
-                <td>
+                <td class="not-mobile">
                     <?php echo make_checkbox(
                         'dryer',
                         'Trockner',
@@ -267,13 +271,13 @@
                     );
                     ?>
                 </td>
-                <td>
+                <td class="not-mobile">
                     <input id="has_elevator" name="has_elevator" type="checkbox"<?php echo isset($filterParams['has_elevator']) ? ' checked' : ''; ?>> ab <input type="number" name="elevator-cutoff-story" style="max-width: 40px;">
                     <label for="elevator">Etage nur mit Lift</label>
                 </td>
             </tr>
             <tr>
-                <td>
+                <td class="not-mobile">
                     <?php echo make_checkbox(
                         'pets_ok',
                         'Haustiere erlaubt',
@@ -306,7 +310,7 @@
 
 <br>
 <div class="row site-content" style="border-bottom: 1px solid black; padding-bottom: 3px;">
-    <div class="col-sm-auto cr-ui-tab-1">Ergebnisliste</div>
+    <div class="not-mobile col-sm-auto cr-ui-tab-1">Ergebnisliste</div>
     <div class="col-7"></div>
     <div class="col-sm-auto">
         Sortierung:
@@ -338,7 +342,7 @@ $splide_count = 0;
     $css_toggle_suffix = (string)$css_toggle_suffix_int;
     ?>
     <div class="row site-content offer-list-view-entry offer-list-view-entry-toggle-{{ $css_toggle_suffix }}">
-        <div class="col-4 ps-0">
+        <div class="col-sm-12 col-md-4 ps-0">
             <?php
                 echo $offer->apartment->makeImageSlideshow(
                     sprintf('splide-%s', $splide_count),
@@ -348,8 +352,8 @@ $splide_count = 0;
                 $splide_count++;
             ?>
         </div>
-        <div class="col-7" onclick="window.location.href = '/offers/{{ $offer->id }}';">
-            <h4><strong>{{ $offer->apartment->title }}</strong></h4>
+        <div class="col-sm-12 col-md-7" onclick="window.location.href = '/offers/{{ $offer->id }}';">
+            <h4 class="not-mobile"><strong>{{ $offer->apartment->title }}</strong></h4>
             <?php
             $subway_stations = $offer->apartment
                                      ->house
@@ -365,11 +369,13 @@ $splide_count = 0;
 
             <p>{{ $offer->apartment->getNumberOfRoomsText() }}, {{ $offer->apartment->size_sq_m }}m<sup>2</sup>{{ $neighborhood_text }}, {{ $offer->apartment->house->address->street }}</p>
             @foreach ($subway_stations as $station)
-                <p>{{ $station }}</p>
+                <p class="not-mobile">{{ $station }}</p>
             @endforeach
-            <div style="text-align:right; width:100%;">
+
+            <div class="not-mobile" style="text-align:right; width:100%;">
             <span style="float:left;"><strong>frei ab {{ $offer->getStartText() }}</strong>, {{ $offer->getMaxMonthsText() }}, Mindestmietzeit {{ $offer->min_months }} Monate</span>Miete pro Monat: <strong>{{ get_euro_text($offer->rent) }}</strong>
             </div>
+            <span class="mobile-only">frei ab {{ $offer->getStartText() }} - <strong>Miete pro Monat: {{ get_euro_text($offer->rent) }}</strong></span>
 
         </div>
     </div><!-- .row -->

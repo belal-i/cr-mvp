@@ -281,41 +281,10 @@ TODO: See Feature #1178
     <div class="col-9"><strong>Energieausweis</strong></div>
 </div>
 
-{{--
-TODO: See Feature #1181
---}}
 <div class="row site-content cr-detail-view-content border-bottom">
     <div class="col-3"></div>
     <div class="col-9">
-        <p class="border-bottom">Energieausweisdaten</p>
-        <table>
-            <tr>
-                <th>Baujahr:</th>
-                <td>{{ $offer->apartment->house->year_of_construction }}</td>
-            </tr>
-            <tr>
-                <th>energy_rating_type:</th>
-                <td>{{ $offer->apartment->house->energy_rating_type }}</td>
-            </tr>
-            <tr>
-                <th>energy_source:</th>
-                <td>{{ $offer->apartment->house->energy_source }}</td>
-            </tr>
-            <tr>
-                <th>energy_usage_value:</th>
-                <td>{{ $offer->apartment->house->energy_usage_value }}</td>
-            </tr>
-            <tr>
-                <th>Warmwasser enthalten:</th>
-                <td>
-                    @if ($offer->apartment->house->energy_consumption_contains_warm_water == 1)
-                        Ja
-                    @else
-                        Nein
-                    @endif
-                </td>
-            </tr>
-        </table>
+        {!! $offer->apartment->house->getEnergyCertText() !!}
     </div>
 </div>
 @endsection
