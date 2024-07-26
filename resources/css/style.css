@@ -1,8 +1,20 @@
 /* General site wide rules */
 /* ======================= */
 
-.site-content {
-    margin: 0 10% 0 10%;
+@media only screen and (min-width: 768px) {
+    .site-content {
+        margin: 0 10% 0 10%;
+    }
+
+    .mobile-only {
+        display: none;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .not-mobile {
+        display: none;
+    }
 }
 
 .cr-bg-dark {
@@ -55,11 +67,37 @@ select,
     color: #111;
 }
 
-/* This tweak makes the navbar at
- * the top of the site thinner, like on the legacy site.
+/*
+TODO: If we ever use Bootstrap's 'navbar-toggler-icon' class instead,
+then we can get rid of this rule.
  * */
-.navbar {
-    --bs-navbar-padding-x: none;
+#cr-hamburger-icon {
+    max-width: 60px;
+}
+
+#cr-hamburger-collapse {
+    padding-left: 0 !important;
+}
+
+#cr-hamburger-collapse ul {
+    z-index: 99;
+    position: fixed;
+    list-style: none;
+    width: 100%;
+    margin: 4em 0 0 0;
+}
+
+@media only screen and (min-width: 768px) {
+    /* This tweak makes the navbar at
+     * the top of the site thinner, like on the legacy site.
+     * */
+    .navbar {
+        --bs-navbar-padding-x: none;
+    }
+
+    #cr-mobile-nav {
+        display: none;
+    }
 }
 /* ======================= */
 
@@ -75,7 +113,13 @@ select,
 }
 
 #logo-image {
-    max-width: 341px;
+    max-width: 290px;
+}
+
+@media only screen and (min-width: 768px) {
+    #logo-image {
+        max-width: 341px;
+    }
 }
 
 #homepage-cover-image {
@@ -88,9 +132,14 @@ select,
 }
 
 #l10n-flags {
-    float: right;
     margin-top: 1.5em;
     padding-top: 1.5em;
+}
+
+@media only screen and (min-width: 768px) {
+    #l10n-flags {
+        float: right;
+    }
 }
 
 #l10n-flags a {
@@ -102,50 +151,18 @@ select,
     background: rgba(0, 0, 0, 0) url('/images/pfeil_grau.png') no-repeat scroll center center;
 }
 
-#quicksearch form {
-    margin-top: 1em;
-    padding-top: 1.5em;
-    float: right;
+@media only screen and (min-width: 768px) {
+    #quicksearch form {
+        margin-top: 1em;
+        padding-top: 1.5em;
+        float: right;
+    }
 }
 
 /* The quickfilter */
 /* --------------- */
 
-#quickfilter-form {
-    height: 50px;
-}
-
 .quickfilter-form-elem {
-    background: #fff;
-}
-
-.quickfilter-elem-with-line {
-    border-right: 2px rgb(213, 209, 193) solid;
-}
-
-/*
- * TODO: Might not work on older browsers.
- * */
-.quickfilter-form-label,
-.quickfilter-form-elem,
-#quickfilter-submit-button {
-    display: flex;
-    justify-content: center;
-    align-content: center;
-    align-items: center;
-    flex-direction: column;
-}
-
-#quickfilter-rent {
-    text-align: center;
-    max-width: 5em;
-}
-
-#quickfilter-rent,
-#quickfilter-nr-rooms,
-#quickfilter-start-month {
-    border: 2px rgb(213, 209, 193) solid;
-    height: 2rem;
     background: #fff;
 }
 
@@ -156,6 +173,62 @@ select,
 
 #quickfilter-submit-button:hover {
     cursor: pointer;
+}
+
+@media only screen and (max-width: 768px) {
+    /* TODO: These aren't working, but it would be cool
+     * if we could get them to work.*/
+    #quickfilter-form {
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+
+    #quickfilter-form,
+    #quickfilter-form * {
+        width: 100% !important;
+    }
+
+    .quickfilter-form-label,
+    .quickfilter-form-elem,
+    #quickfilter-submit-button {
+        padding: 0.5em;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    #quickfilter-form {
+        height: 50px;
+    }
+
+    .quickfilter-elem-with-line {
+        border-right: 2px rgb(213, 209, 193) solid;
+    }
+
+    /*
+     * TODO: Might not work on older browsers.
+     * */
+    .quickfilter-form-label,
+    .quickfilter-form-elem,
+    #quickfilter-submit-button {
+        display: flex;
+        justify-content: center;
+        align-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    #quickfilter-rent {
+        text-align: center;
+        max-width: 5em;
+    }
+
+    #quickfilter-rent,
+    #quickfilter-nr-rooms,
+    #quickfilter-start-month {
+        border: 2px rgb(213, 209, 193) solid;
+        height: 2rem;
+        background: #fff;
+    }
 }
 /* --------------- */
 
@@ -180,6 +253,7 @@ select,
 
 /* The offer-filter-form */
 /* --------------------- */
+
 #offer-filter-form {
     background: #f8f8f0;
 }
@@ -189,20 +263,41 @@ select,
     border-top: 1px solid #eae8d5;
 }
 
-#offer-filter-form .border-row {
-    border-top: 1px solid #eae8d5;
-}
-
 #offer-filter-form td {
     padding: 1.5%;
 }
 
-.offer-filter-form-wide-elem {
-    width: 100px;
+/*
+ * TODO: See Feature #1246.
+ * The following rule is a workaround to the fact that the offer filter form
+ * is still written as an HTML table, which is quite suboptimal.
+ * Because I don't want the margin rules to apply to .site-content on mobile
+ * devices, but that would mess up the HTML table offer filter form, so here
+ * we bring the margin rule back in for that specific element.
+ *
+ * When we rewrite the frontend, we'll get rid of
+ * the HTML table and remove the following CSS rule as well,
+ * but until then, we need this workaround to make the form appear at least
+ * somewhat nicely on mobile devices.
+ * */
+@media only screen and (max-width: 768px) {
+    #offer-filter-form {
+        margin: 0 10% 0 10%;
+    }
 }
 
-.offer-filter-form-wide-elem-plus {
-    width: 120px;
+@media only screen and (min-width: 768px) {
+    #offer-filter-form .border-row {
+        border-top: 1px solid #eae8d5;
+    }
+
+    .offer-filter-form-wide-elem {
+        width: 100px;
+    }
+
+    .offer-filter-form-wide-elem-plus {
+        width: 120px;
+    }
 }
 
 #offer-filter-submit,
