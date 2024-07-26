@@ -44,11 +44,21 @@ class Offer extends Model
     public function getStartText()
     {
         $today = date('Y-m-d');
-        if ($this->start_date > $today)
-            // TODO: Make this German.
-            return $this->start_date;
-        else
+        if ($this->start_date > $today) {
+            $date = new \DateTime($this->start_date);
+            $formatter = new \IntlDateFormatter(
+                'de-DE',
+                \IntlDateFormatter::SHORT,
+                \IntlDateFormatter::NONE,
+                'Europe/Berlin',
+                \IntlDateFormatter::GREGORIAN,
+                'dd.MM.yyyy'
+            );
+            return $formatter->format($date);
+        }
+        else {
             return 'sofort';
+        }
     }
 
     public function getLimitationsText()
