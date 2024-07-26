@@ -25,14 +25,39 @@
 
     </head>
     <body>
+        {{-- TODO: container-fluid instead? --}}
         <div class="container">
             <div class="row" id="site-header-row">
+                <div class="collapse" id="cr-hamburger-collapse">
+                    <ul class="cr-bg-dark">
+                        <li><a class="nav-link" href="/offers">Suchen</a></li>
+                        <li><a class="nav-link" href="/renter-info">Mieter-Info</a></li>
+                        <li><a class="nav-link" href="/make-offer">Anbieten</a></li>
+                        <li><a class="nav-link" href="/landlord-info">Vermieter-Info</a></li>
+                        <li><a class="nav-link" href="/interior-design">Möblierungsservice</a></li>
+                        <li><a class="nav-link" href="/about">Über uns</a></li>
+                    </ul>
+                </div>
+                <nav class="col-2" id="cr-mobile-nav">
+                    <button type="button"
+                        class="navbar-toggler"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#cr-hamburger-collapse"
+                        aria-controls="cr-hamburger-collapse"
+                        aria-expanded="false"
+                        aria-label="Toggle">
+                        <img src="{{ asset('images/hamburger-menu-mobile-svgrepo-com.svg') }}" id="cr-hamburger-icon">
+                        <!--
+                        <span class="navbar-toggler-icon"></span>
+                        -->
+                    </button>
+                </nav>
                 <div class="col-6">
                     <a href="/">
                         <img src="{{ asset('images/city-residence-logo.svg') }}" id="logo-image">
                     </a>
                 </div>
-                <div class="col">
+                <div class="col-md col-sm-5">
                     <span id="l10n-flags">
                         <a href="/">
                             <img src="{{ asset('images/de.gif') }}">
@@ -51,7 +76,7 @@
                         </a>
                     </span>
                 </div>
-                <div class="col" id="quicksearch">
+                <div class="col-md col-sm-6" id="quicksearch">
                     {{-- TODO --}}
                     <form action="/" method="get">
                         <input type="text" placeholder="Objekt-Nr. oder Straße">
@@ -59,7 +84,7 @@
                     </form>
                 </div>
             </div>
-            <div class="row" id="top-navbar-row">
+            <div class="row not-mobile" id="top-navbar-row">
                 <nav class="navbar navbar-dark cr-bg-dark navbar-expand-lg">
                     <div class="container">
                         <div class="row navbar-nav mr-auto nav-fill w-100">

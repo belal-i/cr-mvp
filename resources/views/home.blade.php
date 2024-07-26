@@ -2,7 +2,7 @@
 @section ('content')
 <div class="row">
     <div class="col" id="homepage-cover-image">
-        <div id="quickfilter-container" class="container">
+        <div class="container">
             <form action="/offers" method="get" class="row form-inline" id="quickfilter-form">
                 <div class="col-3"></div>
 
