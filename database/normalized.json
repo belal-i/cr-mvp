@@ -194,6 +194,7 @@
             "energy_usage_value": 142.0,
             "has_dryer": true,
             "has_elevator": true,
+            "has_landmark_status": true,
             "has_washing_machine": true,
             "house_character": "Nachkriegsbau",
             "house_description": "Gepflegtes",
