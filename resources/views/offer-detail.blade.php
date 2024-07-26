@@ -211,8 +211,12 @@ TODO: See Feature #1178
             {
                 // TODO: Coordinates of City-Residence office, for now.
                 // Obviously we need to get these dynamically from the
-                // address data.
-                var latlng = new google.maps.LatLng(8.666013, 50.136829);
+                // address data. These libraries might prove helpful:
+                // * https://github.com/geocoder-php/Geocoder
+                // * https://packagist.org/providers/geocoder-php/provider-implementation
+                // * https://github.com/geocoder-php/Geocoder
+                // General Information about geocoding: https://developers.google.com/maps/documentation/geocoding/overview
+                var latlng = new google.maps.LatLng(50.136829, 8.666013);
                 var mapOptions = {
                     zoom: 14,
                     center: latlng,
