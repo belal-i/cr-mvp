@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Geocoder\Query\GeocodeQuery;
 use App\Models\Image;
 use App\Models\User;
 use App\Models\House;
@@ -144,5 +145,107 @@ class Address extends Model
             default:
                 return '';
         }
+    }
+
+    public function getGeocoordinates()
+    {
+        $httpClient = new \GuzzleHttp\Client();
+        $provider = new \Geocoder\Provider\GoogleMaps\GoogleMaps(
+            $httpClient,
+            null,
+            getenv('GOOGLE_MAPS_API_KEY')
+        );
+        // TODO: Keep this in mind for Redmine #979.
+        $geocoder = new \Geocoder\StatefulGeocoder($provider, 'de');
+
+        return app('geocoder')->geocode(
+            sprintf(
+                '%s %s, %s %s',
+                $this->street,
+                $this->house_number,
+                $this->zip_code,
+                $this->city
+            )
+        )->get()[0]->getCoordinates();
+    }
+
+    public function getMapsHtml($height, $width, $htmlId = 'map')
+    {
+        $googleMapsApiKey = getenv('GOOGLE_MAPS_API_KEY');
+        try {
+            $coordinates = $this->getGeocoordinates();
+        } catch (\Exception $e) {
+            // TODO: See Redmine #1255: Log this to Sentry.
+            // TODO: See Redmine #979: Translate the error message.
+            return <<<EOF
+                <script>
+                    window.onload = function() {
+                        $('#$htmlId').html(
+                            'Google-Maps vorübergehend nicht verfügbar.'
+                        );
+                    }
+                </script>
+EOF;
+        }
+        $pinTag = asset('images/CRpin_activ.png');
+
+        return <<<EOF
+            <style>
+                #$htmlId {
+                    height: $height;
+                    width: $width;
+                }
+            </style>
+            <script
+                type="text/javascript"
+                src="//maps.googleapis.com/maps/api/js?key=$googleMapsApiKey"></script>
+
+            <script>
+                function initialize()
+                {
+                    try
+                    {
+                        var latlng = new google.maps.LatLng(
+                            {$coordinates->getLatitude()},
+                            {$coordinates->getLongitude()}
+                        );
+                        var mapOptions = {
+                            zoom: 14,
+                            center: latlng,
+                            navigationControl: true,
+                            mapTypeControl: true,
+                            scaleControl: true,
+                            zoomControl: true,
+                            streetViewControl: true,
+                            mapTypeId: google.maps.MapTypeId.ROADMAP
+                            /*
+                            mapTypeIds: [
+                                    google.maps.MapTypeId.ROADMAP,
+                                    google.maps.MapTypeId.TERRAIN,
+                                    google.maps.MapTypeId.HYBRID,
+                                    google.maps.MapTypeId.SATELLITE
+                                ]
+                            */
+                        };
+                        map = new google.maps.Map(document.getElementById("$htmlId"), mapOptions);
+                        var transitLayer = new google.maps.TransitLayer();
+                        transitLayer.setMap(map);
+
+                        var image = "{$pinTag}";
+                        var offerMarker = new google.maps.Marker({
+                            position: latlng,
+                            map: map,
+                            icon: image,
+                            title: "{$this->source_id}"
+                        });
+                    }
+                    catch(e)
+                    {
+                        setTimeout("initialize()", 2500);
+                    }
+                }
+                setTimeout("initialize()", 1500);
+            </script>
+EOF;
     }
 }
