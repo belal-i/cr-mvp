@@ -197,4 +197,28 @@ EOF;
 
         return $returnString;
     }
+
+    public function getRatingStarsImg($width = null)
+    {
+        // In case of any weird values, like 4.6 and so on, make sure
+        // we only have 4.0, 4.5, 5.0, 5.5, etc.
+        $roundedRating = round($this->rating * 2) / 2;
+        if (empty($roundedRating))
+            return '';
+
+        $roundedRating = number_format($roundedRating, 1);
+
+        return sprintf(
+            '<img src="%s" %s>',
+            asset(
+                sprintf(
+                    'images/stars%s.png',
+                    $roundedRating
+                )
+            ),
+            empty($width)
+                ? ''
+                : 'width="' . $width . '"'
+        );
+    }
 }
