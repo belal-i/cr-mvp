@@ -81,7 +81,8 @@ $l = 9;
 
 <div class="row site-content cr-detail-view-heading">
     <div class="col-3"><strong>A-{{ $offer->apartment->source_id }}</strong></div>
-    <div class="col-9"><strong>{{ $offer->apartment->title }}</strong></div>
+    <div class="col-6"><strong>{{ $offer->apartment->title }}</strong></div>
+    <div class="col-3">{!! $offer->apartment->getRatingStarsImg(75) !!}</div>
 </div>
 
 <div class="row site-content cr-detail-view-content border-bottom">
