@@ -53,8 +53,8 @@ class OfferResource extends JsonResource
                     : ', ' . $address->neighborhood;
                 $offer['address__street']            = $address->street;
                 $offer['address__nearby_public_transit'] =
-                    '<p>'
-                    . implode('</p><p>', $address->nearby_public_transit)
+                    '<p class="not-mobile">'
+                    . implode('</p><p class="not-mobile">', $address->nearby_public_transit)
                     . '</p>';
                 $offer['apartment__image_slideshow'] = $apartment->makeImageSlideshow(
                     sprintf('splide-%s', $splideCount),

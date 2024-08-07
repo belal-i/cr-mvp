@@ -30,16 +30,17 @@ const offerTemplate = ({
     rent
 }) => `
     <div href="/offers/${id}" class="row site-content offer-list-view-entry offer-list-view-entry-toggle-${cssToggleSuffix}">
-        <div class="col-4">
+        <div class="col-sm-12 col-md-4 ps-0">
             ${apartment__image_slideshow}
         </div>
-        <div class="col-7" onclick="window.location.href = '/offers/${id}';">
-            <h4><strong>${apartment__title}</strong></h4>
+        <div class="col-sm-12 col-md-7" onclick="window.location.href = '/offers/${id}';">
+            <h4 class="not-mobile"><strong>${apartment__title}</strong></h4>
             <p>${apartment__number_of_rooms}, ${apartment__size_sq_m}m<sup>2</sup>${address__neighborhood}, ${address__street}</p>
             ${address__nearby_public_transit}
-            <div style="text-align:right; width:100%;">
+            <div class="not-mobile" style="text-align:right; width:100%;">
             <span style="float:left;"><strong>frei ab ${start_date}</strong>, ${max_months}, Mindestmietzeit ${min_months} Monate</span>Miete pro Monat: <strong>${rent}</strong>
             </div>
+            <span class="mobile-only">frei ab ${start_date} - <strong>Miete pro Monat: ${rent}</strong></span>
         </div>
     </div><!-- .row -->
 `;
