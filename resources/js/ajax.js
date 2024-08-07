@@ -34,7 +34,7 @@ const offerTemplate = ({
             ${apartment__image_slideshow}
         </div>
         <div class="col-sm-12 col-md-7" onclick="window.location.href = '/offers/${id}';">
-            <h4 class="not-mobile"><strong>${apartment__title}</strong></h4>
+            <h5 class="not-mobile"><strong>${apartment__title}</strong></h5>
             <p>${apartment__number_of_rooms}, ${apartment__size_sq_m}m<sup>2</sup>${address__neighborhood}, ${address__street}</p>
             ${address__nearby_public_transit}
             <div class="not-mobile" style="text-align:right; width:100%;">

@@ -22,6 +22,7 @@ whether production server or local development machine:
 * xml
 * mbstring
 * intl
+* zip (dev)
 
 On Ubuntu, and likely on other distros, the full package name is prefaced by
 `phpVERSION-`, so to install, do something like `apt install php8.1-mysql`.

@@ -353,7 +353,7 @@ $splide_count = 0;
             ?>
         </div>
         <div class="col-sm-12 col-md-7" onclick="window.location.href = '/offers/{{ $offer->id }}';">
-            <h4 class="not-mobile"><strong>{{ $offer->apartment->title }}</strong></h4>
+            <h5 class="not-mobile"><strong>{{ $offer->apartment->title }}</strong></h5>
             <?php
             $subway_stations = $offer->apartment
                                      ->house

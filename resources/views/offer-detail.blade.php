@@ -183,7 +183,7 @@ TODO: See Feature #1178
     <div class="col-9">Obligatorische Reinigungskosten nach Auszug des Mieters.</div>
 </div>
 <div class="row site-content cr-detail-view-content border-bottom">
-    <div class="col-3"><strong>Wohnungsgeberbestätigung</strong></div>
+    <div class="col-3"><strong>Wohnungsgeber-bestätigung</strong></div>
     <div class="col-9">Mit dem Abschluss des Mietvertrages erhalten Sie als Mieter eine Wohnungsgeberbestätigung, die für die Anmeldung als Wohnsitz in Frankfurt erforderlich ist.</div>
 </div>
 
