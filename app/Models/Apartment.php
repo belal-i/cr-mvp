@@ -221,4 +221,44 @@ EOF;
                 : 'width="' . $width . '"'
         );
     }
+
+    public function getEquipmentIcons($width = 40)
+    {
+        $images = [];
+
+        if ($this->house->has_elevator)
+            $images[] = asset('images/has-elevator.png');
+
+        if ($this->has_balcony)
+            $images[] = asset('images/has-balcony.png');
+
+        if ($this->house->address->parking_rating >= 3.0)
+            $images[] = asset('images/has-parking.png');
+
+        if ($this->has_washing_machine || $this->house->has_washing_machine
+            && $this->has_dryer || $this->house->has_dryer
+        ) {
+            $images[] = asset('images/has-washing-machine-and-dryer.png');
+        } elseif ($this->has_washing_machine || $this->house->has_washing_machine) {
+            $images[] = asset('images/has-washing-machine.png');
+        }
+
+        if ($this->has_dish_washer)
+            $images[] = asset('images/has-dish-washer.png');
+
+        if ($this->has_internet)
+            $images[] = asset('images/has-internet.png');
+
+        $result = [];
+
+        foreach ($images as $src) {
+            $result[] = sprintf(
+                '<img src="%s" width=%s>',
+                $src,
+                $width
+            );
+        }
+
+        return implode('', $result);
+    }
 }
