@@ -22,6 +22,7 @@ whether production server or local development machine:
 * xml
 * mbstring
 * intl
+* curl
 * zip (dev)
 
 On Ubuntu, and likely on other distros, the full package name is prefaced by
