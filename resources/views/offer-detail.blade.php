@@ -81,7 +81,8 @@ $l = 9;
 
 <div class="row site-content cr-detail-view-heading">
     <div class="col-3"><strong>A-{{ $offer->apartment->source_id }}</strong></div>
-    <div class="col-9"><strong>{{ $offer->apartment->title }}</strong></div>
+    <div class="col-6"><strong>{{ $offer->apartment->title }}</strong></div>
+    <div class="col-3">{!! $offer->apartment->getRatingStarsImg(75) !!}</div>
 </div>
 
 <div class="row site-content cr-detail-view-content border-bottom">
@@ -182,17 +183,24 @@ TODO: See Feature #1178
     <div class="col-9">Obligatorische Reinigungskosten nach Auszug des Mieters.</div>
 </div>
 <div class="row site-content cr-detail-view-content border-bottom">
-    <div class="col-3"><strong>Wohnungsgeberbestätigung</strong></div>
+    <div class="col-3"><strong>Wohnungsgeber-bestätigung</strong></div>
     <div class="col-9">Mit dem Abschluss des Mietvertrages erhalten Sie als Mieter eine Wohnungsgeberbestätigung, die für die Anmeldung als Wohnsitz in Frankfurt erforderlich ist.</div>
 </div>
 
 <div class="row site-content cr-detail-view-heading">
-    <div class="col-9"><strong>Infos zur Wohnlage</strong></div>
+    <div class="col-3"><strong>Infos zur Wohnlage</strong></div>
+    <div class="col-9"><strong>{{ $offer->apartment->title }}</strong></div>
 </div>
 
 <div class="row site-content cr-detail-view-content border-bottom">
-    <div class="col-3"><strong>Google-Maps</strong></div>
-    <div class="col-9">Die Integration mit Google-Maps wird in einer zukünftigen Version implementiert sein. Siehe <a href="https://redmine.city-residence.de/issues/1134">Feature #1134</a></div>
+    <div class="col-3"></div>
+    <div class="col-9" id="map"></div>
+    <?php
+        echo $offer->apartment
+                   ->house
+                   ->address
+                   ->getMapsHtml('400px', '100%');
+    ?>
 </div>
 <div class="row site-content cr-detail-view-content border-bottom">
     <div class="col-3"><strong>Öffentliche Verkehrsmittel</strong></div>

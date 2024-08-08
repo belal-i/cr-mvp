@@ -347,13 +347,19 @@ $splide_count = 0;
                 echo $offer->apartment->makeImageSlideshow(
                     sprintf('splide-%s', $splide_count),
                     ['splide'],
-                    ['list-view-image']
+                    ['list-view-image'],
+                    [
+                        sprintf(
+                            'onclick="window.location.href = \'/offers/%s\';"',
+                            $offer->id
+                        )
+                    ]
                 );
                 $splide_count++;
             ?>
         </div>
         <div class="col-sm-12 col-md-7" onclick="window.location.href = '/offers/{{ $offer->id }}';">
-            <h4 class="not-mobile"><strong>{{ $offer->apartment->title }}</strong></h4>
+            <h5 class="not-mobile"><strong>{{ $offer->apartment->title }}</strong></h5>
             <?php
             $subway_stations = $offer->apartment
                                      ->house
@@ -374,9 +380,12 @@ $splide_count = 0;
 
             <div class="not-mobile" style="text-align:right; width:100%;">
             <span style="float:left;"><strong>frei ab {{ $offer->getStartText() }}</strong>, {{ $offer->getMaxMonthsText() }}, Mindestmietzeit {{ $offer->min_months }} Monate</span>Miete pro Monat: <strong>{{ get_euro_text($offer->rent) }}</strong>
+            <div class="row" style="text-align: left;">
+                <div class="col-9">{!! $offer->apartment->getEquipmentIcons() !!}</div>
+                <div class="col-3" style="text-align: right;">{!! $offer->apartment->getRatingStarsImg(75) !!}</div>
+            </div>
             </div>
             <span class="mobile-only">frei ab {{ $offer->getStartText() }} - <strong>Miete pro Monat: {{ get_euro_text($offer->rent) }}</strong></span>
-
         </div>
     </div><!-- .row -->
 @endforeach

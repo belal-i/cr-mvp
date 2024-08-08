@@ -1,0 +1,8 @@
+@font-face {
+  font-display: swap;
+  font-family: 'Noto Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: url('../fonts/noto-sans-v36-latin-regular.woff2') format('woff2');
+}
+

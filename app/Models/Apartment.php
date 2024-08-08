@@ -63,7 +63,8 @@ class Apartment extends Model
     public function makeImageSlideshow(
         $splideId = null,
         $splideClasses = null,
-        $imgCssClasses = null
+        $imgCssClasses = null,
+        $otherAttributes = null
     ) {
         $templateString = <<<EOF
             <section %s %s aria-label="Splide">
@@ -74,33 +75,34 @@ class Apartment extends Model
 EOF;
         $imageUrls = $this->getAllImageUrls();
         $liElems = [];
+
         foreach ($imageUrls as $url) {
             $liElems[] = sprintf(
-                '<img src="%s"%s>',
+                '<img src="%s" %s>',
                 $url,
-                empty($imgCssClasses) ? ''
-                : sprintf(
-                    ' class="%s"',
-                    implode(' ', $imgCssClasses)
-                )
+                empty($imgCssClasses)
+                    ? ''
+                    : sprintf(
+                        ' class="%s"',
+                        implode(' ', $imgCssClasses)
+                    )
             );
         }
+
         return sprintf(
             $templateString,
-
             empty($splideId) ? ''
-            : sprintf(' id="%s"', $splideId),
-
+                : sprintf(' id="%s"', $splideId),
             empty($splideClasses) ? ''
-            : sprintf(
-                ' class="%s"',
-                implode(' ', $splideClasses)
-            ),
-
+                : sprintf(
+                    ' class="%s"',
+                    implode(' ', $splideClasses)
+                ),
             php_array_to_ul_elem(
                 $liElems,
                 ['splide__list'],
                 ['splide__slide'],
+                $otherAttributes,
             )
         );
     }
@@ -196,5 +198,69 @@ EOF;
             );
 
         return $returnString;
+    }
+
+    public function getRatingStarsImg($width = null)
+    {
+        // In case of any weird values, like 4.6 and so on, make sure
+        // we only have 4.0, 4.5, 5.0, 5.5, etc.
+        $roundedRating = round($this->rating * 2) / 2;
+        if (empty($roundedRating))
+            return '';
+
+        $roundedRating = number_format($roundedRating, 1);
+
+        return sprintf(
+            '<img src="%s" %s>',
+            asset(
+                sprintf(
+                    'images/stars%s.png',
+                    $roundedRating
+                )
+            ),
+            empty($width)
+                ? ''
+                : 'width="' . $width . '"'
+        );
+    }
+
+    public function getEquipmentIcons($width = 40)
+    {
+        $images = [];
+
+        if ($this->house->has_elevator)
+            $images[] = asset('images/has-elevator.png');
+
+        if ($this->has_balcony)
+            $images[] = asset('images/has-balcony.png');
+
+        if ($this->house->address->parking_rating >= 3.0)
+            $images[] = asset('images/has-parking.png');
+
+        if ($this->has_washing_machine || $this->house->has_washing_machine
+            && $this->has_dryer || $this->house->has_dryer
+        ) {
+            $images[] = asset('images/has-washing-machine-and-dryer.png');
+        } elseif ($this->has_washing_machine || $this->house->has_washing_machine) {
+            $images[] = asset('images/has-washing-machine.png');
+        }
+
+        if ($this->has_dish_washer)
+            $images[] = asset('images/has-dish-washer.png');
+
+        if ($this->has_internet)
+            $images[] = asset('images/has-internet.png');
+
+        $result = [];
+
+        foreach ($images as $src) {
+            $result[] = sprintf(
+                '<img src="%s" width=%s>',
+                $src,
+                $width
+            );
+        }
+
+        return implode('', $result);
     }
 }

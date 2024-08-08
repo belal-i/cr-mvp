@@ -53,14 +53,22 @@ class OfferResource extends JsonResource
                     : ', ' . $address->neighborhood;
                 $offer['address__street']            = $address->street;
                 $offer['address__nearby_public_transit'] =
-                    '<p>'
-                    . implode('</p><p>', $address->nearby_public_transit)
+                    '<p class="not-mobile">'
+                    . implode('</p><p class="not-mobile">', $address->nearby_public_transit)
                     . '</p>';
                 $offer['apartment__image_slideshow'] = $apartment->makeImageSlideshow(
                     sprintf('splide-%s', $splideCount),
                     ['splide'],
-                    ['list-view-image']
+                    ['list-view-image'],
+                    [
+                        sprintf(
+                            'onclick="window.location.href = \'/offers/%s\';"',
+                            $offer->id
+                        )
+                    ]
                 );
+                $offer['apartment__rating_stars'] = $apartment->getRatingStarsImg(75);
+                $offer['apartment__equipment_icons'] = $apartment->getEquipmentIcons();
                 ++$splideCount;
             } else {
                 // TODO: Maybe there's a better way to do this?
