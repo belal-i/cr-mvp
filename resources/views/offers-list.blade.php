@@ -347,7 +347,13 @@ $splide_count = 0;
                 echo $offer->apartment->makeImageSlideshow(
                     sprintf('splide-%s', $splide_count),
                     ['splide'],
-                    ['list-view-image']
+                    ['list-view-image'],
+                    [
+                        sprintf(
+                            'onclick="window.location.href = \'/offers/%s\';"',
+                            $offer->id
+                        )
+                    ]
                 );
                 $splide_count++;
             ?>
