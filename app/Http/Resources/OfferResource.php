@@ -61,6 +61,8 @@ class OfferResource extends JsonResource
                     ['splide'],
                     ['list-view-image']
                 );
+                $offer['apartment__rating_stars'] = $apartment->getRatingStarsImg(75);
+                $offer['apartment__equipment_icons'] = $apartment->getEquipmentIcons();
                 ++$splideCount;
             } else {
                 // TODO: Maybe there's a better way to do this?

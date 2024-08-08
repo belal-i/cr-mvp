@@ -21,6 +21,8 @@ const offerTemplate = ({
     apartment__number_of_rooms,
     apartment__size_sq_m,
     apartment__image_slideshow,
+    apartment__rating_stars,
+    apartment__equipment_icons,
     address__neighborhood,
     address__street,
     address__nearby_public_transit,
@@ -39,6 +41,10 @@ const offerTemplate = ({
             ${address__nearby_public_transit}
             <div class="not-mobile" style="text-align:right; width:100%;">
             <span style="float:left;"><strong>frei ab ${start_date}</strong>, ${max_months}, Mindestmietzeit ${min_months} Monate</span>Miete pro Monat: <strong>${rent}</strong>
+            <div class="row" style="text-align: left;">
+                <div class="col-9">${apartment__equipment_icons}</div>
+                <div class="col-3" style="text-align: right;">${apartment__rating_stars}</div>
+            </div>
             </div>
             <span class="mobile-only">frei ab ${start_date} - <strong>Miete pro Monat: ${rent}</strong></span>
         </div>
