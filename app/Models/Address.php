@@ -181,7 +181,7 @@ class Address extends Model
                 <script>
                     window.onload = function() {
                         $('#$htmlId').html(
-                            'Google-Maps vorübergehend nicht verfügbar.'
+                            'Problem mit Geokoordinaten oder Google-Maps allgemein. address_id: $this->id'
                         );
                     }
                 </script>
