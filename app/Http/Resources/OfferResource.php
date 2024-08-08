@@ -59,7 +59,13 @@ class OfferResource extends JsonResource
                 $offer['apartment__image_slideshow'] = $apartment->makeImageSlideshow(
                     sprintf('splide-%s', $splideCount),
                     ['splide'],
-                    ['list-view-image']
+                    ['list-view-image'],
+                    [
+                        sprintf(
+                            'onclick="window.location.href = \'/offers/%s\';"',
+                            $offer->id
+                        )
+                    ]
                 );
                 $offer['apartment__rating_stars'] = $apartment->getRatingStarsImg(75);
                 $offer['apartment__equipment_icons'] = $apartment->getEquipmentIcons();
