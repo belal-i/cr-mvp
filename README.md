@@ -1,6 +1,38 @@
 ## CR Laravel-App
 
-### Setting up (locally)
+### Requirements
+
+Typical LAMP stack setup with minimum PHP 8.2 - however, in a future
+version, this application will run in a Docker network.
+
+#### Required PHP extensions
+
+These PHP extensions need to be installed on the web server running this
+application, whether production server or local development machine:
+
+* mysql
+* xml
+* mbstring
+* intl
+* curl
+* zip (dev)
+
+On Ubuntu, and likely on other distros, the full package name is prefaced by
+`phpVERSION-`, so to install, do something like `apt install php8.2-mysql`.
+
+TODO: Define platform requirements in composer.json? See https://getcomposer.org/doc/06-config.md#platform
+
+### Installing
+
+#### Production/Stage/etc.
+
+Set up a LAMP stack and extract the latest build into /var/www/html/...
+and some other steps. Use [Lampsible](https://github.com/saint-hilaire/lampsible)
+to perform the entire installation in a single local command. See the
+[wiki](https://redmine.city-residence.de/projects/laravel/wiki#Deployment) for
+more info.
+
+#### Local
 
 * `composer install`
 * `npm install`
@@ -12,23 +44,6 @@
 * `php artisan serve`
 * Browse to http://localhost:8000
 * RTFS
-
-### Required PHP extensions
-
-These PHP extensions need to be installed on the web server running this application,
-whether production server or local development machine:
-
-* mysql
-* xml
-* mbstring
-* intl
-* curl
-* zip (dev)
-
-On Ubuntu, and likely on other distros, the full package name is prefaced by
-`phpVERSION-`, so to install, do something like `apt install php8.1-mysql`.
-
-TODO: Define platform requirements in composer.json? See https://getcomposer.org/doc/06-config.md#platform
 
 ### Getting production data into the database.
 
