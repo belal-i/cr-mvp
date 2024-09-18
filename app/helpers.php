@@ -42,35 +42,36 @@ function php_array_to_ul_elem(
     return $ret_html;
 }
 
-function get_current_months($number_of_months = 2)
+function get_current_months($number_of_months = 3)
 {
-    $today = date('Y-m-d');
-    $current_month = (int)explode('-', $today)[1];
-    $current_year = (int)explode('-', $today)[0];
-    $month_translations = [
-        1  => 'Januar',
-        2  => 'Februar',
-        3  => 'März',
-        4  => 'April',
-        5  => 'Mai',
-        6  => 'Juni',
-        7  => 'Juli',
-        8  => 'August',
-        9  => 'September',
-        10 => 'Oktober',
-        11 => 'November',
-        12 => 'Dezember',
-    ];
-    $ret_arr = [
-        '' => 'sofort',
-    ];
-    for ($i = 0; $i < $number_of_months; ++$i) {
-        ++$current_month;
-        $ret_arr[
-            // TODO: You have until 2025 to improve this...
-            sprintf('%s-%s-01', $current_year, $current_month)
-        ] = $i == $number_of_months - 1 ? 'später' : $month_translations[$current_month];
+    $formatter = new \IntlDateFormatter(
+        'de-DE',
+        \IntlDateFormatter::SHORT,
+        \IntlDateFormatter::NONE,
+        'Europe/Berlin',
+        \IntlDateFormatter::GREGORIAN,
+        'MMMM'
+    );
+
+    $ret_arr = ['' => 'sofort'];
+
+    for ($i = 1; $i < $number_of_months; ++$i) {
+        $date_array_key = date(
+            'Y-m-01',
+            strtotime(
+                sprintf(
+                    '+%s months',
+                    $i
+                )
+            )
+        );
+        $pretty_date_value = $i == $number_of_months - 1
+            ? 'später'
+            : $formatter->format(new \DateTime($date_array_key));
+
+        $ret_arr[$date_array_key] = $pretty_date_value;
     }
+
     return $ret_arr;
 }
 
