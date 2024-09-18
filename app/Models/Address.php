@@ -17,6 +17,8 @@ class Address extends Model
     use CrudTrait;
     use HasFactory;
 
+    protected $guarded = [];
+
     public function images(): HasMany
     {
         return $this->hasMany(Image::class);

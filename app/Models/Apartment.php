@@ -18,6 +18,8 @@ class Apartment extends Model
     use CrudTrait;
     use HasFactory;
 
+    protected $guarded = [];
+
     private const APARTMENT_TYPE_TRANSLATIONS = [
         'APARTMENT' => 'Wohnung',
         'HOUSE'     => 'Haus',
