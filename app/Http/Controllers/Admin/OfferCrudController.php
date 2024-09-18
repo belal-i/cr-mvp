@@ -39,7 +39,15 @@ class OfferCrudController extends CrudController
      */
     protected function setupListOperation()
     {
-        CRUD::setFromDb(); // set columns from db columns.
+        // CRUD::setFromDb(); // set columns from db columns.
+        CRUD::setColumns([
+            'source_id',
+            'start_date',
+            'min_months',
+            'number_of_persons',
+            'rent',
+            'status',
+        ]);
 
         /**
          * Columns can be defined using the fluent syntax:
@@ -56,7 +64,42 @@ class OfferCrudController extends CrudController
     protected function setupCreateOperation()
     {
         CRUD::setValidation(OfferRequest::class);
-        CRUD::setFromDb(); // set fields from db columns.
+        // TODO: IDK why this doesn't work...
+        // Instead, I have to list the columns individually :-(
+        // CRUD::setFromDb(); // set fields from db columns.
+
+        CRUD::field('apartment_id');
+        CRUD::field('source_id');
+        CRUD::field('start_date');
+        CRUD::field('end_date');
+        CRUD::field('min_months');
+        CRUD::field('max_months');
+        CRUD::field('number_of_persons')->type('number');
+        CRUD::field('rent');
+        // TODO: See Redmine #972.
+        CRUD::field('security_deposit_type');
+        CRUD::field('security_deposit');
+        CRUD::field('reference');
+        CRUD::field('notes');
+        CRUD::field('status');
+        CRUD::field('publish_on_immoscout');
+        CRUD::field('va_was_sent');
+        CRUD::field('is_premium');
+        CRUD::field('utility_cost_included');
+        CRUD::field('electricity_cost_included');
+        CRUD::field('heating_cost_included');
+        CRUD::field('gas_cost_included');
+        CRUD::field('water_cost_included');
+        CRUD::field('internet_cost_included');
+        CRUD::field('cleaning_cost_included');
+        CRUD::field('utility_cost_amount');
+        CRUD::field('electricity_cost_amount');
+        CRUD::field('heating_cost_amount');
+        CRUD::field('gas_cost_amount');
+        CRUD::field('water_cost_amount');
+        CRUD::field('internet_cost_amount');
+        CRUD::field('cleaning_cost_amount');
+        CRUD::field('user_id');
 
         /**
          * Fields can be defined using the fluent syntax:

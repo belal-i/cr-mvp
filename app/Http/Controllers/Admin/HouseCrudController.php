@@ -57,6 +57,7 @@ class HouseCrudController extends CrudController
     {
         CRUD::setValidation(HouseRequest::class);
         CRUD::setFromDb(); // set fields from db columns.
+        CRUD::field('number_of_stories')->type('number');
 
         /**
          * Fields can be defined using the fluent syntax:
