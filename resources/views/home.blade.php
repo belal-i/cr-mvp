@@ -35,7 +35,7 @@
                 <?php
                     echo make_select_html(
                         'start_date-ui',
-                        get_current_months(4),
+                        get_current_months(5),
                         null,
                         ['no-radius'],
                         'quickfilter-start-month'
