@@ -39,7 +39,15 @@ class ApartmentCrudController extends CrudController
      */
     protected function setupListOperation()
     {
-        CRUD::setFromDb(); // set columns from db columns.
+        // CRUD::setFromDb(); // set columns from db columns.
+        CRUD::setColumns([
+            'source_id',
+            'title',
+            'rating',
+            'number_of_rooms',
+            'size_sq_m',
+            'story',
+        ]);
 
         /**
          * Columns can be defined using the fluent syntax:
@@ -57,6 +65,13 @@ class ApartmentCrudController extends CrudController
     {
         CRUD::setValidation(ApartmentRequest::class);
         CRUD::setFromDb(); // set fields from db columns.
+        CRUD::field('story')->type('number');
+        // TODO: Doesn't work as well as it does for
+        // offers.apartment_id, but we need to take the time
+        // to do this thoroughly anyway.
+        // CRUD::field('house_id');
+        CRUD::field('number_of_bedrooms')->type('number');
+        CRUD::field('television_size_inches')->type('number');
 
         /**
          * Fields can be defined using the fluent syntax:

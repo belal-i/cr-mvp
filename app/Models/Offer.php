@@ -14,6 +14,8 @@ class Offer extends Model
     use CrudTrait;
     use HasFactory;
 
+    protected $guarded = [];
+
     public function apartment(): BelongsTo
     {
         return $this->belongsTo(Apartment::class);

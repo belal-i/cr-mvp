@@ -16,6 +16,8 @@ class House extends Model
     use CrudTrait;
     use HasFactory;
 
+    protected $guarded = [];
+
     public function address(): BelongsTo
     {
         return $this->belongsTo(Address::class);
