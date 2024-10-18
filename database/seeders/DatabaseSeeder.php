@@ -21,14 +21,15 @@ class DatabaseSeeder extends Seeder
         $this->call(TextSeeder::class);
         $this->call(ImageSeeder::class);
 
-        // TODO: We may want to store the images in another path.
-        if (env('APP_ENV') === 'local') {
-            try {
-                $phar = new \PharData(database_path() . '/images.tar.gz');
-                $phar->extractTo(storage_path() . '/app/public/');
-            } catch (\PharException) {
-                // Files already exist.
-            }
-        }
+        // TODO: Improve/remove this.
+        // // TODO: We may want to store the images in another path.
+        // if (env('APP_ENV') === 'local') {
+        //     try {
+        //         $phar = new \PharData(database_path() . '/images.tar.gz');
+        //         $phar->extractTo(storage_path() . '/app/public/');
+        //     } catch (\PharException) {
+        //         // Files already exist.
+        //     }
+        // }
     }
 }
