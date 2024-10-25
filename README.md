@@ -1,6 +1,20 @@
 ## CR Laravel-App
 
-### Requirements
+### Requirements (Docker, preferred)
+
+* Docker - see the following:
+  * https://docs.docker.com/engine/install/ubuntu/
+  * https://docs.docker.com/engine/install/ubuntu/#install-using-the-repository
+  * https://docs.docker.com/engine/install/linux-postinstall/
+* MySQL - this application is built specifically to connect to a 
+  MySQL database. The docker-compose.yml that it ships with includes
+  a MySQL configuration that you can use to easily set up a local
+  development environment, but this is indeed only intended for
+  local development. When deploying to a production server or other remote
+  environment, you need to provide your own MySQL server, and properly 
+  configure this app to connect with it.
+
+### Requirements (LAMP stack, deprecated)
 
 Typical LAMP stack setup with minimum PHP 8.2 - however, in a future
 version, this application will run in a Docker network.
@@ -24,7 +38,33 @@ TODO: Define platform requirements in composer.json? See https://getcomposer.org
 
 ### Installing
 
-#### Production/Stage/etc.
+#### Production/Stage/etc. (Docker, preferred)
+
+For the time being, we are using DigitalOcean's _App Platform_, with the
+hopes that they will make things simpler. In the future, we might work to
+make this more flexible/portable.
+
+Useful links:
+
+* https://docs.digitalocean.com/products/container-registry/getting-started/quickstart/
+* You need DigitalOcean's doctl: https://docs.digitalocean.com/reference/doctl/how-to/install/
+* You need access tokens:
+  * https://docs.digitalocean.com/reference/api/create-personal-access-token/
+  * Generate tokens here: https://cloud.digitalocean.com/account/api/tokens
+  * Give doctcl access to the new token: `doctl auth init --context cr-web`
+
+If you installed doctl with Ubuntu Snap, you need to grant doctl permissions
+with: `sudo snap connect doctl:dot-docker`.
+
+We have a container registry at DigitalOcean. If you did everything right
+so far, you should be able to authenticate your local Docker installation
+to it, with: `doctl registry login`.
+
+Tag an image (example): `docker tag cr-laravel-app:dev registry.digitalocean.com/cr-web/cr-laravel-app:dev` (_city-residence_ is our registry's name)
+
+Push the image: `docker push registry.digitalocean.com/city-residence/cr-laravel-app:dev`
+
+#### Production/Stage/etc. (LAMP stack, deprecated)
 
 Set up a LAMP stack and extract the latest build into /var/www/html/...
 and some other steps. Use [Lampsible](https://github.com/saint-hilaire/lampsible)
@@ -32,7 +72,14 @@ to perform the entire installation in a single local command. See the
 [wiki](https://redmine.city-residence.de/projects/laravel/wiki#Deployment) for
 more info.
 
-#### Local
+#### Local (Docker, preferred)
+
+* Build: `docker build -t cr-laravel-app:SOME_TAG .`
+* TODO: Deal with having to generate `APP_KEY`.
+* `docker compose up -d`
+* Browse to http://localhost:8000
+
+#### Local (legacy)
 
 * `composer install`
 * `npm install`
@@ -45,7 +92,7 @@ more info.
 * Browse to http://localhost:8000
 * RTFS
 
-### Getting production data into the database.
+### Getting production data into the database
 
 You need to run the ETL-Pipeline (https://github.com/city-residence/cr-etl),
 then, replace the fake data file /database/normalized.json of cr-laravel-app
@@ -55,6 +102,19 @@ The development of cr-etl follows closely with this application.
 For this reason, you need to make sure to use the right version of cr-etl:
 
 Required cr-etl version: `v1.3.0`
+
+### Troubleshooting
+
+This is not a stable version. Things are broken. Common problems and fixes:
+
+* SQL table not found: This is because migrations failed to run when the
+  container started. The way we (try to) ensure that migrations run is
+  not robust (wait 20 seconds when container starts) Fix: restart container.
+* Undefined array key 0: You need to run the seeder. IDK how to do it properly.
+  Obviously I don't want to do this in the production ready build. So there needs
+  to be a way to inject this into the local docker-compose file - which
+  is strictly for development. But IDK how to do that. For now: shell
+  into the container and run `php artisan db:seed`.
 
 ### Setting up the Backpack admin panel
 

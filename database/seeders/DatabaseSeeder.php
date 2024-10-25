@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
         $this->call(TextSeeder::class);
         $this->call(ImageSeeder::class);
 
+        // TODO: Improve/remove this.
         // TODO: We may want to store the images in another path.
         if (env('APP_ENV') === 'local') {
             try {
