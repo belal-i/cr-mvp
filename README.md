@@ -60,7 +60,7 @@ We have a container registry at DigitalOcean. If you did everything right
 so far, you should be able to authenticate your local Docker installation
 to it, with: `doctl registry login`.
 
-Tag an image (example): `docker tag cr-laravel-app:dev registry.digitalocean.com/cr-web/cr-laravel-app:dev` (_city-residence_ is our registry's name)
+Tag an image (example): `docker tag cr-laravel-app:dev registry.digitalocean.com/city-residence/cr-laravel-app:dev` (_city-residence_ is our registry's name)
 
 Push the image: `docker push registry.digitalocean.com/city-residence/cr-laravel-app:dev`
 
