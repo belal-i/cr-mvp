@@ -6,7 +6,7 @@ use Backpack\CRUD\app\Models\Traits\CrudTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Geocoder\Query\GeocodeQuery;
 use App\Models\Image;
 use App\Models\User;
@@ -29,9 +29,9 @@ class Address extends Model
         return $this->hasMany(User::class);
     }
 
-    public function house(): HasOne
+    public function house(): BelongsTo
     {
-        return $this->hasOne(House::class);
+        return $this->belongsTo(House::class);
     }
 
     public function getSubwayStationsAsList(): array
