@@ -6,8 +6,8 @@
 
         <?php
         $version = config('app.version');
-        $cssPath = 'css' . $version;
-        $jsPath  = 'js'  . $version;
+        $cssPath = 'css-' . $version;
+        $jsPath  = 'js-'  . $version;
         ?>
         <link href="{{ asset($cssPath . '/app.css') }}" rel="stylesheet">
         <link href="{{ asset($cssPath . '/style.css') }}" rel="stylesheet">

@@ -64,6 +64,52 @@ Tag an image (example): `docker tag cr-laravel-app:dev registry.digitalocean.com
 
 Push the image: `docker push registry.digitalocean.com/city-residence/cr-laravel-app:dev`
 
+##### Database
+
+For now, we need the database to run in a VPS, and for that to be publicly
+available. This is because we still need to misuse the database seeder
+as our "ETL-Loader". Doing it with a managed database has very slow performance.
+So we need to be able to run the seeder directly on the file system of the
+database server, and the only way to do that is with a VPS.
+
+You can use [Lampsible](https://github.com/saint-hilaire/lampsible) to set that up:
+
+* `lampsible user@host mysql --database-username someuser --database-name laravel`
+* `lampsible user@host php --php-extensions mysql,xml,mbstring`
+
+Then, to make the database reachable from outside, SSH into the VPS, and:
+
+* In /etc/mysql/mysql.conf.d/mysqld.cnf, the "bind-address" fields should
+  have the value `0.0.0.0`, not `127.0.0.1`.
+* MySQL (maybe implement this in Lampsible?):
+  - `CREATE USER 'username'@'%' IDENTIFIED BY 'password';`
+  - `GRANT ALL PRIVILEGES  ON *.* TO 'username'@'%' WITH GRANT OPTION;`
+  - `FLUSH PRIVILEGES;`
+
+Finally, when that is set up, upload the latest "legacy-build" (see below)
+to the database server, along with a normalized.json containing production data,
+and use them to run the seeder on the database server. Make sure to set a
+proper and secure value for `BACKPACK_DEFAULT_ADMIN_PASSWORD` in .env!
+This is not ideal, but for the time being, our makeshift "load process" of our ETL pipeline.
+
+##### Legacy builds
+
+Though we are moving towards building and deploying with Docker, we still
+need to maintain "legacy builds" - basically archive files with dependencies
+installed, ready to extract in a webroot. This because of the
+database issues described above. So with every release,
+along with pushing a new Docker image to the container registry,
+we also need to follow these steps:
+
+* Clone a fresh copy of the code into a local directory, check out
+  desired version.
+* `composer install`
+* `npm install`
+* `npm run production`
+* `rm -rf .git*`
+* Make an archive of that directory, i.e. `tar -czf cr-laravel-app-1.0.2.tar.gz cr-laravel-app/`
+* Upload that to GitHub release page.
+
 #### Production/Stage/etc. (LAMP stack, deprecated)
 
 Set up a LAMP stack and extract the latest build into /var/www/html/...
@@ -75,9 +121,15 @@ more info.
 #### Local (Docker, preferred)
 
 * Build: `docker build -t cr-laravel-app:SOME_TAG .`
-* TODO: Deal with having to generate `APP_KEY`.
+* In the code, you need a working .env file, with `APP_KEY`, database credentials,
+  and so on.
 * `docker compose up -d`
-* Browse to http://localhost:8000
+* Browse to http://localhost:8000. In the first few seconds, you will encounter
+  the error "Connection was reset". This needs to be improved, but for now,
+  is to be expected.
+* When you do it for the first time, you have to seed the database.
+  Shell into the container (`docker exec -ti cr-laravel-app bash`) and then
+  run the seeder: `php artisan db:seed`
 
 #### Local (legacy)
 

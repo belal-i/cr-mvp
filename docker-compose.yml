@@ -19,8 +19,7 @@ services:
         # TODO: This needs to be available, which, out of the box,
         # it isn't.
         env_file: .env
-        # TODO: Link volume so I can edit code without having to rebuild
-        # the container all the time?
+        # TODO
         # volumes:
         #     - '.:/var/www/html'
         # networks:
@@ -44,8 +43,8 @@ services:
             MYSQL_ALLOW_EMPTY_PASSWORD: 1
         # TODO: We'll need this. Otherwise, currently, we have to reseed
         # the database everytime we stop the containers.
-        # volumes:
-        #     - ???
+        volumes:
+            - cr-db:/var/lib/mysql
         healthcheck:
             test:
                 - CMD
@@ -54,6 +53,5 @@ services:
                 - '-p${DB_PASSWORD}'
             retries: 3
             timeout: 5s
-# TODO?
-# volumes:
-#     ???
+volumes:
+    cr-db:
