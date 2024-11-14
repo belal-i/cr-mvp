@@ -60,9 +60,8 @@ We have a container registry at DigitalOcean. If you did everything right
 so far, you should be able to authenticate your local Docker installation
 to it, with: `doctl registry login`.
 
-Tag an image (example): `docker tag cr-laravel-app:dev registry.digitalocean.com/city-residence/cr-laravel-app:dev` (_city-residence_ is our registry's name)
-
-Push the image: `docker push registry.digitalocean.com/city-residence/cr-laravel-app:dev`
+Tag an image (example): `docker tag cr-laravel-app:1.2.0-beta-1 registry.digitalocean.com/city-residence/cr-laravel-app`
+Then, push that image: `docker push registry.digitalocean.com/city-residence/cr-laravel-app`
 
 ##### Database
 
@@ -88,9 +87,15 @@ Then, to make the database reachable from outside, SSH into the VPS, and:
 
 Finally, when that is set up, upload the latest "legacy-build" (see below)
 to the database server, along with a normalized.json containing production data,
-and use them to run the seeder on the database server. Make sure to set a
-proper and secure value for `BACKPACK_DEFAULT_ADMIN_PASSWORD` in .env!
-This is not ideal, but for the time being, our makeshift "load process" of our ETL pipeline.
+and use them to run the seeder on the database server.
+
+Special care must be given to the "Seeder-Laravel-App's" .env file.
+`BACKPACK_DEFAULT_ADMIN_PASSWORD` must be a real and strong password.
+Everything should be as close to production as possible, except
+for the local database connection.
+Also, I haven't verified it, but I suspect that the `APP_KEY` must
+be the same as what will run in Stage, Production, etc.
+Currently there are some tricky issues about token mismatch and so on.
 
 ##### Legacy builds
 
@@ -157,16 +162,19 @@ Required cr-etl version: `v1.3.0`
 
 ### Troubleshooting
 
-This is not a stable version. Things are broken. Common problems and fixes:
+We are still cleaning up some issues. Some common problems that might arise,
+and their fixes:
 
 * SQL table not found: This is because migrations failed to run when the
-  container started. The way we (try to) ensure that migrations run is
-  not robust (wait 20 seconds when container starts) Fix: restart container.
-* Undefined array key 0: You need to run the seeder. IDK how to do it properly.
-  Obviously I don't want to do this in the production ready build. So there needs
-  to be a way to inject this into the local docker-compose file - which
-  is strictly for development. But IDK how to do that. For now: shell
-  into the container and run `php artisan db:seed`.
+  container started. Just restart the container, that should do the trick.
+* Undefined array key 0 (local dev environment): You need to run the seeder. 
+  Simply shell into the container and run `php artisan db:seed`.
+* When logging into remote admin, HTTP error 419, strange redirects, and so on.
+  Make sure the `user` in the database has the `role` `ADMIN`.
+  Also, this is quite tricky... deleting browser history, clearing app cache, and
+  so on. But it should work.
+  I suspect that the `APP_KEY` of the "Seeder Laravel App" must be the same
+  as the one on Stage/Production. 
 
 ### Setting up the Backpack admin panel
 
