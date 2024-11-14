@@ -27,6 +27,7 @@ class UserSeeder extends CrNormalizedSeeder
                     'insecure-please-change-me'
                 )
             ),
+            'role' => 'ADMIN',
         ]);
     }
 }
