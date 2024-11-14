@@ -1,6 +1,6 @@
 const mix = require('laravel-mix');
 
-const version = '1.1.0-alpha-2';
+const version = '1.1.0-alpha-3';
 
 const publicCssPath    = 'public/css-'    + version;
 const publicJsPath     = 'public/js-'     + version;
@@ -13,7 +13,7 @@ const publicImagesPath = 'public/images';
 |
 | Mix provides a clean, fluent API for defining some Webpack build steps
 | for your Laravel applications. By default, we are compiling the CSS
-| file for the application as well as bundling up all the JS files. 
+| file for the application as well as bundling up all the JS files.
 |
 */
 
