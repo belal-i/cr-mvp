@@ -1,0 +1,9 @@
+.git*
+README.md
+.env*
+.editorconfig
+vendor
+node_modules
+Dockerfile
+docker-compose.yml
+.dockerignore

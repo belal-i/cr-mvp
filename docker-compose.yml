@@ -1,0 +1,57 @@
+# NOTE: DO NOT USE THIS IN PRODUCTION!
+# This docker-compose.yml file is strictly intended for local development!
+services:
+    cr-laravel-app:
+        container_name: cr-laravel-app
+        # TODO: For now, we have to explicitly build the container
+        # before we try to run the local environment with Docker Compose,
+        # but maybe this could be useful. However... I want
+        # the (production ready!) build to stay independent of the
+        # local development(!) runtime.
+        # build:
+        #     context: ./vendor/laravel/sail/runtimes/8.3
+        #     dockerfile: Dockerfile
+        #     args:
+        #         WWWGROUP: '${WWWGROUP}'
+        image: cr-laravel-app:dev
+        ports:
+            - 8000:80
+        # TODO: This needs to be available, which, out of the box,
+        # it isn't.
+        env_file: .env
+        # TODO
+        # volumes:
+        #     - '.:/var/www/html'
+        # networks:
+        #     - ???
+        # TODO: In a local dev environment, in addition to the migration,
+        # the seeder must also run. Several ways to do this... The command
+        # below breaks the running container.
+        # command: php artisan db:seed
+        depends_on:
+            - cr-db
+    cr-db:
+        container_name: cr-db
+        image: 'mysql/mysql-server:8.0'
+        env_file: .env
+        environment:
+            MYSQL_ROOT_PASSWORD: '${DB_PASSWORD}'
+            MYSQL_ROOT_HOST: '%'
+            MYSQL_DATABASE: '${DB_DATABASE}'
+            MYSQL_USER: '${DB_USERNAME}'
+            MYSQL_PASSWORD: '${DB_PASSWORD}'
+            MYSQL_ALLOW_EMPTY_PASSWORD: 1
+        # TODO: We'll need this. Otherwise, currently, we have to reseed
+        # the database everytime we stop the containers.
+        volumes:
+            - cr-db:/var/lib/mysql
+        healthcheck:
+            test:
+                - CMD
+                - mysqladmin
+                - ping
+                - '-p${DB_PASSWORD}'
+            retries: 3
+            timeout: 5s
+volumes:
+    cr-db:

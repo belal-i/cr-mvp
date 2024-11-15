@@ -20,12 +20,14 @@ class UserSeeder extends CrNormalizedSeeder
         DB::table('users')->insert([
             'name' => 'admin',
             'email' => 'it@city-residence.de',
+            'email_verified_at' => date('Y-m-d'),
             'password' => Hash::make(
                 env(
                     'BACKPACK_DEFAULT_ADMIN_PASSWORD',
                     'insecure-please-change-me'
                 )
             ),
+            'role' => 'ADMIN',
         ]);
     }
 }
