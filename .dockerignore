@@ -7,3 +7,8 @@ node_modules
 Dockerfile
 docker-compose.yml
 .dockerignore
+/storage/app/public/*
+/storage/framework/cache/data/*
+/storage/framework/sessions/*
+/storage/framework/testing/*
+/storage/framework/views/*
