@@ -50,6 +50,31 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
+    public const API_FIELDS = [
+        'id',
+        'name',
+        'email',
+        'email_verified_at',
+        'password',
+        'remember_token',
+        'created_at',
+        'updated_at',
+        'address_id',
+        'first_name',
+        'last_name',
+        'salutation',
+        'phone',
+        'last_contact_date',
+        'last_contact_time',
+        'company',
+        'date_of_birth',
+        'has_identification',
+        'employer',
+        'job_type',
+        'gender',
+        'role',
+    ];
+
     public function address(): BelongsTo
     {
         return $this->belongsTo(Address::class);
