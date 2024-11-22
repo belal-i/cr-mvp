@@ -210,8 +210,10 @@ curl https://city-residence.de/api/addresses/1 \
 
 #### Full example: Creating Offer and Renter, along with underlying Users, Addresses, House and Apartment. 
 
-You can test the following API calls locally by running: `./tests/api.sh 'TOKEN'`
-Replace `TOKEN` with a valid token, and be sure to enclose it in quotes.
+You can test the following API calls locally by running: `./tests/api.sh 'URL' 'TOKEN'`
+URL should be something like https://test.city-residence.de or localhost:8000
+TOKEN should be a valid token.
+Both parameters should be enclosed in quotes.
 
 ```
 curl https://city-residence.de/api/addresses \
