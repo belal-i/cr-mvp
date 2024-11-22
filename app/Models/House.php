@@ -18,6 +18,29 @@ class House extends Model
 
     protected $guarded = [];
 
+    public const API_FIELDS = [
+        'id',
+        'address_id',
+        'created_at',
+        'updated_at',
+        'energy_certificate_date',
+        'energy_consumption_contains_warm_water',
+        'energy_rating_type',
+        'energy_source',
+        'energy_usage_value',
+        'has_dryer',
+        'has_elevator',
+        'has_washing_machine',
+        'has_landmark_status',
+        'house_character',
+        'house_description',
+        'house_type',
+        'number_of_stories',
+        'source_id',
+        'year_of_construction',
+        'year_of_last_renovation',
+    ];
+
     public function address(): BelongsTo
     {
         return $this->belongsTo(Address::class);

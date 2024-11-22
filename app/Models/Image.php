@@ -17,6 +17,18 @@ class Image extends Model
 
     protected $guarded = [];
 
+    public const API_FIELDS = [
+        'id',
+        'apartment_id',
+        'house_id',
+        'address_id',
+        'file_extension',
+        'image_type',
+        'sort_order',
+        'created_at',
+        'updated_at',
+    ];
+
     public function apartment(): BelongsTo
     {
         return $this->belongsTo(Apartment::class);
