@@ -13,7 +13,8 @@ class OfferController extends Controller
      */
     public function index()
     {
-        //
+        // TODO: If we can refactor the endpoint that we had before,
+        // we can use this, which would be better.
     }
 
     /**
@@ -29,7 +30,8 @@ class OfferController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $offer = new Offer();
+        $this->update($request, $offer);
     }
 
     /**
@@ -37,9 +39,7 @@ class OfferController extends Controller
      */
     public function show(Offer $offer)
     {
-        return view('offer-detail', [
-            'offer' => $offer,
-        ]);
+        return $offer;
     }
 
     /**
@@ -55,7 +55,7 @@ class OfferController extends Controller
      */
     public function update(Request $request, Offer $offer)
     {
-        //
+        $this->_update($request, $offer);
     }
 
     /**
@@ -63,7 +63,7 @@ class OfferController extends Controller
      */
     public function destroy(Offer $offer)
     {
-        //
+        $offer->delete();
     }
 
     public static function extractValidFilterParamsFromRequest(

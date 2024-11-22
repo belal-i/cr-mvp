@@ -2,9 +2,10 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
+use App\Models\Text;
+use App\Models\Offer;
 use App\Http\Repositories\OfferRepository;
 use App\Http\Controllers\OfferController;
-use App\Models\Text;
 
 /*
 |--------------------------------------------------------------------------
@@ -48,7 +49,12 @@ Route::get('/offers', function (Request $request) {
     ]);
 });
 
-Route::get('/offers/{offer}', [OfferController::class, 'show']);
+Route::get('/offers/{id}', function ($id) {
+    $offer = Offer::findOrFail($id);
+    return view('offer-detail', [
+        'offer' => $offer,
+    ]);
+});
 
 Route::get('/renter-info', function () {
     return view('content', [

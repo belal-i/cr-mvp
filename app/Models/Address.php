@@ -19,6 +19,25 @@ class Address extends Model
 
     protected $guarded = [];
 
+    public const API_FIELDS = [
+        'id',
+        'city',
+        'compass_direction_from_city_center',
+        'created_at',
+        'distance_from_city_center_m',
+        'house_id',
+        'house_number',
+        'nearby_points_of_interest',
+        'nearby_public_transit',
+        'nearby_shops',
+        'neighborhood',
+        'parking_rating',
+        'source_id',
+        'street',
+        'updated_at',
+        'zip_code',
+    ];
+
     public function images(): HasMany
     {
         return $this->hasMany(Image::class);
@@ -84,7 +103,7 @@ class Address extends Model
         $public_transit_array = json_decode($this->nearby_public_transit, true);
         $subway_array = $public_transit_array['subway'] ?? [];
         foreach ($subway_array as $station => $distance) {
-            $retHtml .= "<li>Haltestelle \"$station\" ($distance)</li>"; 
+            $retHtml .= "<li>Haltestelle \"$station\" ($distance)</li>";
         }
         $retHtml .= "</ul>";
         // $retHtml .= '<p class="border-bottom">S-Bahn:</p>';

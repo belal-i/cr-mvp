@@ -16,6 +16,48 @@ class Offer extends Model
 
     protected $guarded = [];
 
+    public const API_FIELDS = [
+        'id',
+        'apartment_id',
+        'source_id',
+        'start_date',
+        'end_date',
+        'min_months',
+        'max_months',
+        'number_of_persons',
+        'rent',
+        'security_deposit',
+        'security_deposit_type',
+        'reference',
+        'notes',
+        'date_created',
+        'last_changed_by',
+        'date_last_changed',
+        'time_last_changed',
+        'status',
+        'publish_on_immoscout',
+        'va_was_sent',
+        'created_at',
+        'updated_at',
+        'is_premium',
+        'utility_cost_included',
+        'electricity_cost_included',
+        'heating_cost_included',
+        'gas_cost_included',
+        'water_cost_included',
+        'internet_cost_included',
+        'cleaning_cost_included',
+        'utility_cost_amount',
+        'electricity_cost_amount',
+        'heating_cost_amount',
+        'gas_cost_amount',
+        'water_cost_amount',
+        'internet_cost_amount',
+        'cleaning_cost_amount',
+        'date_published',
+        'user_id',
+    ];
+
     public function apartment(): BelongsTo
     {
         return $this->belongsTo(Apartment::class);
