@@ -293,6 +293,19 @@ For this reason, you need to make sure to use the right version of cr-etl:
 
 Required cr-etl version: `v1.3.0`
 
+### Configuring the Mailer
+
+You need these environment variables:
+
+* `MAIL_HOST`
+* `MAIL_PORT`
+* `MAIL_ENCRYPTION`
+* `MAIL_USERNAME`
+* `MAIL_PASSWORD`
+* `MAIL_FROM_ADDRESS`
+* `MAIL_FROM_NAME`
+* `CR_INQUIRY_MAIL_ADDRESS`
+
 ### Troubleshooting
 
 We are still cleaning up some issues. Some common problems that might arise,
