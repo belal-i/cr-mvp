@@ -29,6 +29,7 @@ application, whether production server or local development machine:
 * mbstring
 * intl
 * curl
+* gd
 * zip (dev)
 
 On Ubuntu, and likely on other distros, the full package name is prefaced by
