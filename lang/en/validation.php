@@ -33,6 +33,7 @@ return [
     ],
     'boolean' => 'The :attribute field must be true or false.',
     'can' => 'The :attribute field contains an unauthorized value.',
+    'captcha' => 'Invalid CAPTCHA.',
     'confirmed' => 'The :attribute field confirmation does not match.',
     'contains' => 'The :attribute field is missing a required value.',
     'current_password' => 'The password is incorrect.',
@@ -189,6 +190,13 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes' => [
+        'max-rent' => 'maximum rent',
+        'number_of_rooms-min' => 'minimum number of rooms',
+        'min_months' => 'minimum months',
+        'persons-info' => 'information about persons',
+        'tos' => 'terms of service',
+        'privacy' => 'data privacy policy',
+    ],
 
 ];

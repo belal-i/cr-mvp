@@ -14,20 +14,20 @@ class InquiryController extends Controller
 
         // See https://laravel.com/docs/11.x/validation
         $validated = $request->validate([
-            'max-rent' => 'required',
-            'number_of_rooms-min' => 'required',
-            'start_date' => 'required',
-            'min_months' => 'required',
-            'persons-info' => 'required',
-            'job_type' => 'required',
-            'last_name' => 'required',
+            'max-rent' => 'required|numeric',
+            'number_of_rooms-min' => 'required|numeric',
+            'start_date' => 'required|date',
+            'min_months' => 'required|numeric',
+            'persons-info' => 'required|max:255',
+            'job_type' => 'required|max:255',
+            'last_name' => 'required|max:255',
             // TODO: IIRC, there is some data privacy law, where only one
             // can be required.
-            'email' => 'required',
-            'phone' => 'required',
+            'email' => 'required|email',
+            'phone' => 'required|max:255',
 
-            'tos' => 'required',
-            'privacy' => 'required',
+            'tos' => 'accepted',
+            'privacy' => 'accepted',
             'captcha' => 'required|captcha',
         ]);
 
