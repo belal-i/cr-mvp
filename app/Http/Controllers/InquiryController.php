@@ -23,8 +23,8 @@ class InquiryController extends Controller
             'last_name' => 'required|max:255',
             // TODO: IIRC, there is some data privacy law, where only one
             // can be required.
-            'email' => 'required|email',
-            'phone' => 'required|max:255',
+            'email' => 'required_without:phone|email',
+            'phone' => 'required_without:email|max:255',
 
             'tos' => 'accepted',
             'privacy' => 'accepted',
