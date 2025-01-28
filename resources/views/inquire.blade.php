@@ -13,7 +13,7 @@
     <input type="hidden" name="source_id" value="{{ $offer->source_id }}">
     <div class="row cr-beige mt-5">
         <h3>Angebotsanfrage</h3>
-        <p>Pflichtfelder</p>
+        <p><span class="cr-reqfield">*</span>Pflichtfelder</p>
     </div>
     <div class="row mt-3">
         <h4>Objekt <?php echo $offer->getInfoAtAGlanceText(); ?></h4>
@@ -37,7 +37,7 @@
     </div>
     <div class="row mt-3">
         <div class="col-sm-12 col-md-3">
-            Maximaler Mietpreis in Euro/pro Monat inkl. Nebenkosten
+            Maximaler Mietpreis in Euro/pro Monat inkl. Nebenkosten<span class="cr-reqfield">*</span>
         </div>
         <input class="col-sm-12 col-md-3 @error('max-rent') is-invalid @enderror" type="number" name="max-rent"
             value="{{ old('max-rent') }}">
@@ -55,7 +55,7 @@
     </div>
     <div class="row mt-3">
         <div class="col-sm-12 col-md-3">
-            Zimmer mindestens
+            Zimmer mindestens<span class="cr-reqfield">*</span>
         </div>
         <input class="col-sm-12 col-md-3 @error('number_of_rooms-min') is-invalid @enderror"
             type="number" name="number_of_rooms-min"
@@ -69,7 +69,7 @@
     </div>
     <div class="row mt-3 cr-beige">
         <div class="col-sm-12 col-md-3">
-            Ab wann
+            Ab wann<span class="cr-reqfield">*</span>
         </div>
         <input class="col-sm-12 col-md-2 @error('start_date') is-invalid @enderror"
             type="date" name="start_date"
@@ -90,7 +90,7 @@
     </div>
     <div class="row mt-3 cr-beige">
         <div class="col-sm-12 col-md-3">
-            Wie lange möchten Sie mieten?
+            Wie lange möchten Sie mieten?<span class="cr-reqfield">*</span>
         </div>
         <span class="col-sm-12 col-md-9">Voraussichtlich <input type="number" name="min_months"
             class="@error('min_months') is-invalid @enderror"
@@ -106,7 +106,7 @@
         <div class="col-sm-12 col-md-3">
             Anzahl und Status der Personen
             (Einzelperson/Paar/Kinder/Kollegen)
-            (Name der miteinziehenden Personen, Alter der Kinder)
+            (Name der miteinziehenden Personen, Alter der Kinder)<span class="cr-reqfield">*</span>
         </div>
         <textarea class="col-sm-12 col-md-6 @error('persons-info') is-invalid @enderror"
             name="persons-info" rows=4
@@ -134,7 +134,7 @@
     </div>
     <div class="row mt-3 cr-beige">
         <div class="col-sm-12 col-md-3">
-            Beschäftigung/Einkommensart
+            Beschäftigung/Einkommensart<span class="cr-reqfield">*</span>
         </div>
         <input type="text" class="col-sm-12 col-md-6 @error('job_type') is-invalid @enderror"
             name="job_type" value="{{ old('job_type') }}">
@@ -176,7 +176,7 @@
     </div>
     <div class="row mt-3">
         <div class="col-sm-12 col-md-3">
-            Nachname
+            Nachname<span class="cr-reqfield">*</span>
         </div>
         <input type="text" class="col-sm-12 col-md-6 @error('last_name') is-invalid @enderror"
             name="last_name" value="{{ old('last_name') }}">
@@ -203,7 +203,7 @@
     </div>
     <div class="row mt-3">
         <div class="col-sm-12 col-md-3 @error('email') is-invalid @enderror">
-            Email
+            Email<span class="cr-reqfield">*</span>
         </div>
         <input type="text" class="col-sm-12 col-md-6" name="email"
             value="{{ old('email') }}">
@@ -216,7 +216,7 @@
     </div>
     <div class="row mt-3">
         <div class="col-sm-12 col-md-3 @error('phone') is-invalid @enderror">
-            Telefon
+            Telefon<span class="cr-reqfield">*</span>
         </div>
         <input type="text" class="col-sm-12 col-md-6" name="phone"
             value="{{ old('phone') }}">
@@ -238,7 +238,7 @@
     {{-- TODO : Links for this legal stuff. --}}
 
     <div class="row mt-3">
-        <h5>Allgemine Geschäftsbedingungen</h5>
+        <h5>Allgemine Geschäftsbedingungen<span class="cr-reqfield">*</span></h5>
         <span>
             <?php echo make_checkbox(
                 'tos',
@@ -256,12 +256,13 @@
         @enderror
     </div>
     <div class="row mt-3">
-        <h5>Datenschutzerklärung</h5>
+        <h5>Datenschutzerklärung<span class="cr-reqfield">*</span></h5>
         <span>
             <?php echo make_checkbox(
                 'privacy',
                 "Mit Absenden dieses Auftrages bestätigt der Auftraggeber die
-                <a href=\"#\">Datenschutzerklärung</a> gelesen zu haben und nimmt diese an.",
+                <a href=\"#\">Datenschutzerklärung</a> gelesen zu
+                haben und nimmt diese an.",
                 old('privacy') == 'on',
                 'privacy'
             ); ?>

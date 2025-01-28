@@ -167,6 +167,11 @@ then we can get rid of this rule.
     }
 }
 
+.cr-reqfield {
+    color: red;
+    font-size: 150%;
+}
+
 /* The quickfilter */
 /* --------------- */
 
