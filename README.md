@@ -52,6 +52,7 @@ Useful links:
 * You need access tokens:
   * https://docs.digitalocean.com/reference/api/create-personal-access-token/
   * Generate tokens here: https://cloud.digitalocean.com/account/api/tokens
+  * If needed, remove old tokens: `doctl auth remove --context cr-web`
   * Give doctcl access to the new token: `doctl auth init --context cr-web`
 
 If you installed doctl with Ubuntu Snap, you need to grant doctl permissions
