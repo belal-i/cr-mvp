@@ -97,3 +97,15 @@ Route::get('/about', function () {
         'contentText' => Text::getText('ABOUT'),
     ]);
 });
+
+Route::get('/tos', function () {
+    return view('content', [
+        'contentText' => Text::getText('TOS'),
+    ]);
+});
+
+Route::get('/privacy-policy', function () {
+    return view('content', [
+        'contentText' => Text::getText('PRIVACY_POLICY'),
+    ]);
+});

@@ -235,15 +235,13 @@
             placeholder="Ihre Erreichbarkeit, weitere Angebotsnummern usw." rows=4
             >{{ old('other') }}</textarea>
     </div>
-    {{-- TODO : Links for this legal stuff. --}}
-
     <div class="row mt-3">
         <h5>Allgemine Geschäftsbedingungen<span class="cr-reqfield">*</span></h5>
         <span>
             <?php echo make_checkbox(
                 'tos',
                 "Mit Absenden dieses Auftrages erkennt
-                der Auftraggeber die <a href=\"#\">Allgemeinen Geschäftsbedingungen</a>
+                der Auftraggeber die <a href=\"/tos\">Allgemeinen Geschäftsbedingungen</a>
                 der City-Residence GmbH an.",
                 old('tos') == 'on',
                 'tos'
@@ -261,7 +259,7 @@
             <?php echo make_checkbox(
                 'privacy',
                 "Mit Absenden dieses Auftrages bestätigt der Auftraggeber die
-                <a href=\"#\">Datenschutzerklärung</a> gelesen zu
+                <a href=\"/privacy-policy\">Datenschutzerklärung</a> gelesen zu
                 haben und nimmt diese an.",
                 old('privacy') == 'on',
                 'privacy'
