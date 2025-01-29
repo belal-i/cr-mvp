@@ -5,6 +5,8 @@
     <div class="col-sm-auto cr-ui-tab-1" style="margin-right: 5px;">Expose</div>
     <div class="col-sm-auto cr-ui-tab-2">Lage</div>
     <div class="col-sm-auto cr-ui-tab-3" style="margin-left: 45px;"><a href="/offers">Ergebnisliste</a></div>
+    <div class="col-sm-6"></div>
+    <div class="col-sm-auto cr-ui-tab-3"><a href="/inquire/{{ $offer->id }}">Anfragen</a></div>
 </div>
 
 <div class="row site-content cr-detail-view-heading">

@@ -5,11 +5,12 @@ RUN a2enmod rewrite
 
 # Update APT and install missing required PHP extensions
 RUN apt-get update \
-    && apt-get install -y libicu-dev libzip-dev default-mysql-client \
+    && apt-get install -y libicu-dev libzip-dev default-mysql-client libpng-dev libjpeg-dev libfreetype-dev \
     && docker-php-ext-configure intl \
     && docker-php-ext-configure zip \
     && docker-php-ext-configure pdo_mysql \
-    && docker-php-ext-install intl zip pdo_mysql
+    && docker-php-ext-configure gd --with-freetype --with-jpeg \
+    && docker-php-ext-install intl zip pdo_mysql gd
 # These extensions are also required, but included with the base image.
 # xml
 # mbstring
@@ -32,7 +33,7 @@ RUN chown -R www-data:www-data .
 
 # TODO: This is quite hacky, but it's taken from the official docs...
 # However, we might have to use Nginx / reverse proxy anyway, for SSL stuff,
-# and that makes this moot... 
+# and that makes this moot...
 # and that would require a different base image... php-fpm or something like that...
 RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-available/*.conf
 RUN sed -ri -e 's!/var/www/!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/apache2.conf /etc/apache2/conf-available/*.conf
