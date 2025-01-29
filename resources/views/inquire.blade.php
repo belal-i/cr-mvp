@@ -1,13 +1,5 @@
 @extends ('layouts/site')
 @section ('content')
-
-<?php
-#echo '<pre>';
-#var_dump(old('tos'));
-#var_dump($errors);
-#echo '</pre>';
-#exit();
-?>
 <form class="site-content" method="post" action="/send-inquiry">
     <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
     <input type="hidden" name="source_id" value="{{ $offer->source_id }}">

@@ -1,19 +1,15 @@
 <!doctype html>
 <html>
     <head>
-        <title>Testanfrage</title>
+        <title>Anfrage zur Vermittlung</title>
     </head>
     <body>
-        <h3>Hello from Laravel!</h3>
+        <h3>Anfrage zur Vermittlung</h3>
         <style>
             .cr-beige {
                 background-color: #f3f0dd;
             }
         </style>
-{{--
-    <p>ID: {{ $id }}</p>
-    <p>Source ID: {{ $source_id }}</p>
---}}
         <table>
             <tr class="cr-beige">
                 <td>Legacy-ID</td>

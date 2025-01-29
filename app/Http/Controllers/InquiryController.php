@@ -12,7 +12,6 @@ class InquiryController extends Controller
     public function store(Request $request): RedirectResponse
     {
 
-        // See https://laravel.com/docs/11.x/validation
         $validated = $request->validate([
             'max-rent' => 'required|numeric',
             'number_of_rooms-min' => 'required|numeric',
@@ -21,11 +20,8 @@ class InquiryController extends Controller
             'persons-info' => 'required|max:255',
             'job_type' => 'required|max:255',
             'last_name' => 'required|max:255',
-            // TODO: IIRC, there is some data privacy law, where only one
-            // can be required.
             'email' => 'required_without:phone|email',
             'phone' => 'required_without:email|max:255',
-
             'tos' => 'accepted',
             'privacy' => 'accepted',
             'captcha' => 'required|captcha',
