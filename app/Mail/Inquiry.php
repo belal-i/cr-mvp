@@ -21,6 +21,7 @@ class Inquiry extends Mailable
     public function __construct(
         //public $id,
         public $sourceId,
+        public $appointmentWanted,
         public $apartmentQuestions,
         public $maxRent,
         public $firstName,
@@ -61,8 +62,6 @@ class Inquiry extends Mailable
     {
         return new Content(
             view: 'mail.inquiry',
-            // TODO: We don't really need this.
-            text: 'mail.inquiry-text',
         );
     }
 

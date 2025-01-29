@@ -11,7 +11,6 @@ class InquiryController extends Controller
 {
     public function store(Request $request): RedirectResponse
     {
-
         $validated = $request->validate([
             'max-rent' => 'required|numeric',
             'number_of_rooms-min' => 'required|numeric',
@@ -32,6 +31,7 @@ class InquiryController extends Controller
         // just to quickly demonstrate.
         Mail::to(env('CR_INQUIRY_MAIL_ADDRESS'))->send(new Inquiry(
             sourceId: $request->input('source_id'),
+            appointmentWanted: $request->input('appointment-wanted') == 'yes',
             apartmentQuestions: $request->input('apartment-questions'),
             numberOfRoomsMin: $request->input('number_of_rooms-min'),
             startDate: $request->input('start_date'),

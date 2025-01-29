@@ -15,6 +15,10 @@
                 <td>Legacy-ID</td>
                 <td>{{ $sourceId }}</td>
             </tr>
+            <tr class="cr-beige">
+                <td>Besichtigung gewünscht</td>
+                <td>{{ $appointmentWanted ? 'Ja' : 'Nein' }}</td>
+            </tr>
             <tr>
                 <td>Maximale Miete</td>
                 <td>{{ $maxRent }}</td>
