@@ -29,6 +29,7 @@ application, whether production server or local development machine:
 * mbstring
 * intl
 * curl
+* gd
 * zip (dev)
 
 On Ubuntu, and likely on other distros, the full package name is prefaced by
@@ -51,6 +52,7 @@ Useful links:
 * You need access tokens:
   * https://docs.digitalocean.com/reference/api/create-personal-access-token/
   * Generate tokens here: https://cloud.digitalocean.com/account/api/tokens
+  * If needed, remove old tokens: `doctl auth remove --context cr-web`
   * Give doctcl access to the new token: `doctl auth init --context cr-web`
 
 If you installed doctl with Ubuntu Snap, you need to grant doctl permissions
@@ -291,6 +293,19 @@ The development of cr-etl follows closely with this application.
 For this reason, you need to make sure to use the right version of cr-etl:
 
 Required cr-etl version: `v1.3.0`
+
+### Configuring the Mailer
+
+You need these environment variables:
+
+* `MAIL_HOST`
+* `MAIL_PORT`
+* `MAIL_ENCRYPTION`
+* `MAIL_USERNAME`
+* `MAIL_PASSWORD`
+* `MAIL_FROM_ADDRESS`
+* `MAIL_FROM_NAME`
+* `CR_INQUIRY_MAIL_ADDRESS`
 
 ### Troubleshooting
 

@@ -17,6 +17,10 @@
     }
 }
 
+.cr-beige {
+    background-color: #f3f0dd;
+}
+
 .cr-bg-dark {
     background: rgba(100, 100, 100, 0.75);
 }
@@ -25,6 +29,10 @@ input,
 select,
 .no-radius {
     border-radius: 0px;
+}
+
+label:hover {
+    cursor: pointer;
 }
 
 .cr-txt-light,
@@ -157,6 +165,11 @@ then we can get rid of this rule.
         padding-top: 1.5em;
         float: right;
     }
+}
+
+.cr-reqfield {
+    color: red;
+    font-size: 150%;
 }
 
 /* The quickfilter */

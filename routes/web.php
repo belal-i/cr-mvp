@@ -6,6 +6,7 @@ use App\Models\Text;
 use App\Models\Offer;
 use App\Http\Repositories\OfferRepository;
 use App\Http\Controllers\OfferController;
+use App\Http\Controllers\InquiryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -56,6 +57,17 @@ Route::get('/offers/{id}', function ($id) {
     ]);
 });
 
+Route::get('/inquire/{offer_id}', function ($offerId) {
+    // TODO: The offer should actually be optional...
+    // Should be possible to send inquiries without the offer.
+    $offer = Offer::findOrFail($offerId);
+    return view('inquire', [
+        'offer' => $offer
+    ]);
+});
+
+Route::post('send-inquiry', [InquiryController::class, 'store']);
+
 Route::get('/renter-info', function () {
     return view('content', [
         'contentText' => Text::getText('RENTER_INFO'),
@@ -83,5 +95,17 @@ Route::get('/interior-design', function () {
 Route::get('/about', function () {
     return view('content', [
         'contentText' => Text::getText('ABOUT'),
+    ]);
+});
+
+Route::get('/tos', function () {
+    return view('content', [
+        'contentText' => Text::getText('TOS'),
+    ]);
+});
+
+Route::get('/privacy-policy', function () {
+    return view('content', [
+        'contentText' => Text::getText('PRIVACY_POLICY'),
     ]);
 });

@@ -99,7 +99,7 @@ function make_select_html($name, $options,
     return $ret_html;
 }
 
-function make_checkbox($name, $label_text, $checked = false, $id = null)
+function make_checkbox($name, $label_text, $checked = false, $id = null, $other_properties = null)
 {
     if ($id === null)
         $id = $name;
@@ -110,7 +110,7 @@ function make_checkbox($name, $label_text, $checked = false, $id = null)
         $checked = '';
 
     return <<<EOF
-    <input type="checkbox" id="$id" name="$name"$checked>
+    <input type="checkbox" id="$id" name="$name"$checked $other_properties>
     <label for="$id">$label_text</label>
 EOF;
 }
