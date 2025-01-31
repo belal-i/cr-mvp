@@ -32,12 +32,12 @@
             Maximaler Mietpreis in Euro/pro Monat inkl. Nebenkosten<span class="cr-reqfield">*</span>
         </div>
         <input class="col-sm-12 col-md-3 @error('max-rent') is-invalid @enderror" type="number" name="max-rent"
-            value="{{ old('max-rent') }}">
+            value="{{ old('max-rent') }}" oninput="$('#max-rent-error').hide();">
     </div>
     <div class="row mt-1">
         @error('max-rent')
             <div class="col-md-3"></div>
-            <div class="alert alert-danger col-sm-12 col-md-3">{{ $message }}</div>
+            <div id="max-rent-error" class="alert alert-danger col-sm-12 col-md-3">{{ $message }}</div>
         @enderror
     </div>
     <div class="row mt-3 cr-beige">
@@ -51,12 +51,13 @@
         </div>
         <input class="col-sm-12 col-md-3 @error('number_of_rooms-min') is-invalid @enderror"
             type="number" name="number_of_rooms-min"
-            value="{{ old('number_of_rooms-min') }}">
+            value="{{ old('number_of_rooms-min') }}"
+            oninput="$('#number_of_rooms-min-error').hide();">
     </div>
     <div class="row mt-1">
         @error('number_of_rooms-min')
             <div class="col-md-3"></div>
-            <div class="alert alert-danger col-sm-12 col-md-3">{{ $message }}</div>
+            <div id="number_of_rooms-min-error" class="alert alert-danger col-sm-12 col-md-3">{{ $message }}</div>
         @enderror
     </div>
     <div class="row mt-3 cr-beige">
@@ -65,12 +66,13 @@
         </div>
         <input class="col-sm-12 col-md-2 @error('start_date') is-invalid @enderror"
             type="date" name="start_date"
-            value="{{ old('start_date') }}">
+            value="{{ old('start_date') }}"
+            onchange="$('#start_date-error').hide();">
     </div>
     <div class="row mt-1">
         @error('start_date')
             <div class="col-md-3"></div>
-            <div class="alert alert-danger col-sm-12 col-md-3">{{ $message }}</div>
+            <div id="start_date-error" class="alert alert-danger col-sm-12 col-md-3">{{ $message }}</div>
         @enderror
     </div>
     <div class="row mt-3">
@@ -86,12 +88,13 @@
         </div>
         <span class="col-sm-12 col-md-9">Voraussichtlich <input type="number" name="min_months"
             class="@error('min_months') is-invalid @enderror"
-            value="{{ old('min_months') }}"> Monate</span>
+            value="{{ old('min_months') }}"
+            oninput="$('#min_months-error').hide();"> Monate</span>
     </div>
     <div class="row mt-1">
         @error('min_months')
             <div class="col-md-3"></div>
-            <div class="alert alert-danger col-sm-12 col-md-3">{{ $message }}</div>
+            <div id="min_months-error" class="alert alert-danger col-sm-12 col-md-3">{{ $message }}</div>
         @enderror
     </div>
     <div class="row mt-3">
@@ -102,12 +105,13 @@
         </div>
         <textarea class="col-sm-12 col-md-6 @error('persons-info') is-invalid @enderror"
             name="persons-info" rows=4
+            oninput="$('#persons-info-error').hide();"
         >{{ old('persons-info') }}</textarea>
     </div>
     <div class="row mt-1">
         @error('persons-info')
             <div class="col-md-3"></div>
-            <div class="alert alert-danger col-sm-12 col-md-3">{{ $message }}</div>
+            <div id="persons-info-error" class="alert alert-danger col-sm-12 col-md-3">{{ $message }}</div>
         @enderror
     </div>
     <div class="row mt-3 cr-beige">
@@ -129,12 +133,13 @@
             Beschäftigung/Einkommensart<span class="cr-reqfield">*</span>
         </div>
         <input type="text" class="col-sm-12 col-md-6 @error('job_type') is-invalid @enderror"
-            name="job_type" value="{{ old('job_type') }}">
+            name="job_type" value="{{ old('job_type') }}"
+            oninput="$('#job_type-error').hide();">
     </div>
     <div class="row mt-1">
         @error('job_type')
             <div class="col-md-3"></div>
-            <div class="alert alert-danger col-sm-12 col-md-3">{{ $message }}</div>
+            <div id="job_type-error" class="alert alert-danger col-sm-12 col-md-3">{{ $message }}</div>
         @enderror
     </div>
     <div class="row mt-3">
@@ -171,12 +176,13 @@
             Nachname<span class="cr-reqfield">*</span>
         </div>
         <input type="text" class="col-sm-12 col-md-6 @error('last_name') is-invalid @enderror"
-            name="last_name" value="{{ old('last_name') }}">
+            name="last_name" value="{{ old('last_name') }}"
+            oninput="$('#last_name-error').hide();">
     </div>
     <div class="row mt-1">
         @error('last_name')
             <div class="col-md-3"></div>
-            <div class="alert alert-danger col-sm-12 col-md-3">{{ $message }}</div>
+            <div id="last_name-error" class="alert alert-danger col-sm-12 col-md-3">{{ $message }}</div>
         @enderror
     </div>
     <div class="row mt-3">
@@ -198,12 +204,13 @@
             Email<span class="cr-reqfield">*</span>
         </div>
         <input type="text" class="col-sm-12 col-md-6" name="email"
+            oninput="$('#email-error').hide();"
             value="{{ old('email') }}">
     </div>
     <div class="row mt-1">
         @error('email')
             <div class="col-md-3"></div>
-            <div class="alert alert-danger col-sm-12 col-md-3">{{ $message }}</div>
+            <div id="email-error" class="alert alert-danger col-sm-12 col-md-3">{{ $message }}</div>
         @enderror
     </div>
     <div class="row mt-3">
@@ -211,12 +218,13 @@
             Telefon<span class="cr-reqfield">*</span>
         </div>
         <input type="text" class="col-sm-12 col-md-6" name="phone"
-            value="{{ old('phone') }}">
+            value="{{ old('phone') }}"
+            oninput="$('#phone-error').hide();">
     </div>
     <div class="row mt-1">
         @error('phone')
             <div class="col-md-3"></div>
-            <div class="alert alert-danger col-sm-12 col-md-3">{{ $message }}</div>
+            <div id="phone-error" class="alert alert-danger col-sm-12 col-md-3">{{ $message }}</div>
         @enderror
     </div>
     <div class="row mt-3 cr-beige">
@@ -236,13 +244,14 @@
                 der Auftraggeber die <a href=\"/tos\">Allgemeinen Geschäftsbedingungen</a>
                 der City-Residence GmbH an.",
                 old('tos') == 'on',
-                'tos'
+                'tos',
+                'oninput="$(\'#tos-error\').hide();"'
             ); ?>
         </span>
     </div>
     <div class="row mt-1">
         @error('tos')
-            <div class="alert alert-danger col-sm-12 col-md-3">{{ $message }}</div>
+            <div id="tos-error" class="alert alert-danger col-sm-12 col-md-3">{{ $message }}</div>
         @enderror
     </div>
     <div class="row mt-3">
@@ -254,19 +263,21 @@
                 <a href=\"/privacy-policy\">Datenschutzerklärung</a> gelesen zu
                 haben und nimmt diese an.",
                 old('privacy') == 'on',
-                'privacy'
+                'privacy',
+                'oninput="$(\'#privacy-error\').hide();"'
             ); ?>
         </span>
     </div>
     <div class="row mt-1">
         @error('privacy')
-            <div class="alert alert-danger col-sm-12 col-md-3">{{ $message }}</div>
+            <div id="privacy-error" class="alert alert-danger col-sm-12 col-md-3">{{ $message }}</div>
         @enderror
     </div>
     <div class="row mt-3 cr-beige">
         <div class="row m-2">
             <input class="col-sm-12 col-md-6 @error('captcha') is-invalid @enderror"
-                type="text" name="captcha" placeholder="Please enter the following CAPTCHA:">
+                type="text" name="captcha" placeholder="Please enter the following CAPTCHA:"
+                oninput="$('#captcha-error').hide();">
         </div>
         <div class="row m-2">
             <?php echo captcha_img(attrs: ['class'=> 'col-sm-12 col-md-4']); ?>
@@ -274,7 +285,7 @@
     </div>
     <div class="row mt-1">
         @error('captcha')
-            <div class="alert alert-danger col-sm-12 col-md-3">{{ $message }}</div>
+            <div id="captcha-error" class="alert alert-danger col-sm-12 col-md-3">{{ $message }}</div>
         @enderror
     </div>
     <div class="row mt-3">
