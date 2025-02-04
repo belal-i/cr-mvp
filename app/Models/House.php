@@ -105,6 +105,7 @@ class House extends Model
             'NATURAL_GAS_LIGHT' => 'Erdgas L',
             'OIL' => 'Öl',
             'OIL_HEATING' => 'Öl Heizung',
+            'SELF_CONTAINED_CENTRAL_HEATING' => 'Zentralheizung für Selbstversorger',
             'SOLAR_HEATING' => 'Solarthermie',
             'SOUR_GAS' => 'Erdgas schwer',
             'STEAM_DISTRICT_HEATING' => 'Fernwärme-Dampf',
