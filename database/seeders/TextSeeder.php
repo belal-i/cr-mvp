@@ -263,6 +263,11 @@ EOF;
 
 EOF;
 
+        $thanks = <<<EOF
+        <p>Vielen Dank für Ihren Auftrag.</p>
+        <p>Die Daten wurden an uns übermittelt. Wir werden uns umgehend mit Ihnen in Verbindung setzen.</p>
+EOF;
+
 
         $textEntries = [
             [
@@ -309,6 +314,11 @@ EOF;
                 'id' => 9,
                 'text_type' => 'PRIVACY_POLICY',
                 'text_content' => $privacyPolicy,
+            ],
+            [
+                'id' => 10,
+                'text_type' => 'THANKS',
+                'text_content' => $thanks,
             ],
         ];
         foreach ($textEntries as $entry) {
