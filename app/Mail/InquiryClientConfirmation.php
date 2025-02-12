@@ -24,6 +24,7 @@ class InquiryClientConfirmation extends Mailable
         public $startDate,
         public $minMonths,
         public $offerId,
+        public $offerLegacyId,
         public $greeting = null,
     )
     {
