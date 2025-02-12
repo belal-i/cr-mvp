@@ -61,7 +61,6 @@ class InquiryController extends Controller
             offerId: $request->input('offer_id'),
         ));
 
-        // TODO
-        return redirect('/offers');
+        return redirect('/thanks');
     }
 }

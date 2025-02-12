@@ -10,6 +10,17 @@
         <h3>Angebotsanfrage</h3>
         <p><span class="cr-reqfield">*</span>Pflichtfelder</p>
     </div>
+    <div class="row mt-3 cr-beige">
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+    </div>
     <div class="row mt-3">
         <h4>Objekt <?php echo $offer->getInfoAtAGlanceText(); ?></h4>
     </div>
@@ -286,17 +297,6 @@
     </div>
     <div class="row mt-3">
         <input class="cr-submit-button col-2" type="submit" value="Anfrage senden">
-    </div>
-    <div class="row mt-3 cr-beige">
-    @if ($errors->any())
-        <div class="alert alert-danger">
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
     </div>
 </form>
 @endsection
