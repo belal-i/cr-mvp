@@ -4,6 +4,8 @@
         <title>Anfrage zur Vermittlung</title>
     </head>
     <body>
+        <img src="{{ $message->embed(public_path() . '/images/city-residence-logo.svg') }}"
+            id="logo-image" width=300>
         <h3>Anfrage zur Vermittlung</h3>
         <style>
             .cr-beige {
@@ -60,10 +62,6 @@
                 <td>{{ $numberOfRoomsMin }}</td>
             </tr>
             <tr>
-                <td>Ab</td>
-                <td>{{ $startDate }}</td>
-            </tr>
-            <tr class="cr-beige">
                 <td>Ab</td>
                 <td>{{ $startDate }}</td>
             </tr>

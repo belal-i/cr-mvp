@@ -2,7 +2,10 @@
 @section ('content')
 <form class="site-content" method="post" action="/send-inquiry">
     <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
-    <input type="hidden" name="source_id" value="{{ $offer->source_id }}">
+    @if ($offer)
+        <input type="hidden" name="source_id" value="{{ $offer->source_id }}">
+        <input type="hidden" name="offer_id" value="{{ $offer->id }}">
+    @endif
     <div class="row cr-beige mt-5">
         <h3>Angebotsanfrage</h3>
         <p><span class="cr-reqfield">*</span>Pflichtfelder</p>
@@ -226,17 +229,10 @@
     </div>
     <div class="row mt-3">
         <div class="col-sm-12 col-md-3 @error('phone') is-invalid @enderror">
-            Telefon<span class="cr-reqfield">*</span>
+            Telefon
         </div>
         <input type="text" class="col-sm-12 col-md-6" name="phone"
-            value="{{ old('phone') }}"
-            oninput="$('#phone-error').hide();">
-    </div>
-    <div class="row mt-1">
-        @error('phone')
-            <div class="col-md-3"></div>
-            <div id="phone-error" class="alert alert-danger col-sm-12 col-md-3">{{ $message }}</div>
-        @enderror
+            value="{{ old('phone') }}">
     </div>
     <div class="row mt-3 cr-beige">
         <div class="col-sm-12 col-md-3">
