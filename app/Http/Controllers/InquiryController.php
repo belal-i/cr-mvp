@@ -52,7 +52,6 @@ class InquiryController extends Controller
             other: $request->input('other'),
         ));
 
-        // TODO
-        return redirect('/offers');
+        return redirect('/thanks');
     }
 }
