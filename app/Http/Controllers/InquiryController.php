@@ -27,9 +27,15 @@ class InquiryController extends Controller
         ]);
 
         // Notify team about inquiry.
+        $appointmentWanted = null;
+        if ($request->input('appointment-wanted') == 'yes') {
+            $appointmentWanted = true;
+        } else if ($request->input('appointment-wanted') == 'no') {
+            $appointmentWanted = false;
+        }
         Mail::to(env('CR_INQUIRY_MAIL_ADDRESS'))->send(new Inquiry(
             sourceId: $request->input('source_id'),
-            appointmentWanted: $request->input('appointment-wanted') == 'yes',
+            appointmentWanted: $appointmentWanted,
             apartmentQuestions: $request->input('apartment-questions'),
             numberOfRoomsMin: $request->input('number_of_rooms-min'),
             startDate: $request->input('start_date'),
@@ -59,6 +65,7 @@ class InquiryController extends Controller
             startDate: $request->input('start_date'),
             minMonths: $request->input('min_months'),
             offerId: $request->input('offer_id'),
+            offerLegacyId: $request->input('source_id'),
         ));
 
         return redirect('/thanks');
