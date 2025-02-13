@@ -1,5 +1,10 @@
 @extends ('layouts/site')
 @section ('content')
+<style>
+    label {
+        display: inline;
+    }
+</style>
 <form class="site-content" method="post" action="/send-inquiry">
     <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
     @if ($offer)
@@ -142,21 +147,25 @@
         <textarea class="col-sm-12 col-md-6" name="pets-info" rows=4
         >{{ old('pets-info') }}</textarea>
     </div>
-    <div class="row mt-3 cr-beige">
-        <div class="col-sm-12 col-md-3">
-            Beschäftigung/Einkommensart<span class="cr-reqfield">*</span>
-        </div>
-        <input type="text" class="col-sm-12 col-md-6 @error('job_type') is-invalid @enderror"
-            name="job_type" value="{{ old('job_type') }}"
-            oninput="$('#job_type-error').hide();">
+    <div class="row mt-3">
+        <span class="cr-reqfield">*</span>
+        <span>
+            <?php echo make_checkbox(
+                'accept-furnished',
+                "Ich habe verstanden, dass es sich bei dem Angebot um eine möblierte Wohnung handelt,
+                die nur auf Zeit zu vermieten ist (in der Regel max. 3 Jahre).",
+                old('accept-furnished') == 'on',
+                'accept-furnished',
+                'oninput="$(\'#accept-furnished-error\').hide();"'
+            ); ?>
+        </span>
     </div>
     <div class="row mt-1">
-        @error('job_type')
-            <div class="col-md-3"></div>
-            <div id="job_type-error" class="alert alert-danger col-sm-12 col-md-3">{{ $message }}</div>
+        @error('accept-furnished')
+            <div id="accept-furnished-error" class="alert alert-danger col-sm-12 col-md-3">{{ $message }}</div>
         @enderror
     </div>
-    <div class="row mt-3">
+    <div class="row mt-3 cr-beige">
         <div class="col-sm-12 col-md-3">
             Anrede
         </div>
@@ -233,6 +242,20 @@
         </div>
         <input type="text" class="col-sm-12 col-md-6" name="phone"
             value="{{ old('phone') }}">
+    </div>
+    <div class="row mt-3">
+        <div class="col-sm-12 col-md-3">
+            Beschäftigung/Einkommensart<span class="cr-reqfield">*</span>
+        </div>
+        <input type="text" class="col-sm-12 col-md-6 @error('job_type') is-invalid @enderror"
+            name="job_type" value="{{ old('job_type') }}"
+            oninput="$('#job_type-error').hide();">
+    </div>
+    <div class="row mt-1">
+        @error('job_type')
+            <div class="col-md-3"></div>
+            <div id="job_type-error" class="alert alert-danger col-sm-12 col-md-3">{{ $message }}</div>
+        @enderror
     </div>
     <div class="row mt-3 cr-beige">
         <div class="col-sm-12 col-md-3">
