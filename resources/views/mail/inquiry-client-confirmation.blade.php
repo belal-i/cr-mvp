@@ -10,19 +10,25 @@
         }
     </style>
     <table>
-        <tr class="cr-beige">
+        @if ($offerLegacyId)
+            <tr class="cr-beige">
+                <td>Angebotsnummer</td>
+                <td>{{ $offerLegacyId }}</td>
+            </tr>
+        @endif
+        <tr>
             <td>Maximale Miete</td>
             <td>{{ $maxRent }}</td>
         </tr>
-        <tr>
+        <tr class="cr-beige">
             <td>Anzahl Zimmer</td>
             <td>{{ $numberOfRoomsMin }}</td>
         </tr>
-        <tr class="cr-beige">
-            <td>Ab</td>
-            <td>{{ $startDate }}</td>
-        </tr>
         <tr>
+            <td>Ab</td>
+            <td>{{ format_date($startDate) }}</td>
+        </tr>
+        <tr class="cr-beige">
             <td>Mietdauer</td>
             <td>{{ $minMonths }}</td>
         </tr>

@@ -114,3 +114,22 @@ function make_checkbox($name, $label_text, $checked = false, $id = null, $other_
     <label for="$id">$label_text</label>
 EOF;
 }
+
+function format_date($date, $locale = 'de-DE')
+{
+    switch ($locale) {
+        case 'de-DE':
+        default:
+            $format = 'dd.MM.yyyy';
+            break;
+    }
+    $formatter = new \IntlDateFormatter(
+        $locale,
+        \IntlDateFormatter::SHORT,
+        \IntlDateFormatter::NONE,
+        'Europe/Berlin',
+        \IntlDateFormatter::GREGORIAN,
+        $format
+    );
+    return $formatter->format(new \DateTime($date));
+}

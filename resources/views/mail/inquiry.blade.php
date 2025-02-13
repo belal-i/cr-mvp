@@ -14,60 +14,69 @@
         </style>
         <table>
             <tr class="cr-beige">
-                <td>Legacy-ID</td>
+                <td>Angebotsnummer</td>
                 <td>{{ $sourceId }}</td>
             </tr>
-            <tr class="cr-beige">
-                <td>Besichtigung gewünscht</td>
-                <td>{{ $appointmentWanted ? 'Ja' : 'Nein' }}</td>
-            </tr>
             <tr>
+                <td>Besichtigung gewünscht</td>
+                <?php
+                if ($appointmentWanted === true) {
+                    $appointmentText = 'Ja';
+                } else if ($appointmentWanted === false) {
+                    $appointmentText = 'Nein';
+                } else {
+                    $appointmentText = '';
+                }
+                ?>
+                <td>{{ $appointmentText }}</td>
+            </tr>
+            <tr class="cr-beige">
                 <td>Maximale Miete</td>
                 <td>{{ $maxRent }}</td>
             </tr>
-            <tr class="cr-beige">
+            <tr>
                 <td>Anrede</td>
                 <td>{{ $salutation }}</td>
             </tr>
-            <tr>
+            <tr class="cr-beige">
                 <td>Titel</td>
                 <td>{{ $title }}</td>
             </tr>
-            <tr class="cr-beige">
+            <tr>
                 <td>Vorname</td>
                 <td>{{ $firstName }}</td>
             </tr>
-            <tr>
+            <tr class="cr-beige">
                 <td>Nachname</td>
                 <td>{{ $lastName }}</td>
             </tr>
-            <tr class="cr-beige">
+            <tr>
                 <td>Firma</td>
                 <td>{{ $company }}</td>
             </tr>
-            <tr>
+            <tr class="cr-beige">
                 <td>Email</td>
                 <td>{{ $email }}</td>
             </tr>
-            <tr class="cr-beige">
+            <tr>
                 <td>Telefon</td>
                 <td>{{ $phone }}</td>
             </tr>
-            <tr>
+            <tr class="cr-beige">
                 <td>Fragen zum Objekt</td>
                 <td>{{ $apartmentQuestions }}</td>
             </tr>
-            <tr class="cr-beige">
+            <tr>
                 <td>Anzahl Zimmer mindestens</td>
                 <td>{{ $numberOfRoomsMin }}</td>
             </tr>
-            <tr>
+            <tr class="cr-beige">
                 <td>Ab</td>
-                <td>{{ $startDate }}</td>
+                <td>{{ format_date($startDate) }}</td>
             </tr>
             <tr>
                 <td>Spätestes Einzugsdatum</td>
-                <td>{{ $latestMoveInDate }}</td>
+                <td>{{ format_date($latestMoveInDate) }}</td>
             </tr>
             <tr class="cr-beige">
                 <td>Monate mindestens</td>
@@ -92,8 +101,8 @@
                 <td>Einkommensart</td>
                 <td>{{ $jobType }}</td>
             </tr>
-            <tr class="cr-beige">
-                <td>Sonst</td>
+            <tr>
+                <td>Sonstiges</td>
                 <td>{{ $other }}</td>
             </tr>
         </table>
