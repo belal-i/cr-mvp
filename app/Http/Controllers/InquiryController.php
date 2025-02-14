@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\Inquiry;
+use App\Mail\InquiryClientConfirmation;
 
 class InquiryController extends Controller
 {
@@ -19,19 +20,22 @@ class InquiryController extends Controller
             'persons-info' => 'required|max:255',
             'job_type' => 'required|max:255',
             'last_name' => 'required|max:255',
-            'email' => 'required_without:phone|email',
-            'phone' => 'required_without:email|max:255',
+            'email' => 'required|email',
             'tos' => 'accepted',
             'privacy' => 'accepted',
             'captcha' => 'required|captcha',
         ]);
 
-        // TODO: Inquiry model? Write to database? Lots of possibilities...
-        // Also, this right here obviously needs to be improved, for now it's
-        // just to quickly demonstrate.
+        // Notify team about inquiry.
+        $appointmentWanted = null;
+        if ($request->input('appointment-wanted') == 'yes') {
+            $appointmentWanted = true;
+        } else if ($request->input('appointment-wanted') == 'no') {
+            $appointmentWanted = false;
+        }
         Mail::to(env('CR_INQUIRY_MAIL_ADDRESS'))->send(new Inquiry(
             sourceId: $request->input('source_id'),
-            appointmentWanted: $request->input('appointment-wanted') == 'yes',
+            appointmentWanted: $appointmentWanted,
             apartmentQuestions: $request->input('apartment-questions'),
             numberOfRoomsMin: $request->input('number_of_rooms-min'),
             startDate: $request->input('start_date'),
@@ -52,7 +56,18 @@ class InquiryController extends Controller
             other: $request->input('other'),
         ));
 
-        // TODO
-        return redirect('/offers');
+        // Send confirmation to client.
+        Mail::to($request->input('email'))->send(new InquiryClientConfirmation(
+            salutation: $request->input('salutation'),
+            name: $request->input('last_name'),
+            maxRent: $request->input('max-rent'),
+            numberOfRoomsMin: $request->input('number_of_rooms-min'),
+            startDate: $request->input('start_date'),
+            minMonths: $request->input('min_months'),
+            offerId: $request->input('offer_id'),
+            offerLegacyId: $request->input('source_id'),
+        ));
+
+        return redirect('/thanks');
     }
 }

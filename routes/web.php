@@ -109,3 +109,9 @@ Route::get('/privacy-policy', function () {
         'contentText' => Text::getText('PRIVACY_POLICY'),
     ]);
 });
+
+Route::get('/thanks', function () {
+    return view('content', [
+        'contentText' => Text::getText('THANKS'),
+    ]);
+});

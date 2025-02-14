@@ -89,16 +89,7 @@ class Offer extends Model
     {
         $today = date('Y-m-d');
         if ($this->start_date > $today) {
-            $date = new \DateTime($this->start_date);
-            $formatter = new \IntlDateFormatter(
-                'de-DE',
-                \IntlDateFormatter::SHORT,
-                \IntlDateFormatter::NONE,
-                'Europe/Berlin',
-                \IntlDateFormatter::GREGORIAN,
-                'dd.MM.yyyy'
-            );
-            return $formatter->format($date);
+            return format_date($this->start_date);
         }
         else {
             return 'sofort';
