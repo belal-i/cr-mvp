@@ -17,7 +17,7 @@
         <script src="{{ asset($jsPath . '/splide.js') }}"></script>
         <script src="{{ asset($jsPath . '/functions.js') }}"></script>
 
-        {{-- TODO: Figure out some way to get the $offerCount into 
+        {{-- TODO: Figure out some way to get the $offerCount into
             EVERY view, so that we can set this dynamically as well.
         --}}
         <title>Wohnen auf Zeit Frankfurt: 60 Wohnungen und Apartments : Möblierte Wohnungen und Apartments</title>
@@ -59,19 +59,19 @@
                 </div>
                 <div class="col-md col-sm-5">
                     <span id="l10n-flags">
-                        <a href="/">
+                        <a href="{{ get_localized_uri('de') }}">
                             <img src="{{ asset('images/de.gif') }}">
                         </a>
-                        <a href="/">
+                        <a href="{{ get_localized_uri('en') }}">
                             <img src="{{ asset('images/en.gif') }}">
                         </a>
-                        <a href="/">
+                        <a href="{{ get_localized_uri('fr') }}">
                             <img src="{{ asset('images/fr.gif') }}">
                         </a>
-                        <a href="/">
+                        <a href="{{ get_localized_uri('es') }}">
                             <img src="{{ asset('images/es.gif') }}">
                         </a>
-                        <a href="/">
+                        <a href="{{ get_localized_uri('it') }}">
                             <img src="{{ asset('images/it.gif') }}">
                         </a>
                     </span>
@@ -79,7 +79,7 @@
                 <div class="col-md col-sm-6" id="quicksearch">
                     {{-- TODO --}}
                     <form action="/" method="get">
-                        <input type="text" placeholder="Objekt-Nr. oder Straße">
+                        <input type="text" placeholder="{{ __('Objekt-Nr. oder Straße') }}">
                         <input type="submit" value="          " class="triangle-submit">
                     </form>
                 </div>
@@ -89,22 +89,28 @@
                     <div class="container">
                         <div class="row navbar-nav mr-auto nav-fill w-100">
                             <div class="col">
-                                <a class="nav-link" href="/offers">Suchen</a>
+                                <a class="nav-link" href="/offers">
+                                    {{ __('Suchen') }}</a>
                             </div>
                             <div class="col">
-                                <a class="nav-link" href="/renter-info">Mieter-Info</a>
+                                <a class="nav-link" href="/renter-info">
+                                    {{ __('Mieter-Info') }}</a>
                             </div>
                             <div class="col">
-                                <a class="nav-link" href="/make-offer">Anbieten</a>
+                                <a class="nav-link" href="/make-offer">
+                                    {{ __('Anbieten') }}</a>
                             </div>
                             <div class="col">
-                                <a class="nav-link" href="/landlord-info">Vermieter-Info</a>
+                                <a class="nav-link" href="/landlord-info">
+                                    {{ __('Vermieter-Info') }}</a>
                             </div>
                             <div class="col">
-                                <a class="nav-link" href="/interior-design">Möblierungsservice</a>
+                                <a class="nav-link" href="/interior-design">
+                                    {{ __('Möblierungsservice') }}</a>
                             </div>
                             <div class="col">
-                                <a class="nav-link" href="/about">Über uns</a>
+                                <a class="nav-link" href="/about">
+                                    {{ __('Über uns') }}</a>
                             </div>
                         </div>
                     </div>

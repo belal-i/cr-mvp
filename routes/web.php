@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\App;
 use Illuminate\Http\Request;
 use App\Models\Text;
 use App\Models\Offer;
@@ -20,27 +21,156 @@ use App\Http\Controllers\InquiryController;
 */
 
 Route::get('/', function () {
+    //var_dump(App::currentLocale());
     return view('home', [
         'offerCount'  => OfferRepository::countFreeOffers(),
-        'bannerText'  => Text::getText('HOMEPAGE_BANNER'),
+        'bannerText'  => __(Text::getText('HOMEPAGE_BANNER')),
+        'contentText' => Text::getText('HOMEPAGE_CONTENT'),
+    ]);
+});
+
+Route::get('/de', function () {
+    App::setLocale('de');
+    // TODO: Would be cool if this worked, but it looks like when redirecting,
+    // the locale is set back to the default.
+    // However, this will be refactored again anyway.
+    //return redirect('/');
+    return view('home', [
+        'offerCount'  => OfferRepository::countFreeOffers(),
+        'bannerText'  => __(Text::getText('HOMEPAGE_BANNER')),
+        'contentText' => Text::getText('HOMEPAGE_CONTENT'),
+    ]);
+});
+
+Route::get('/en', function () {
+    App::setLocale('en');
+    return view('home', [
+        'offerCount'  => OfferRepository::countFreeOffers(),
+        'bannerText'  => __(Text::getText('HOMEPAGE_BANNER')),
+        'contentText' => Text::getText('HOMEPAGE_CONTENT'),
+    ]);
+});
+
+Route::get('/fr', function () {
+    App::setLocale('fr');
+    return view('home', [
+        'offerCount'  => OfferRepository::countFreeOffers(),
+        'bannerText'  => __(Text::getText('HOMEPAGE_BANNER')),
+        'contentText' => Text::getText('HOMEPAGE_CONTENT'),
+    ]);
+});
+
+Route::get('/es', function () {
+    App::setLocale('es');
+    return view('home', [
+        'offerCount'  => OfferRepository::countFreeOffers(),
+        'bannerText'  => __(Text::getText('HOMEPAGE_BANNER')),
+        'contentText' => Text::getText('HOMEPAGE_CONTENT'),
+    ]);
+});
+
+Route::get('/it', function () {
+    App::setLocale('it');
+    return view('home', [
+        'offerCount'  => OfferRepository::countFreeOffers(),
+        'bannerText'  => __(Text::getText('HOMEPAGE_BANNER')),
         'contentText' => Text::getText('HOMEPAGE_CONTENT'),
     ]);
 });
 
 Route::get('/offers', function (Request $request) {
+    $offers = get_offers_from_request($request);
+    $offerCount = $offers->count();
+    // TODO: Not so good, should be refactored too.
     $filterParams = OfferController::extractValidFilterParamsFromRequest(
         $request
     );
-    $whereClauses = OfferController::makeEloquentOfferWhereClauses(
-        $filterParams,
-        [['status', '=', 'FREE']]
-    );
-    $orderBy = OfferController::extractOfferOrderByFromRequest($request);
 
-    $offers = OfferRepository::getFilteredOffers($whereClauses)
-                             ->orderBy($orderBy[0], $orderBy[1]);
+    return view('offers-list', [
+        'offers' => $offers,
+        'offerCount' => $offerCount,
+        // TODO
+        // TODO: Use the session for this. See https://laravel.com/docs/10.x/session
+        'filterParams' => $filterParams,
+    ]);
+});
+
+Route::get('/de/offers', function (Request $request) {
+    App::setLocale('de');
+    $offers = get_offers_from_request($request);
     $offerCount = $offers->count();
-    $offers = $offers->paginate(25);
+    // TODO: Not so good, should be refactored too.
+    $filterParams = OfferController::extractValidFilterParamsFromRequest(
+        $request
+    );
+
+    return view('offers-list', [
+        'offers' => $offers,
+        'offerCount' => $offerCount,
+        // TODO: Use the session for this. See https://laravel.com/docs/10.x/session
+        'filterParams' => $filterParams,
+    ]);
+});
+
+Route::get('/en/offers', function (Request $request) {
+    App::setLocale('en');
+    $offers = get_offers_from_request($request);
+    $offerCount = $offers->count();
+    // TODO: Not so good, should be refactored too.
+    $filterParams = OfferController::extractValidFilterParamsFromRequest(
+        $request
+    );
+
+    return view('offers-list', [
+        'offers' => $offers,
+        'offerCount' => $offerCount,
+        // TODO: Use the session for this. See https://laravel.com/docs/10.x/session
+        'filterParams' => $filterParams,
+    ]);
+});
+
+Route::get('/fr/offers', function (Request $request) {
+    App::setLocale('fr');
+    $offers = get_offers_from_request($request);
+    $offerCount = $offers->count();
+    // TODO: Not so good, should be refactored too.
+    $filterParams = OfferController::extractValidFilterParamsFromRequest(
+        $request
+    );
+
+    return view('offers-list', [
+        'offers' => $offers,
+        'offerCount' => $offerCount,
+        // TODO: Use the session for this. See https://laravel.com/docs/10.x/session
+        'filterParams' => $filterParams,
+    ]);
+});
+
+Route::get('/es/offers', function (Request $request) {
+    App::setLocale('es');
+    $offers = get_offers_from_request($request);
+    $offerCount = $offers->count();
+    // TODO: Not so good, should be refactored too.
+    $filterParams = OfferController::extractValidFilterParamsFromRequest(
+        $request
+    );
+
+    return view('offers-list', [
+        'offers' => $offers,
+        'offerCount' => $offerCount,
+        // TODO: Use the session for this. See https://laravel.com/docs/10.x/session
+        'filterParams' => $filterParams,
+    ]);
+});
+
+Route::get('/it/offers', function (Request $request) {
+    App::setLocale('it');
+    $offers = get_offers_from_request($request);
+    $offerCount = $offers->count();
+    // TODO: Not so good, should be refactored too.
+    $filterParams = OfferController::extractValidFilterParamsFromRequest(
+        $request
+    );
 
     return view('offers-list', [
         'offers' => $offers,

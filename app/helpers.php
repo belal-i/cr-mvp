@@ -1,4 +1,11 @@
 <?php
+// TODO: See function get_offers_from_request below.
+// This is a temporary solution and will be removed soon.
+use Illuminate\Http\Request;
+use App\Http\Repositories\OfferRepository;
+use App\Http\Controllers\OfferController;
+
+
 function get_euro_text($rent)
 {
     return number_format((float)$rent, 0, ',', '.') . ' EUR';
@@ -53,7 +60,7 @@ function get_current_months($number_of_months = 3)
         'MMMM'
     );
 
-    $ret_arr = ['' => 'sofort'];
+    $ret_arr = ['' => __('sofort')];
 
     for ($i = 1; $i < $number_of_months; ++$i) {
         $date_array_key = date(
@@ -66,8 +73,8 @@ function get_current_months($number_of_months = 3)
             )
         );
         $pretty_date_value = $i == $number_of_months - 1
-            ? 'später'
-            : $formatter->format(new \DateTime($date_array_key));
+            ? __('später')
+            : __($formatter->format(new \DateTime($date_array_key)));
 
         $ret_arr[$date_array_key] = $pretty_date_value;
     }
@@ -132,4 +139,44 @@ function format_date($date, $locale = 'de-DE')
         $format
     );
     return $formatter->format(new \DateTime($date));
+}
+
+// TODO: These are a temporary solution. We will refactor this soon,
+// so that the locale persists to the session. Then, we will remove
+// these. It's just to quickly get it working.
+function get_offers_from_request(Request $request)
+{
+    $filterParams = OfferController::extractValidFilterParamsFromRequest(
+        $request
+    );
+    $whereClauses = OfferController::makeEloquentOfferWhereClauses(
+        $filterParams,
+        [['status', '=', 'FREE']]
+    );
+    $orderBy = OfferController::extractOfferOrderByFromRequest($request);
+
+    $offers = OfferRepository::getFilteredOffers($whereClauses)
+                             ->orderBy($orderBy[0], $orderBy[1]);
+
+    return $offers->paginate(25);
+}
+
+function get_localized_uri($locale)
+{
+    $split_uri = explode('/', request()->route()->uri);
+    return count($split_uri) < 1
+        ? "/$locale"
+        : "/$locale/" . implode(
+            '/',
+            array_diff(
+                $split_uri,
+                [
+                    'de',
+                    'en',
+                    'fr',
+                    'es',
+                    'it',
+                ]
+            )
+        );
 }
