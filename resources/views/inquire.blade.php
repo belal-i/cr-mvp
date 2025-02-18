@@ -148,11 +148,11 @@
         >{{ old('pets-info') }}</textarea>
     </div>
     <div class="row mt-3">
-        <span class="cr-reqfield">*</span>
         <span>
             <?php echo make_checkbox(
                 'accept-furnished',
-                "Ich habe verstanden, dass es sich bei dem Angebot um eine möblierte Wohnung handelt,
+                "<span class=\"cr-reqfield\">*</span>    Ich habe verstanden,
+                dass es sich bei dem Angebot um eine möblierte Wohnung handelt,
                 die nur auf Zeit zu vermieten ist (in der Regel max. 3 Jahre).",
                 old('accept-furnished') == 'on',
                 'accept-furnished',
