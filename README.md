@@ -65,58 +65,6 @@ to it, with: `doctl registry login`.
 Tag an image (example): `docker tag cr-laravel-app:1.2.0-beta-1 registry.digitalocean.com/city-residence/cr-laravel-app`
 Then, push that image: `docker push registry.digitalocean.com/city-residence/cr-laravel-app`
 
-##### Database
-
-For now, we need the database to run in a VPS, and for that to be publicly
-available. This is because we still need to misuse the database seeder
-as our "ETL-Loader". Doing it with a managed database has very slow performance.
-So we need to be able to run the seeder directly on the file system of the
-database server, and the only way to do that is with a VPS.
-
-You can use [Lampsible](https://github.com/saint-hilaire/lampsible) to set that up:
-
-* `lampsible user@host mysql --database-username someuser --database-name laravel`
-* `lampsible user@host php --php-extensions mysql,xml,mbstring`
-
-Then, to make the database reachable from outside, SSH into the VPS, and:
-
-* In /etc/mysql/mysql.conf.d/mysqld.cnf, the "bind-address" fields should
-  have the value `0.0.0.0`, not `127.0.0.1`.
-* MySQL (maybe implement this in Lampsible?):
-  - `CREATE USER 'username'@'%' IDENTIFIED BY 'password';`
-  - `GRANT ALL PRIVILEGES  ON *.* TO 'username'@'%' WITH GRANT OPTION;`
-  - `FLUSH PRIVILEGES;`
-
-Finally, when that is set up, upload the latest "legacy-build" (see below)
-to the database server, along with a normalized.json containing production data,
-and use them to run the seeder on the database server.
-
-Special care must be given to the "Seeder-Laravel-App's" .env file.
-`BACKPACK_DEFAULT_ADMIN_PASSWORD` must be a real and strong password.
-Everything should be as close to production as possible, except
-for the local database connection.
-Also, I haven't verified it, but I suspect that the `APP_KEY` must
-be the same as what will run in Stage, Production, etc.
-Currently there are some tricky issues about token mismatch and so on.
-
-##### Legacy builds
-
-Though we are moving towards building and deploying with Docker, we still
-need to maintain "legacy builds" - basically archive files with dependencies
-installed, ready to extract in a webroot. This because of the
-database issues described above. So with every release,
-along with pushing a new Docker image to the container registry,
-we also need to follow these steps:
-
-* Clone a fresh copy of the code into a local directory, check out
-  desired version.
-* `composer install`
-* `npm install`
-* `npm run production`
-* `rm -rf .git*`
-* Make an archive of that directory, i.e. `tar -czf cr-laravel-app-1.0.2.tar.gz cr-laravel-app/`
-* Upload that to GitHub release page.
-
 #### Production/Stage/etc. (LAMP stack, deprecated)
 
 Set up a LAMP stack and extract the latest build into /var/www/html/...
