@@ -12,4 +12,9 @@ docker-compose.yml
 /storage/framework/sessions/*
 /storage/framework/testing/*
 /storage/framework/views/*
+/storage/logs/*
 tests
+public/css*
+public/js*
+public/images
+public/storage
