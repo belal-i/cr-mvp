@@ -1,6 +1,6 @@
 const mix = require('laravel-mix');
 
-const version = '1.3.3-dev';
+const version = '1.3.3-alpha-1';
 
 const publicCssPath    = 'public/css-'    + version;
 const publicJsPath     = 'public/js-'     + version;
