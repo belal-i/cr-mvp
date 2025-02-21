@@ -5,8 +5,9 @@
         <div class="container">
             <form action="/offers" method="get" class="row form-inline" id="quickfilter-form">
                 <div class="col-3"></div>
-
-                <div class="col-sm-auto quickfilter-form-elem quickfilter-form-label">Zimmer</div>
+                <div class="col-sm-auto quickfilter-form-elem quickfilter-form-label">
+                {{ __('Zimmer') }}
+                </div>
                 <div class="col-sm-auto quickfilter-form-elem quickfilter-elem-with-line">
                 <?php
                     echo make_select_html(
@@ -25,12 +26,17 @@
                 ?>
                 </div>
 
-                <div class="col-sm-auto quickfilter-form-elem quickfilter-form-label">Miete (max.)</div>
+                <div class="col-sm-auto quickfilter-form-elem quickfilter-form-label">
+                {{ __('Miete (max.)') }}
+                </div>
                 <div class="col-sm-auto quickfilter-form-elem quickfilter-elem-with-line">
-                    <input class="form-control no-radius" type="text" id="quickfilter-rent" name="rent-max" placeholder="EUR">
+                <input class="form-control no-radius" type="text" id="quickfilter-rent"
+                    name="rent-max" placeholder="EUR">
                 </div>
 
-                <div class="col-sm-auto quickfilter-form-elem quickfilter-form-label">ab</div>
+                <div class="col-sm-auto quickfilter-form-elem quickfilter-form-label">
+                {{ __('ab') }}
+                </div>
                 <div class="col-sm-auto quickfilter-form-elem">
                 <?php
                     echo make_select_html(
@@ -43,8 +49,10 @@
                 ?>
                 </div>
 
-                <div id="quickfilter-submit-button" class="col-sm-auto quickfilter-form-elem quickfilter-form-label" onclick="$('#quickfilter-form').submit();">
-                    {{ $offerCount }} Angebote zeigen
+                <div id="quickfilter-submit-button"
+                    class="col-sm-auto quickfilter-form-elem quickfilter-form-label"
+                    onclick="$('#quickfilter-form').submit();">
+                    {{ $offerCount }} {{ __('Angebote zeigen') }}
                 </div>
 
                 <div class="col-2"></div>

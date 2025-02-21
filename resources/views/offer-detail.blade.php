@@ -2,11 +2,11 @@
 @section ('content')
 
 <div class="row site-content mt-4" style="border-bottom: 1px solid black; margin-top: 10px;">
-    <div class="col-sm-auto cr-ui-tab-1" style="margin-right: 5px;">Expose</div>
-    <div class="col-sm-auto cr-ui-tab-2">Lage</div>
-    <div class="col-sm-auto cr-ui-tab-3" style="margin-left: 45px;"><a href="/offers">Ergebnisliste</a></div>
+    <div class="col-sm-auto cr-ui-tab-1" style="margin-right: 5px;">{{ __('Expose') }}</div>
+    <div class="col-sm-auto cr-ui-tab-2">{{ __('Lage') }}</div>
+    <div class="col-sm-auto cr-ui-tab-3" style="margin-left: 45px;"><a href="/offers">{{ __('Ergebnisliste') }}</a></div>
     <div class="col-sm-6"></div>
-    <div class="col-sm-auto cr-ui-tab-3"><a href="/inquire/{{ $offer->id }}">Anfragen</a></div>
+    <div class="col-sm-auto cr-ui-tab-3"><a href="/inquire/{{ $offer->id }}">{{ __('Anfragen') }}</a></div>
 </div>
 
 <div class="row site-content cr-detail-view-heading">
@@ -88,24 +88,24 @@ $l = 9;
 </div>
 
 <div class="row site-content cr-detail-view-content border-bottom">
-    <div class="col-3"><strong>Typ und Größe</strong></div>
+    <div class="col-3"><strong>{{ __('Typ und Größe') }}</strong></div>
     <div class="col-9">{{ $offer->apartment->number_of_rooms }}-Zi. {{ $offer->apartment->getTranslatedApartmentType() }}, {{ $offer->apartment->size_sq_m }}m<sup>2</sup></div>
 </div>
 <div class="row site-content cr-detail-view-content border-bottom">
-    <div class="col-3"><strong>Monatsmiete</strong></div>
+    <div class="col-3"><strong>{{ __('Monatsmiete') }}</strong></div>
     <div class="col-9">{{ get_euro_text($offer->rent) }}</div>
 </div>
 <div class="row site-content cr-detail-view-content border-bottom">
-    <div class="col-3"><strong>verfügbar</strong></div>
+    <div class="col-3"><strong>{{ __('verfügbar') }}</strong></div>
     <div class="col-9">{{ $offer->getStartText() }}</div>
 </div>
 
 <div class="row site-content cr-detail-view-content border-bottom">
-    <div class="col-3"><strong>Mindestmietzeit</strong></div>
+    <div class="col-3"><strong>{{ __('Mindestmietzeit') }}</strong></div>
     <div class="col-9">{{ $offer->min_months }} Monate</div>
 </div>
 <div class="row site-content cr-detail-view-content border-bottom">
-    <div class="col-3"><strong>Lage</strong></div>
+    <div class="col-3"><strong>{{ __('Lage') }}</strong></div>
     <div class="col-9">
         {{ $offer->apartment->house->address->zip_code }} {{ $offer->apartment->house->address->neighborhood }}
         <br>
@@ -115,18 +115,18 @@ $l = 9;
     </div>
 </div>
 <div class="row site-content cr-detail-view-content border-bottom">
-    <div class="col-3"><strong>Einschränkungen</strong></div>
+    <div class="col-3"><strong>{{ __('Einschränkungen') }}</strong></div>
     <div class="col-9">
         {{ $offer->getLimitationsText() }}
     </div>
 </div>
 
 <div class="row site-content cr-detail-view-heading">
-    <div class="col-9"><strong>Beschreibung der Wohnung</strong></div>
+    <div class="col-9"><strong>{{ __('Beschreibung der Wohnung') }}</strong></div>
 </div>
 
 <div class="row site-content cr-detail-view-content border-bottom">
-    <div class="col-3"><strong>Specials</strong></div>
+    <div class="col-3"><strong>{{ __('Specials') }}</strong></div>
     <div class="col-9">
         <?php
             echo php_array_to_ul_elem(
@@ -136,23 +136,23 @@ $l = 9;
     </div>
 </div>
 <div class="row site-content cr-detail-view-content border-bottom">
-    <div class="col-3"><strong>Hausinfo</strong></div>
+    <div class="col-3"><strong>{{ __('Hausinfo') }}</strong></div>
     <div class="col-9">{{ $offer->apartment->house->getInfoText() }}</div>
 </div>
 <div class="row site-content cr-detail-view-content border-bottom">
-    <div class="col-3"><strong>Wohnräume</strong></div>
+    <div class="col-3"><strong>{{ __('Wohnräume') }}</strong></div>
     <div class="col-9">{{ $offer->apartment->getRoomText('living_room') }}</div>
 </div>
 <div class="row site-content cr-detail-view-content border-bottom">
-    <div class="col-3"><strong>Küche</strong></div>
+    <div class="col-3"><strong>{{ __('Küche') }}</strong></div>
     <div class="col-9"><?php echo $offer->apartment->getRoomText('kitchen', true); ?></div>
 </div>
 <div class="row site-content cr-detail-view-content border-bottom">
-    <div class="col-3"><strong>Bad</strong></div>
+    <div class="col-3"><strong>{{ __('Bad') }}</strong></div>
     <div class="col-9"><?php echo $offer->apartment->getRoomText('bathroom', true); ?></div>
 </div>
 <div class="row site-content cr-detail-view-content border-bottom">
-    <div class="col-3"><strong>Ausstattung</strong></div>
+    <div class="col-3"><strong>{{ __('Ausstattung') }}</strong></div>
     <div class="col-9"><?php echo $offer->apartment->getEquipmentText(); ?></div>
 </div>
 {{--
@@ -164,33 +164,33 @@ TODO: See Feature #1178
 --}}
 
 <div class="row site-content cr-detail-view-heading">
-    <div class="col-9"><strong>Information zum Mietpreis</strong></div>
+    <div class="col-9"><strong>{{ __('Information zum Mietpreis') }}</strong></div>
 </div>
 
 <div class="row site-content cr-detail-view-content border-bottom">
-    <div class="col-3"><strong>Kaution</strong></div>
+    <div class="col-3"><strong>{{ __('Kaution') }}</strong></div>
     {{-- TODO: This will be refactored. See Feature #972. --}}
     <div class="col-9">{{ $offer->getSecurityDepositText() }}</div>
 </div>
 <div class="row site-content cr-detail-view-content border-bottom">
-    <div class="col-3"><strong>Radio- und TV-Empfang</strong></div>
-    <div class="col-9">Der Rundfunkbeitrag für die öffentlich-rechtlichen Rundfunkanstalten von derzeit 18,36 Euro ist vom Mieter direkt an <a href="http://www.rundfunkbeitrag.de">ARD ZDF Deutschlandradio-Beitragsservice</a> zu zahlen. Er ist nicht in der Miete enthalten, soweit nichts anderes ausgewiesen ist.</div>
+    <div class="col-3"><strong>{{ __('Radio- und TV-Empfang') }}</strong></div>
+    <div class="col-9">{!! __('Der Rundfunkbeitrag für die öffentlich-rechtlichen Rundfunkanstalten von derzeit 18,36 Euro ist vom Mieter direkt an <a href="http://www.rundfunkbeitrag.de">ARD ZDF Deutschlandradio-Beitragsservice</a> zu zahlen. Er ist nicht in der Miete enthalten, soweit nichts anderes ausgewiesen ist.') !!}</div>
 </div>
 <div class="row site-content cr-detail-view-content border-bottom">
-    <div class="col-3"><strong>Provisionsfrei</strong></div>
-    <div class="col-9">Unsere Vermittlungsleistung ist nach §2 Abs.1a WohnVermittG für Mieter provisionsfrei.</div>
+    <div class="col-3"><strong>{{ __('Provisionsfrei') }}</strong></div>
+    <div class="col-9">{{ __('Unsere Vermittlungsleistung ist nach §2 Abs.1a WohnVermittG für Mieter provisionsfrei.') }}</div>
 </div>
 <div class="row site-content cr-detail-view-content border-bottom">
-    <div class="col-3"><strong>Reinigung</strong></div>
-    <div class="col-9">Obligatorische Reinigungskosten nach Auszug des Mieters.</div>
+    <div class="col-3"><strong>{{ __('Reinigung') }}</strong></div>
+    <div class="col-9">{{ __('Obligatorische Reinigungskosten nach Auszug des Mieters.') }}</div>
 </div>
 <div class="row site-content cr-detail-view-content border-bottom">
-    <div class="col-3"><strong>Wohnungsgeber-bestätigung</strong></div>
-    <div class="col-9">Mit dem Abschluss des Mietvertrages erhalten Sie als Mieter eine Wohnungsgeberbestätigung, die für die Anmeldung als Wohnsitz in Frankfurt erforderlich ist.</div>
+    <div class="col-3"><strong>{{ __('Wohnungsgeber-bestätigung') }}</strong></div>
+    <div class="col-9">{{ __('Mit dem Abschluss des Mietvertrages erhalten Sie als Mieter eine Wohnungsgeberbestätigung, die für die Anmeldung als Wohnsitz in Frankfurt erforderlich ist.') }}</div>
 </div>
 
 <div class="row site-content cr-detail-view-heading">
-    <div class="col-3"><strong>Infos zur Wohnlage</strong></div>
+    <div class="col-3"><strong>{{ __('Infos zur Wohnlage') }}</strong></div>
     <div class="col-9"><strong>{{ $offer->apartment->title }}</strong></div>
 </div>
 
@@ -205,24 +205,24 @@ TODO: See Feature #1178
     ?>
 </div>
 <div class="row site-content cr-detail-view-content border-bottom">
-    <div class="col-3"><strong>Öffentliche Verkehrsmittel</strong></div>
+    <div class="col-3"><strong>{{ __('Öffentliche Verkehrsmittel') }}</strong></div>
     <div class="col-9"> <?php echo $offer->apartment->house->address->getPublicTransitUls(); ?></div>
 </div>
 <div class="row site-content cr-detail-view-content border-bottom">
-    <div class="col-3"><strong>PKW</strong></div>
+    <div class="col-3"><strong>{{ __('PKW') }}</strong></div>
     <div class="col-9"> {{ $offer->apartment->house->address->getParkingRatingText() }}</div>
 </div>
 <div class="row site-content cr-detail-view-content border-bottom">
-    <div class="col-3"><strong>Einkaufen</strong></div>
+    <div class="col-3"><strong>{{ __('Einkaufen') }}</strong></div>
     <div class="col-9"><?php echo $offer->apartment->house->address->getShopsUl(); ?></div>
 </div>
 <div class="row site-content cr-detail-view-content border-bottom">
-    <div class="col-3"><strong>Freizeit</strong></div>
+    <div class="col-3"><strong>{{ __('Freizeit') }}</strong></div>
     <div class="col-9"><?php echo $offer->apartment->house->address->getPointsOfInterestUl(); ?></div>
 </div>
 
 <div class="row site-content cr-detail-view-heading">
-    <div class="col-9"><strong>Energieausweis</strong></div>
+    <div class="col-9"><strong>{{ __('Energieausweis') }}</strong></div>
 </div>
 
 <div class="row site-content cr-detail-view-content border-bottom">

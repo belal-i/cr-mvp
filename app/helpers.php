@@ -53,7 +53,7 @@ function get_current_months($number_of_months = 3)
         'MMMM'
     );
 
-    $ret_arr = ['' => 'sofort'];
+    $ret_arr = ['' => __('sofort')];
 
     for ($i = 1; $i < $number_of_months; ++$i) {
         $date_array_key = date(
@@ -66,8 +66,8 @@ function get_current_months($number_of_months = 3)
             )
         );
         $pretty_date_value = $i == $number_of_months - 1
-            ? 'später'
-            : $formatter->format(new \DateTime($date_array_key));
+            ? __('später')
+            : __($formatter->format(new \DateTime($date_array_key)));
 
         $ret_arr[$date_array_key] = $pretty_date_value;
     }

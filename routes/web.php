@@ -7,6 +7,7 @@ use App\Models\Offer;
 use App\Http\Repositories\OfferRepository;
 use App\Http\Controllers\OfferController;
 use App\Http\Controllers\InquiryController;
+use App\Http\Controllers\LocalizationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,10 +23,15 @@ use App\Http\Controllers\InquiryController;
 Route::get('/', function () {
     return view('home', [
         'offerCount'  => OfferRepository::countFreeOffers(),
-        'bannerText'  => Text::getText('HOMEPAGE_BANNER'),
+        'bannerText'  => __(Text::getText('HOMEPAGE_BANNER')),
         'contentText' => Text::getText('HOMEPAGE_CONTENT'),
     ]);
 });
+
+Route::get(
+    '/locale/{locale}',
+    [LocalizationController::class, 'setLanguage']
+)->name('locale');
 
 Route::get('/offers', function (Request $request) {
     $filterParams = OfferController::extractValidFilterParamsFromRequest(
