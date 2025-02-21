@@ -74,7 +74,7 @@
                         );
                     ?>
                 </td>
-                <td class="not-mobile">bis&emsp;</td>
+                <td class="not-mobile">{{ __('bis') }}&emsp;</td>
                 <td class="not-mobile">
                     <?php
                         echo make_select_html(
@@ -105,7 +105,7 @@
                     <input type="text" name="rent-min" class="offer-filter-form-wide-elem w-100"
                         value="<?php echo $filterParams['rent-min'] ?? ''; ?>">
                 </td>
-                <td class="not-mobile">bis&emsp;</td>
+                <td class="not-mobile">{{ __('bis') }}&emsp;</td>
                 <td>
                     <input type="text" name="rent-max" placeholder="max."
                         class="offer-filter-form-wide-elem-plus w-100"

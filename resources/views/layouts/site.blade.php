@@ -120,7 +120,7 @@
 
             <div id="bottom-nav-row" class="row cr-bg-dark cr-txt-light">
                 <div class="col">
-                    <h4>Mieter-Info</h4>
+                    <h4>{{ __('Mieter-Info') }}</h4>
                     <ul>
                         <li><a class="nav-link" href="/">Listenelement 1</a></li>
                         <li><a class="nav-link" href="/">Listenelement 2</a></li>
@@ -128,7 +128,7 @@
                     </ul>
                 </div>
                 <div class="col">
-                    <h4>Vermieter-Info</h4>
+                    <h4>{{ __('Vermieter-Info') }}</h4>
                     <ul>
                         <li><a class="nav-link" href="/">Listenelement 1</a></li>
                         <li><a class="nav-link" href="/">Listenelement 2</a></li>
@@ -136,7 +136,7 @@
                     </ul>
                 </div>
                 <div class="col">
-                    <h4>Stadtinfos</h4>
+                    <h4>{{ __('Stadtinfos') }}</h4>
                     <ul>
                         <li><a class="nav-link" href="/">Listenelement 1</a></li>
                         <li><a class="nav-link" href="/">Listenelement 2</a></li>
@@ -144,7 +144,7 @@
                     </ul>
                 </div>
                 <div class="col">
-                    <h4>Über uns</h4>
+                    <h4>{{ __('Über uns') }}</h4>
                     <ul>
                         <li><a class="nav-link" href="/">Listenelement 1</a></li>
                         <li><a class="nav-link" href="/">Listenelement 2</a></li>
