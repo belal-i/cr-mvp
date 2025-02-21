@@ -23,6 +23,7 @@ class InquiryController extends Controller
             'email' => 'required|email',
             'tos' => 'accepted',
             'privacy' => 'accepted',
+            'accept-furnished' => 'accepted',
             'captcha' => 'required|captcha',
         ]);
 

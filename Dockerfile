@@ -40,5 +40,7 @@ RUN sed -ri -e 's!/var/www/!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/apache2.conf
 
 EXPOSE 80/tcp
 
+USER www-data
+
 ENTRYPOINT ["./entrypoint.sh"]
 CMD ["apache2-foreground"]
