@@ -59,19 +59,19 @@
                 </div>
                 <div class="col-md col-sm-5">
                     <span id="l10n-flags">
-                        <a href="{{ get_localized_uri('de') }}">
+                        <a href="/locale/de">
                             <img src="{{ asset('images/de.gif') }}">
                         </a>
-                        <a href="{{ get_localized_uri('en') }}">
+                        <a href="/locale/en">
                             <img src="{{ asset('images/en.gif') }}">
                         </a>
-                        <a href="{{ get_localized_uri('fr') }}">
+                        <a href="/locale/fr">
                             <img src="{{ asset('images/fr.gif') }}">
                         </a>
-                        <a href="{{ get_localized_uri('es') }}">
+                        <a href="/locale/es">
                             <img src="{{ asset('images/es.gif') }}">
                         </a>
-                        <a href="{{ get_localized_uri('it') }}">
+                        <a href="/locale/it">
                             <img src="{{ asset('images/it.gif') }}">
                         </a>
                     </span>

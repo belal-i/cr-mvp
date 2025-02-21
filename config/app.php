@@ -83,7 +83,6 @@ return [
     |
     */
 
-    // TODO: We should discuss this.
     'locale' => 'de',
 
     /*
