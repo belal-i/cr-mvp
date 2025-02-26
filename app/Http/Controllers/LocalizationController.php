@@ -8,7 +8,10 @@ class LocalizationController extends Controller
 {
     public function setLanguage(Request $request)
     {
-        $locale = $request->locale ?? config('app.locale');
+        $locale = in_array($request->locale, SUPPORTED_LOCALES, true)
+            ? $request->locale
+            : config('app.locale');
+
         $request->session()->put('locale', $locale);
 
         return redirect()->back();
