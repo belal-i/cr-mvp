@@ -133,3 +133,31 @@ function format_date($date, $locale = 'de-DE')
     );
     return $formatter->format(new \DateTime($date));
 }
+
+function make_l10n_flags($current_locale, $wrapper_id = 'l10n-flags')
+{
+    $supported_locales = [
+        'de',
+        'en',
+        'fr',
+        'es',
+        'it',
+    ];
+
+    foreach ($supported_locales as $locale) {
+        if ($locale == $current_locale)
+            continue;
+
+        $locale_tags[] = sprintf(
+            '<a href="/locale/%s"><img src="%s"></a>',
+            $locale,
+            asset("images/$locale.gif")
+        );
+    }
+
+    return sprintf(
+        '<span id="%s">%s</span>',
+        $wrapper_id,
+        implode(PHP_EOL, $locale_tags)
+    );
+}
