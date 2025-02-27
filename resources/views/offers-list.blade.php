@@ -387,7 +387,7 @@ $splide_count = 0;
             @endforeach
 
             <div class="not-mobile" style="text-align:right; width:100%;">
-            <span style="float:left;"><strong>frei ab {{ $offer->getStartText() }}</strong>, {{ $offer->getMaxMonthsText() }}, Mindestmietzeit {{ $offer->min_months }} Monate</span>Miete pro Monat: <strong>{{ get_euro_text($offer->rent) }}</strong>
+            <span style="float:left;"><strong>{{ __('frei ab ') }} {{ $offer->getStartText() }}</strong>, {{ $offer->getMaxMonthsText() }}, {{ __('Mindestmietzeit') }} {{ $offer->min_months }} {{ __('Monate') }}</span>{{ __('Miete pro Monat') }}: <strong>{{ get_euro_text($offer->rent) }}</strong>
             <div class="row" style="text-align: left;">
                 <div class="col-9">{!! $offer->apartment->getEquipmentIcons() !!}</div>
                 <div class="col-3" style="text-align: right;">{!! $offer->apartment->getRatingStarsImg(75) !!}</div>

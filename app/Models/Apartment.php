@@ -99,7 +99,7 @@ class Apartment extends Model
 
     public function getTranslatedApartmentType()
     {
-        return self::APARTMENT_TYPE_TRANSLATIONS[$this->apartment_type];
+        return __(self::APARTMENT_TYPE_TRANSLATIONS[$this->apartment_type]);
     }
 
     public function getAllImageUrls()
@@ -165,13 +165,24 @@ EOF;
     {
         if ($this->apartment_type == 'HOUSE') {
             if ($this->number_of_rooms == 1)
-                $noun = 'Zimmer';
+                $noun = __('Zimmer');
             else
-                $noun = 'Zimmern';
-            return sprintf('Haus mit %d %s', $this->number_of_rooms, $noun);
+                $noun = __('Zimmern');
+            return sprintf(
+                '%s %s %d %s',
+                __('Haus'),
+                __('mit'),
+                $this->number_of_rooms,
+                $noun
+            );
         }
         else {
-            return $this->number_of_rooms . '-Zi. Wohnung';
+            return sprintf(
+                '%d%s %s',
+                $this->number_of_rooms,
+                __('-Zi.'),
+                __('Wohnung'),
+            );
         }
     }
 
@@ -183,17 +194,41 @@ EOF;
         if (empty($specials))
             return $returnArray;
 
+        // TODO: Still needs refactoring...
+        // Did this in kind of a hurry.
+        switch (app()->getLocale()) {
+            default:
+            case 'de':
+                $specialsKey = '1';
+                break;
+            case 'en':
+                $specialsKey = '2';
+                break;
+            case 'fr':
+                $specialsKey = '3';
+                break;
+            case 'es':
+                $specialsKey = '4';
+                break;
+            case 'it':
+                $specialsKey = '5';
+                break;
+        }
         foreach ($specials as $specialsEntry) {
-            // TODO: For now, just using the German ones,
-            // but this needs to be refactored.
-            if (!empty($specialsEntry['1']))
-                $returnArray[] = $specialsEntry['1'];
+            try {
+                if (!empty($specialsEntry[$specialsKey]))
+                    $returnArray[] = $specialsEntry[$specialsKey];
+            } catch (\Exception $e) {
+                if (!empty($specialsEntry['1']))
+                    $returnArray[] = $specialsEntry['1'];
+            }
         }
         return $returnArray;
     }
 
     public function getRoomText($roomType, $furnitureAsUl = false)
     {
+        // TODO: See Redmine #986.
         if (!in_array($roomType, ['living_room', 'kitchen', 'bathroom']))
             return ''; // TODO: Raise exception?
         $retTxt = sprintf(

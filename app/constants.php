@@ -1,5 +1,13 @@
 <?php
 
+define('SUPPORTED_LOCALES', [
+    'de',
+    'en',
+    'fr',
+    'es',
+    'it',
+]);
+
 define('CR_FRANKFURT_DOWNTOWN_NEIGHBORHOODS', [
     'Altstadt',
     'Altstadt-City',

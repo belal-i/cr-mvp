@@ -58,23 +58,7 @@
                     </a>
                 </div>
                 <div class="col-md col-sm-5">
-                    <span id="l10n-flags">
-                        <a href="/locale/de">
-                            <img src="{{ asset('images/de.gif') }}">
-                        </a>
-                        <a href="/locale/en">
-                            <img src="{{ asset('images/en.gif') }}">
-                        </a>
-                        <a href="/locale/fr">
-                            <img src="{{ asset('images/fr.gif') }}">
-                        </a>
-                        <a href="/locale/es">
-                            <img src="{{ asset('images/es.gif') }}">
-                        </a>
-                        <a href="/locale/it">
-                            <img src="{{ asset('images/it.gif') }}">
-                        </a>
-                    </span>
+                    {!! make_l10n_flags(app()->getLocale()) !!}
                 </div>
                 <div class="col-md col-sm-6" id="quicksearch">
                     {{-- TODO --}}
