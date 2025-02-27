@@ -1,7 +1,21 @@
 <?php
 function get_euro_text($rent)
 {
-    return number_format((float)$rent, 0, ',', '.') . ' EUR';
+    switch (app()->getLocale()) {
+        default:
+        case 'de':
+            $decimalSymbol = ',';
+            $thousandsSeparator = '.';
+            break;
+        case 'en':
+        case 'fr':
+        case 'es':
+        case 'it':
+            $decimalSymbol = '.';
+            $thousandsSeparator = ',';
+            break;
+    }
+    return number_format((float)$rent, 0, $decimalSymbol, $thousandsSeparator) . ' EUR';
 }
 
 function php_array_to_ul_elem(

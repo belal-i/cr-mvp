@@ -89,7 +89,7 @@ $l = 9;
 
 <div class="row site-content cr-detail-view-content border-bottom">
     <div class="col-3"><strong>{{ __('Typ und Größe') }}</strong></div>
-    <div class="col-9">{{ $offer->apartment->number_of_rooms }}-Zi. {{ $offer->apartment->getTranslatedApartmentType() }}, {{ $offer->apartment->size_sq_m }}m<sup>2</sup></div>
+    <div class="col-9">{{ $offer->apartment->number_of_rooms }}{{ __('-Zi.') }} {{ $offer->apartment->getTranslatedApartmentType() }}, {{ $offer->apartment->size_sq_m }}m<sup>2</sup></div>
 </div>
 <div class="row site-content cr-detail-view-content border-bottom">
     <div class="col-3"><strong>{{ __('Monatsmiete') }}</strong></div>
@@ -102,7 +102,7 @@ $l = 9;
 
 <div class="row site-content cr-detail-view-content border-bottom">
     <div class="col-3"><strong>{{ __('Mindestmietzeit') }}</strong></div>
-    <div class="col-9">{{ $offer->min_months }} Monate</div>
+    <div class="col-9">{{ $offer->min_months }} {{ __('Monate') }}</div>
 </div>
 <div class="row site-content cr-detail-view-content border-bottom">
     <div class="col-3"><strong>{{ __('Lage') }}</strong></div>

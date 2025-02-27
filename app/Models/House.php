@@ -58,6 +58,7 @@ class House extends Model
 
     public function getInfoText()
     {
+        // TODO: See Redmine #986.
         $infoArray = [];
         if (!empty($this->house_description) && !empty($this->house_type)) {
             $infoArray[] = "$this->house_description $this->house_type";
