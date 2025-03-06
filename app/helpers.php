@@ -1,7 +1,21 @@
 <?php
 function get_euro_text($rent)
 {
-    return number_format((float)$rent, 0, ',', '.') . ' EUR';
+    switch (app()->getLocale()) {
+        default:
+        case 'de':
+            $decimalSymbol = ',';
+            $thousandsSeparator = '.';
+            break;
+        case 'en':
+        case 'fr':
+        case 'es':
+        case 'it':
+            $decimalSymbol = '.';
+            $thousandsSeparator = ',';
+            break;
+    }
+    return number_format((float)$rent, 0, $decimalSymbol, $thousandsSeparator) . ' EUR';
 }
 
 function php_array_to_ul_elem(
@@ -53,7 +67,7 @@ function get_current_months($number_of_months = 3)
         'MMMM'
     );
 
-    $ret_arr = ['' => 'sofort'];
+    $ret_arr = ['' => __('sofort')];
 
     for ($i = 1; $i < $number_of_months; ++$i) {
         $date_array_key = date(
@@ -66,8 +80,8 @@ function get_current_months($number_of_months = 3)
             )
         );
         $pretty_date_value = $i == $number_of_months - 1
-            ? 'später'
-            : $formatter->format(new \DateTime($date_array_key));
+            ? __('später')
+            : __($formatter->format(new \DateTime($date_array_key)));
 
         $ret_arr[$date_array_key] = $pretty_date_value;
     }
@@ -132,4 +146,32 @@ function format_date($date, $locale = 'de-DE')
         $format
     );
     return $formatter->format(new \DateTime($date));
+}
+
+function make_l10n_flags($current_locale, $wrapper_id = 'l10n-flags')
+{
+    $supported_locales = [
+        'de',
+        'en',
+        'fr',
+        'es',
+        'it',
+    ];
+
+    foreach ($supported_locales as $locale) {
+        if ($locale == $current_locale)
+            continue;
+
+        $locale_tags[] = sprintf(
+            '<a href="/locale/%s"><img src="%s"></a>',
+            $locale,
+            asset("images/$locale.gif")
+        );
+    }
+
+    return sprintf(
+        '<span id="%s">%s</span>',
+        $wrapper_id,
+        implode(PHP_EOL, $locale_tags)
+    );
 }

@@ -69,14 +69,14 @@ class Address extends Model
         }
 
         $compassTranslations = [
-            'N' => 'nördlich',
-            'NE' => 'nordöstlich',
-            'E' => 'östlich',
-            'SE' => 'südöstlich',
-            'S' => 'südlich',
-            'SW' => 'südwestlich',
-            'W' => 'westlich',
-            'NW' => 'nordwestlich',
+            'N'  => __('nördlich'),
+            'NE' => __('nordöstlich'),
+            'E'  => __('östlich'),
+            'SE' => __('südöstlich'),
+            'S'  => __('südlich'),
+            'SW' => __('südwestlich'),
+            'W'  => __('westlich'),
+            'NW' => __('nordwestlich'),
         ];
         if ($this->distance_from_city_center_m < 1000)
             $distanceText = $this->distance_from_city_center_m . 'm';
@@ -88,9 +88,10 @@ class Address extends Model
                 '.',
             ) . 'km';
         return sprintf(
-            'ca. %s %s der Innenstadt',
+            'ca. %s %s %s',
             $distanceText,
-            $compassTranslations[$this->compass_direction_from_city_center]
+            $compassTranslations[$this->compass_direction_from_city_center],
+            __('der Innenstadt'),
         );
     }
 
@@ -155,14 +156,14 @@ class Address extends Model
         switch ($this->parking_rating) {
             case 6:
             case 5:
-                return 'Exzellente Parkmöglichkeiten';
+                return __('Exzellente Parkmöglichkeiten');
             case 4:
-                return 'Gute Parkmöglichkeiten';
+                return __('Gute Parkmöglichkeiten');
             case 3:
-                return 'Parkmöglichkeiten auf der Straße';
+                return __('Parkmöglichkeiten auf der Straße');
             case 2:
             case 1:
-                return 'Geringe Parkmöglichkeiten auf der Straße';
+                return __('Geringe Parkmöglichkeiten auf der Straße');
             default:
                 return '';
         }

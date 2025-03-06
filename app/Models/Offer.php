@@ -70,15 +70,22 @@ class Offer extends Model
 
     public function getMaxMonthsText()
     {
-        if ($this->max_months > 0)
-            return 'höchstens ' . $this->max_months . ' Monate';
-        else
-            return 'für unbefristet';
+        if ($this->max_months > 0) {
+            return sprintf(
+                '%s %d %s',
+                __('höchstens'),
+                $this->max_months,
+                __('Monate'),
+            );
+        }
+        else {
+            return __('für unbefristet');
+        }
     }
 
     public function getInfoAtAGlanceText()
     {
-        return $this->apartment->number_of_rooms . '-Zi. '
+        return $this->apartment->number_of_rooms . __('-Zi.') . ' '
             . $this->apartment->getTranslatedApartmentType() . ' | '
             . $this->apartment->size_sq_m . 'm<sup>2</sup> | '
             . get_euro_text($this->rent) . ' | '
@@ -92,18 +99,23 @@ class Offer extends Model
             return format_date($this->start_date);
         }
         else {
-            return 'sofort';
+            return __('sofort');
         }
     }
 
     public function getLimitationsText()
     {
         $limitationsArray = [];
-        $personsNoun = $this->number_of_persons == 1 ? ' Person' : ' Personen';
+        $personsNoun = sprintf(
+            ' %s',
+            __($this->number_of_persons == 1 ? 'Person' : 'Personen')
+        );
+
+        ;
         if (!empty($this->number_of_persons))
             $limitationsArray[] = 'max. ' . $this->number_of_persons . $personsNoun;
         if (!$this->smoking_ok)
-            $limitationsArray[] = 'nur an Nichtraucher';
+            $limitationsArray[] = __('nur an Nichtraucher');
 
         return implode(', ', $limitationsArray);
     }
@@ -118,7 +130,11 @@ class Offer extends Model
             case 'EURO_AMOUNT':
                 return get_euro_text($this->security_deposit);
             case 'MONTHLY_RENTS':
-                return sprintf('%d Monatsmieten', $this->security_deposit);
+                return sprintf(
+                    '%d %s',
+                    $this->security_deposit,
+                    __('Monatsmieten')
+                );
         }
     }
 }
