@@ -1,8 +1,8 @@
 # NOTE: DO NOT USE THIS IN PRODUCTION!
 # This docker-compose.yml file is strictly intended for local development!
 services:
-    cr-laravel-app:
-        container_name: cr-laravel-app
+    cr-mvp:
+        container_name: cr-mvp
         # TODO: For now, we have to explicitly build the container
         # before we try to run the local environment with Docker Compose,
         # but maybe this could be useful. However... I want
@@ -13,7 +13,7 @@ services:
         #     dockerfile: Dockerfile
         #     args:
         #         WWWGROUP: '${WWWGROUP}'
-        image: cr-laravel-app:dev
+        image: cr-mvp:dev
         ports:
             - 8000:80
         # TODO: This needs to be available, which, out of the box,
