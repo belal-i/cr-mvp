@@ -19,7 +19,7 @@ class UserSeeder extends CrNormalizedSeeder
         parent::run();
         DB::table('users')->insert([
             'name' => 'admin',
-            'email' => 'it@city-residence.de',
+            'email' => 'me@me.me',
             'email_verified_at' => date('Y-m-d'),
             'password' => Hash::make(
                 env(
