@@ -8,7 +8,7 @@ curl $URL/api/addresses \
     --header "Accept: application/json" \
     --header "Content-Type: application/json" \
     --header "Authorization: Bearer $TOKEN" \
-    --data '{"id": "1000", "street": "Hansaallee", "house_number": "154", "city": "Frankfurt am Main", "zip_code": "60320"}'
+    --data '{"id": "1000", "street": "Test Street", "house_number": "123", "city": "Test City", "zip_code": "123"}'
 
 curl $URL/api/addresses \
     -X POST \
@@ -29,14 +29,14 @@ curl $URL/api/users \
     --header "Accept: application/json" \
     --header "Content-Type: application/json" \
     --header "Authorization: Bearer $TOKEN" \
-    --data '{"id": "2000", "address_id": "1000", "name": "guido", "first_name": "Guido", "last_name": "Anders", "email": "g.anders@city-residence.de", "role": "LANDLORD"}'
+    --data '{"id": "2000", "address_id": "1000", "name": "alice", "first_name": "Alice", "last_name": "Wonderland", "email": "alice@example.com", "role": "LANDLORD"}'
 
 curl $URL/api/users \
     -X POST \
     --header "Accept: application/json" \
     --header "Content-Type: application/json" \
     --header "Authorization: Bearer $TOKEN" \
-    --data '{"id": "2001", "address_id": "1001", "name": "brian", "first_name": "Brian", "last_name": "St. Hilaire", "email": "brian.st-hilaire@sanctus-tech.com", "role": "RENTER"}'
+    --data '{"id": "2001", "address_id": "1001", "name": "bob", "first_name": "Bob", "last_name": "Marley", "email": "bob@example.com", "role": "RENTER"}'
 
 curl $URL/api/houses \
     -X POST \

@@ -54,7 +54,7 @@
                 </nav>
                 <div class="col-6">
                     <a href="/">
-                        <img src="{{ asset('images/city-residence-logo.svg') }}" id="logo-image">
+                        <img src="{{ asset('images/logo.svg') }}" id="logo-image">
                     </a>
                 </div>
                 <div class="col-md col-sm-5">

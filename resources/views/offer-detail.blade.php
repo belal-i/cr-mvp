@@ -159,7 +159,7 @@ $l = 9;
 TODO: See Feature #1178
 <div class="row site-content cr-detail-view-content border-bottom">
     <div class="col-3"><strong>Parken</strong></div>
-    <div class="col-9"><small>Diese Daten müssen noch von der ETL-Pipeline normalisiert werden. In einer zukünftigen Version der Laravel-App möglicherweise schon ab v0.5, wird dieser Datensatz dann ebenfalls hier stehen. Siehe Features <a href="https://redmine.city-residence.de/issues/1135">1135</a> und <a href="https://redmine.city-residence.de/issues/1140">1140</a></small></div>
+    <div class="col-9"><small>Sample data</small></div>
 </div>
 --}}
 

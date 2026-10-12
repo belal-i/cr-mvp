@@ -1,5 +1,5 @@
 <div>
-    <img src="{{ $message->embed(public_path() . '/images/city-residence-logo.svg') }}"
+    <img src="{{ $message->embed(public_path() . '/images/logo.svg') }}"
         id="logo-image" width=300>
     <p>{{ $greeting }}</p>
     <p>Die Daten wurden an uns übermittelt. Wir werden uns umgehend mit Ihnen in Verbindung setzten.</p>

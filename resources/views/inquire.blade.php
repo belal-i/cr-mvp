@@ -271,8 +271,7 @@
             <?php echo make_checkbox(
                 'tos',
                 "Mit Absenden dieses Auftrages erkennt
-                der Auftraggeber die <a href=\"/tos\">Allgemeinen Geschäftsbedingungen</a>
-                der City-Residence GmbH an.",
+                der Auftraggeber die Allgemeinen Geschäftsbedingungen.",
                 old('tos') == 'on',
                 'tos',
                 'oninput="$(\'#tos-error\').hide();"'

@@ -4,7 +4,7 @@
         <title>Anfrage zur Vermittlung</title>
     </head>
     <body>
-        <img src="{{ $message->embed(public_path() . '/images/city-residence-logo.svg') }}"
+        <img src="{{ $message->embed(public_path() . '/images/logo.svg') }}"
             id="logo-image" width=300>
         <h3>Anfrage zur Vermittlung</h3>
         <style>
