@@ -2,9 +2,8 @@
 
 ### About
 
-An MVP for City-Residence GmbH, to manage its website, along with its
-listings, renters, etc. Sadly, it has been discontinued, even though
-it was close to completion.
+Web application for real estate brokers to manage their business. Tailor made for
+a client in the German market, but this project has since been discontinued.
 
 ### Requirements (Docker, preferred)
 
@@ -68,16 +67,26 @@ We have a container registry at DigitalOcean. If you did everything right
 so far, you should be able to authenticate your local Docker installation
 to it, with: `doctl registry login`.
 
-Tag an image (example): `docker tag cr-mvp:1.2.0-beta-1 registry.digitalocean.com/city-residence/cr-mvp`
-Then, push that image: `docker push registry.digitalocean.com/city-residence/cr-mvp`
+Tag an image (example): `docker tag cr-mvp:1.2.0-beta-1 registry.digitalocean.com/example-org/cr-mvp`
+Then, push that image: `docker push registry.digitalocean.com/example-org/cr-mvp`
 
 #### Production/Stage/etc. (LAMP stack, deprecated)
 
 Set up a LAMP stack and extract the latest build into /var/www/html/...
 and some other steps. Use [Lampsible](https://github.com/saint-hilaire/lampsible)
-to perform the entire installation in a single local command. See the
-[wiki](https://redmine.city-residence.de/projects/laravel/wiki#Deployment) for
-more info.
+to perform the entire installation in a single local command. The command will be something
+like the following:
+
+```
+lampsible user@example.com laravel \
+    --apache-server-admin email@example.com \
+    --database-username somedbuser \
+    --database-name laravel \
+    --app-name cr-mvp \
+    --app-build-path ./path/to/cr-mvp-2.0.0-dev.tar.gz \
+    --php-extensions mysql,xml,mbstring,intl,curl,gd \
+    --extra-env-vars BACKPACK_DEFAULT_ADMIN_PASSWORD=someadminpassword
+```
 
 #### Local (Docker, preferred)
 
@@ -119,7 +128,7 @@ The seeder already ran - if it didn't, the app wouldn't run anyway. Now you can 
 #### Example: Getting all addresses
 
 ```
-curl https://city-residence.de/api/addresses \
+curl https://example.com/api/addresses \
     --header "Accept: application/json" \
     --header "Authorization: Bearer TOKEN"
 ```
@@ -127,7 +136,7 @@ curl https://city-residence.de/api/addresses \
 #### Example: Getting a specific address by ID
 
 ```
-curl https://city-residence.de/api/addresses/1 \
+curl https://example.com/api/addresses/1 \
     --header "Accept: application/json" \
     --header "Authorization: Bearer TOKEN"
 ```
@@ -135,7 +144,7 @@ curl https://city-residence.de/api/addresses/1 \
 #### Example: Creating a new address
 
 ```
-curl https://city-residence.de/api/addresses \
+curl https://example.com/api/addresses \
     -X POST \
     --header "Accept: application/json" \
     --header "Content-Type: application/json" \
@@ -146,7 +155,7 @@ curl https://city-residence.de/api/addresses \
 #### Example: Update an existing address
 
 ```
-curl https://city-residence.de/api/addresses/1 \
+curl https://example.com/api/addresses/1 \
     -X PUT \
     --header "Accept: application/json" \
     --header "Content-Type: application/json" \
@@ -157,7 +166,7 @@ curl https://city-residence.de/api/addresses/1 \
 #### Example: Delete an existing address
 
 ```
-curl https://city-residence.de/api/addresses/1 \
+curl https://example.com/api/addresses/1 \
     -X DELETE \
     --header "Accept: application/json" \
     --header "Content-Type: application/json" \
@@ -167,68 +176,68 @@ curl https://city-residence.de/api/addresses/1 \
 #### Full example: Creating Offer and Renter, along with underlying Users, Addresses, House and Apartment. 
 
 You can test the following API calls locally by running: `./tests/api.sh 'URL' 'TOKEN'`
-URL should be something like https://test.city-residence.de or localhost:8000
+URL should be something like https://test.example.com or localhost:8000
 TOKEN should be a valid token.
 Both parameters should be enclosed in quotes.
 
 ```
-curl https://city-residence.de/api/addresses \
+curl https://example.com/api/addresses \
     -X POST \
     --header "Accept: application/json" \
     --header "Content-Type: application/json" \
     --header "Authorization: Bearer TOKEN" \
     --data '{"id": "1000", "street": "Hansaallee", "house_number": "154", "city": "Frankfurt am Main", "zip_code": "60320"}'
 
-curl https://city-residence.de/api/addresses \
+curl https://example.com/api/addresses \
     -X POST \
     --header "Accept: application/json" \
     --header "Content-Type: application/json" \
     --header "Authorization: Bearer TOKEN" \
     --data '{"id": "1001", "street": "Friedrich-Ebert-Anlage", "house_number": "49", "city": "Frankfurt am Main", "zip_code": "60308"}'
 
-curl https://city-residence.de/api/addresses \
+curl https://example.com/api/addresses \
     -X POST \
     --header "Accept: application/json" \
     --header "Content-Type: application/json" \
     --header "Authorization: Bearer TOKEN" \
     --data '{"id": "1002", "street": "Wohnstraße", "house_number": "123a", "city": "Frankfurt am Main", "zip_code": "60308"}'
 
-curl https://city-residence.de/api/users \
+curl https://example.com/api/users \
     -X POST \
     --header "Accept: application/json" \
     --header "Content-Type: application/json" \
     --header "Authorization: Bearer TOKEN" \
-    --data '{"id": "2000", "address_id": "1000", "name": "guido", "first_name": "Guido", "last_name": "Anders", "email": "g.anders@city-residence.de", "role": "LANDLORD"}'
+    --data '{"id": "2000", "address_id": "1000", "name": "guido", "first_name": "Guido", "last_name": "Anders", "email": "g.anders@example.com", "role": "LANDLORD"}'
 
-curl https://city-residence.de/api/users \
+curl https://example.com/api/users \
     -X POST \
     --header "Accept: application/json" \
     --header "Content-Type: application/json" \
     --header "Authorization: Bearer TOKEN" \
     --data '{"id": "2001", "address_id": "1001", "name": "brian", "first_name": "Brian", "last_name": "St. Hilaire", "email": "brian.st-hilaire@sanctus-tech.com", "role": "RENTER"}'
 
-curl https://city-residence.de/api/houses \
+curl https://example.com/api/houses \
     -X POST \
     --header "Accept: application/json" \
     --header "Content-Type: application/json" \
     --header "Authorization: Bearer TOKEN" \
     --data '{"id": "3002", "address_id": "1002", "house_description": "schöner", "house_type": "Neubau", "number_of_stories": "5", "year_of_construction": "2000", "energy_source": "BIO_ENERGY", "has_elevator": "1"}'
 
-curl https://city-residence.de/api/apartments \
+curl https://example.com/api/apartments \
     -X POST \
     --header "Accept: application/json" \
     --header "Content-Type: application/json" \
     --header "Authorization: Bearer TOKEN" \
     --data '{"id": "4002", "house_id": "3002", "user_id": "2000", "number_of_rooms": "4", "number_of_bedrooms": "2", "size_sq_m": "99", "is_furnished": "1", "pets_ok": "0"}'
 
-curl https://city-residence.de/api/offers \
+curl https://example.com/api/offers \
     -X POST \
     --header "Accept: application/json" \
     --header "Content-Type: application/json" \
     --header "Authorization: Bearer TOKEN" \
     --data '{"id": "5002", "apartment_id": "4002", "user_id": "2000", "status": "FREE", "rent": "1000", "number_of_persons": "2", "heating_cost_included": "0", "heating_cost_amount": "50"}'
 
-curl https://city-residence.de/api/renters \
+curl https://example.com/api/renters \
     -X POST \
     --header "Accept: application/json" \
     --header "Content-Type: application/json" \
@@ -239,14 +248,11 @@ curl https://city-residence.de/api/renters \
 
 ### Getting production data into the database
 
-You need to run the ETL-Pipeline (https://github.com/city-residence/cr-etl),
-then, replace the fake data file /database/normalized.json of cr-mvp
-with the normalized.json (containing real data) generated by cr-etl.
+One way to do it is to create a file _normalized.json_, with production data,
+and replace the fake data file _/database/normalized.json_ with it, wipe the database,
+and rerun the seeder.
 
-The development of cr-etl follows closely with this application.
-For this reason, you need to make sure to use the right version of cr-etl:
-
-Required cr-etl version: `v1.3.0`
+The original plan was to use the REST API to load the data, but this was never implemented.
 
 ### Configuring the Mailer
 
